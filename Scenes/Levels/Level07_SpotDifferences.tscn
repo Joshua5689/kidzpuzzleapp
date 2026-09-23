@@ -1,0 +1,67 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/HiddenObjectHunt/HiddenObjectHuntLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/HiddenObjectHunt/Hotspot.gd" id="2_hotspot"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/PlaceholderDifferencesA.svg" id="3_image"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/PlaceholderDifferencesB.svg" id="4_compare"]
+
+[node name="Level07_SpotDifferences" instance=ExtResource("1_base")]
+level_number = 7
+prompt_text = "Find the 5 differences!"
+
+[node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]
+custom_minimum_size = Vector2(700, 525)
+texture = ExtResource("3_image")
+
+[node name="CompareImage" parent="Layout/PlayArea/Pictures" index="1"]
+texture = ExtResource("4_compare")
+
+[node name="Sun" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 30.0
+offset_right = 170.0
+offset_bottom = 150.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Differences"
+
+[node name="Cloud" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 32.0
+offset_right = 540.0
+offset_bottom = 118.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Differences"
+
+[node name="Door" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 318.0
+offset_top = 285.0
+offset_right = 382.0
+offset_bottom = 375.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Differences"
+
+[node name="Apple" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 176.0
+offset_right = 584.0
+offset_bottom = 224.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Differences"
+
+[node name="Flower" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 435.0
+offset_right = 175.0
+offset_bottom = 485.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Differences"

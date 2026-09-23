@@ -1,0 +1,82 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/HiddenObjectHunt/HiddenObjectHuntLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/HiddenObjectHunt/Hotspot.gd" id="2_hotspot"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/PlaceholderPond.svg" id="3_image"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/Icons/Fish.svg" id="icon_Fish"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/Icons/Frog.svg" id="icon_Frog"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/Icons/Gift.svg" id="icon_Gift"]
+
+[node name="Level10_FindFrogsFish" instance=ExtResource("1_base")]
+level_number = 10
+prompt_text = "Find the frogs, fish and gift!"
+
+[node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]
+custom_minimum_size = Vector2(1280, 680)
+texture = ExtResource("3_image")
+
+[node name="Frog1" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 378.0
+offset_right = 528.0
+offset_bottom = 458.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Frog"
+icon = ExtResource("icon_Frog")
+
+[node name="Frog2" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 852.0
+offset_top = 476.0
+offset_right = 948.0
+offset_bottom = 556.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Frog"
+icon = ExtResource("icon_Frog")
+
+[node name="Frog3" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 526.0
+offset_right = 218.0
+offset_bottom = 606.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Frog"
+icon = ExtResource("icon_Frog")
+
+[node name="Fish1" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 492.0
+offset_right = 700.0
+offset_bottom = 548.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Fish"
+icon = ExtResource("icon_Fish")
+
+[node name="Fish2" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 730.0
+offset_top = 367.0
+offset_right = 860.0
+offset_bottom = 423.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Fish"
+icon = ExtResource("icon_Fish")
+
+[node name="Gift" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 1076.0
+offset_top = 456.0
+offset_right = 1174.0
+offset_bottom = 564.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Gift"
+icon = ExtResource("icon_Gift")

@@ -1,0 +1,71 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/HiddenObjectHunt/HiddenObjectHuntLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/HiddenObjectHunt/Hotspot.gd" id="2_hotspot"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/PlaceholderBike.svg" id="3_image"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/Icons/Circle.svg" id="icon_Circle"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/Icons/Square.svg" id="icon_Square"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/Icons/Triangle.svg" id="icon_Triangle"]
+
+[node name="Level08_BikeShapes" instance=ExtResource("1_base")]
+level_number = 8
+prompt_text = "Find the shapes in the bike!"
+
+[node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]
+custom_minimum_size = Vector2(1280, 680)
+texture = ExtResource("3_image")
+
+[node name="BackWheel" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 340.0
+offset_right = 510.0
+offset_bottom = 600.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Circle"
+icon = ExtResource("icon_Circle")
+
+[node name="FrontWheel" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 340.0
+offset_right = 1030.0
+offset_bottom = 600.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Circle"
+icon = ExtResource("icon_Circle")
+
+[node name="BackTriangle" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 268.0
+offset_right = 608.0
+offset_bottom = 478.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Triangle"
+icon = ExtResource("icon_Triangle")
+
+[node name="FrontTriangle" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 272.0
+offset_right = 808.0
+offset_bottom = 478.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Triangle"
+icon = ExtResource("icon_Triangle")
+
+[node name="Basket" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 166.0
+offset_right = 974.0
+offset_bottom = 284.0
+border_width = 3.0
+script = ExtResource("2_hotspot")
+category = "Square"
+icon = ExtResource("icon_Square")

@@ -68,6 +68,15 @@ that mechanic benefits.
    LevelSelect builds its buttons from that list and the Next button follows it.
    Levels whose scene file doesn't exist yet show as "Coming soon".
 
+### HiddenObjectHunt levels
+
+Set the picture on `SceneImage` (texture + custom_minimum_size = the size it
+should display at), then add `Hotspot` nodes (Add Child Node > Hotspot) under
+`SceneImage/Hotspots`, drawn over each thing to find. Set each hotspot's
+`category` and `icon`; hotspots sharing a category are counted together in the
+checklist. For spot-the-difference, also set a texture on `CompareImage`
+(same size); hotspots are placed on the left picture only.
+
 ## Progress / unlocking
 
 `GameManager.UNLOCK_ALL_LEVELS` is `true` during development. Set it to `false`
