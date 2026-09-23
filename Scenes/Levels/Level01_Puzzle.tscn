@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/DragRearrange/DragRearrangeLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Puzzle/PlaceholderHouse.svg" id="2_image"]
+
+[node name="Level01_Puzzle" instance=ExtResource("1_base")]
+level_number = 1
+image = ExtResource("2_image")

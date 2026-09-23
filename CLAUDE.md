@@ -9,6 +9,12 @@ The app is NOT 10 unique builds. It is a small set of reusable mechanic scenes
 under `Scenes/Mechanics/`, each one instanced multiple times under
 `Scenes/Levels/` with different artwork and exported config values.
 
+Every mechanic script extends `MechanicLevel` (`Scripts/MechanicLevel.gd`),
+which owns what all mechanics share: level_number, prompt, feedback text,
+sounds, Back/Next buttons and `finish_level()`. Mechanic scenes must keep the
+node paths it expects (Layout/PromptLabel, Layout/FeedbackLabel,
+Layout/NextButton, BackButton, SfxPlayer).
+
 Never duplicate mechanic logic into a level specific script. If a level needs
 new behaviour, extend the shared mechanic script instead so every level using
 that mechanic benefits.
