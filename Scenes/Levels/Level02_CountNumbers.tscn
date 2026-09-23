@@ -1,0 +1,10 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/CountSelect/CountSelectLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Counting/PlaceholderStar.svg" id="2_item"]
+
+[node name="Level02_CountNumbers" instance=ExtResource("1_base")]
+level_number = 2
+prompt_text = "How many stars?"
+item_texture = ExtResource("2_item")
+rounds = Array[int]([3, 5, 2, 4])

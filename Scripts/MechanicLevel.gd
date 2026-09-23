@@ -7,6 +7,9 @@ extends Control
 ##   Layout/PromptLabel, Layout/FeedbackLabel, Layout/NextButton,
 ##   BackButton, SfxPlayer
 
+const SUCCESS_COLOR := Color(0.15, 0.55, 0.25)
+const TRY_AGAIN_COLOR := Color(0.85, 0.4, 0.1)
+
 @export var level_number: int = 0
 ## Leave empty to keep the text already on PromptLabel in the mechanic scene.
 @export_multiline var prompt_text: String = ""
@@ -39,7 +42,7 @@ func finish_level() -> void:
 	if is_finished:
 		return
 	is_finished = true
-	feedback_label.text = success_text
+	show_feedback(success_text)
 	play_sound(success_sound if success_sound else correct_sound)
 	next_button.visible = true
 	if level_number > 0:
@@ -47,8 +50,13 @@ func finish_level() -> void:
 
 
 func show_try_again() -> void:
-	feedback_label.text = try_again_text
+	show_feedback(try_again_text, TRY_AGAIN_COLOR)
 	play_sound(wrong_sound)
+
+
+func show_feedback(text: String, color: Color = SUCCESS_COLOR) -> void:
+	feedback_label.text = text
+	feedback_label.add_theme_color_override("font_color", color)
 
 
 func clear_feedback() -> void:

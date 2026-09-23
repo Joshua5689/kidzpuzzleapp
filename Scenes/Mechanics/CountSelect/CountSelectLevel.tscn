@@ -1,0 +1,107 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/Mechanics/CountSelect/CountSelectLevel.gd" id="1_script"]
+
+[sub_resource type="Gradient" id="Gradient_bg"]
+colors = PackedColorArray(0.84, 0.94, 1, 1, 1, 0.97, 0.86, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bg"]
+gradient = SubResource("Gradient_bg")
+fill_to = Vector2(0, 1)
+
+[node name="CountSelectLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = 32.0
+offset_right = -160.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="PromptLabel" type="Label" parent="Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 72
+text = "How many can you count?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ItemsContainer" type="HFlowContainer" parent="Layout"]
+custom_minimum_size = Vector2(0, 340)
+layout_mode = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+alignment = 1
+
+[node name="AnswersContainer" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="Layout"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.55, 0.25, 1)
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="NextButton" type="Button" parent="Layout"]
+visible = false
+custom_minimum_size = Vector2(320, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 56
+text = "Next ▶"
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 144.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 56
+text = "◀"
+
+[node name="RoundLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -224.0
+offset_top = 40.0
+offset_right = -32.0
+offset_bottom = 120.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 0.6)
+theme_override_font_sizes/font_size = 48
+text = "1 / 3"
+horizontal_alignment = 2
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
