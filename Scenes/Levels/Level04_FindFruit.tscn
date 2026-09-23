@@ -1,0 +1,144 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/TapMatch/TapMatchLevel.tscn" id="1_base"]
+
+[sub_resource type="Gradient" id="Gradient_0"]
+offsets = PackedFloat32Array(0, 0.96, 1)
+colors = PackedColorArray(0.98, 0.8, 0.15, 1, 0.98, 0.8, 0.15, 1, 0.98, 0.8, 0.15, 0)
+
+[sub_resource type="GradientTexture2D" id="Circle_0"]
+gradient = SubResource("Gradient_0")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_1"]
+offsets = PackedFloat32Array(0, 0.96, 1)
+colors = PackedColorArray(0.55, 0.25, 0.7, 1, 0.55, 0.25, 0.7, 1, 0.55, 0.25, 0.7, 0)
+
+[sub_resource type="GradientTexture2D" id="Circle_1"]
+gradient = SubResource("Gradient_1")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_2"]
+offsets = PackedFloat32Array(0, 0.96, 1)
+colors = PackedColorArray(0.9, 0.2, 0.2, 1, 0.9, 0.2, 0.2, 1, 0.9, 0.2, 0.2, 0)
+
+[sub_resource type="GradientTexture2D" id="Circle_2"]
+gradient = SubResource("Gradient_2")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_3"]
+offsets = PackedFloat32Array(0, 0.96, 1)
+colors = PackedColorArray(1, 0.55, 0.1, 1, 1, 0.55, 0.1, 1, 1, 0.55, 0.1, 0)
+
+[sub_resource type="GradientTexture2D" id="Circle_3"]
+gradient = SubResource("Gradient_3")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Level04_FindFruit" instance=ExtResource("1_base")]
+level_number = 4
+prompt_text = "Find the apple!"
+correct_items = Array[NodePath]([NodePath("Layout/ItemsContainer/Apple")])
+
+[node name="Banana" type="TextureButton" parent="Layout/ItemsContainer"]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 2
+texture_normal = SubResource("Circle_0")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Caption" type="Label" parent="Layout/ItemsContainer/Banana"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Banana"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Grapes" type="TextureButton" parent="Layout/ItemsContainer"]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 2
+texture_normal = SubResource("Circle_1")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Caption" type="Label" parent="Layout/ItemsContainer/Grapes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Grapes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Apple" type="TextureButton" parent="Layout/ItemsContainer"]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 2
+texture_normal = SubResource("Circle_2")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Caption" type="Label" parent="Layout/ItemsContainer/Apple"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Apple"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Orange" type="TextureButton" parent="Layout/ItemsContainer"]
+custom_minimum_size = Vector2(220, 220)
+layout_mode = 2
+texture_normal = SubResource("Circle_3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Caption" type="Label" parent="Layout/ItemsContainer/Orange"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.6)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 40
+text = "Orange"
+horizontal_alignment = 1
+vertical_alignment = 1
