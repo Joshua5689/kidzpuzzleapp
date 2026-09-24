@@ -77,6 +77,20 @@ should display at), then add `Hotspot` nodes (Add Child Node > Hotspot) under
 checklist. For spot-the-difference, also set a texture on `CompareImage`
 (same size); hotspots are placed on the left picture only.
 
+### ColourFill levels
+
+Put the outline drawing (transparent background, lines only) on
+`Canvas/LineArt` and set `Canvas` custom_minimum_size to its size. Draw one
+`Polygon2D` per colourable area under `Canvas/Regions` with the polygon
+editor. Later children sit on top and win taps where areas overlap (e.g. a
+hubcap drawn after its wheel).
+
+### MazeDrag levels
+
+Type the maze into `layout`, one string per row: `#` wall, `.` path,
+`S` start, `E` goal. Set `player_texture` / `goal_texture`. The board scales
+to fit `board_max_size`.
+
 ## Progress / unlocking
 
 `GameManager.UNLOCK_ALL_LEVELS` is `true` during development. Set it to `false`
