@@ -158,7 +158,10 @@ func _show_miss(picture: Control, point: Vector2) -> void:
 	tween.tween_property(ripple, "scale", Vector2(1.6, 1.6), 0.4)
 	tween.tween_property(ripple, "modulate:a", 0.0, 0.4)
 	tween.chain().tween_callback(ripple.queue_free)
-	play_sound(wrong_sound)
+	# Misses cost stars but get a soft tap, not the "wrong" sound: random
+	# exploring taps are normal here.
+	record_mistake()
+	play_sound(tap_sound)
 
 
 func _show_hint() -> void:

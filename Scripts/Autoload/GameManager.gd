@@ -4,6 +4,7 @@ extends Node
 const SAVE_PATH := "user://progress.cfg"
 const MAIN_MENU_SCENE := "res://Scenes/UI/MainMenu.tscn"
 const LEVEL_SELECT_SCENE := "res://Scenes/UI/LevelSelect.tscn"
+const CELEBRATION_SCENE := "res://Scenes/UI/Celebration.tscn"
 
 ## Single source of truth for level order. LevelSelect builds its buttons from
 ## this list and the Next button uses it, so register every new level here.
@@ -25,11 +26,13 @@ const LEVELS: Array[Dictionary] = [
 ## Set to false before handing the app to kids.
 const UNLOCK_ALL_LEVELS := true
 
-signal level_completed(level_number: int)
+signal level_completed(level_number: int, stars: int)
 
 ## Highest level the player may start (1-based).
 var highest_unlocked: int = 1
 var completed_levels: Array[int] = []
+## Best star score (1-3) per level number.
+var best_stars: Dictionary = {}
 
 
 func _ready() -> void:
@@ -58,12 +61,35 @@ func is_completed(level_number: int) -> bool:
 	return completed_levels.has(level_number)
 
 
-func complete_level(level_number: int) -> void:
+func stars_for(level_number: int) -> int:
+	return best_stars.get(level_number, 0)
+
+
+func total_stars() -> int:
+	var total := 0
+	for stars in best_stars.values():
+		total += stars
+	return total
+
+
+func all_levels_completed() -> bool:
+	for n in range(1, LEVELS.size() + 1):
+		if not completed_levels.has(n):
+			return false
+	return true
+
+
+## Records a finished level. Returns true if this completion was the one that
+## finished every level (so the celebration shows only once).
+func complete_level(level_number: int, stars: int = 3) -> bool:
+	var was_all_done := all_levels_completed()
 	if not completed_levels.has(level_number):
 		completed_levels.append(level_number)
+	best_stars[level_number] = max(stars_for(level_number), stars)
 	highest_unlocked = max(highest_unlocked, min(level_number + 1, LEVELS.size()))
 	_save_progress()
-	level_completed.emit(level_number)
+	level_completed.emit(level_number, stars)
+	return not was_all_done and all_levels_completed()
 
 
 func go_to_level(level_number: int) -> void:
@@ -91,9 +117,14 @@ func go_to_level_select() -> void:
 	get_tree().change_scene_to_file(LEVEL_SELECT_SCENE)
 
 
+func go_to_celebration() -> void:
+	get_tree().change_scene_to_file(CELEBRATION_SCENE)
+
+
 func reset_progress() -> void:
 	highest_unlocked = 1
 	completed_levels.clear()
+	best_stars.clear()
 	_save_progress()
 
 
@@ -101,6 +132,7 @@ func _save_progress() -> void:
 	var config := ConfigFile.new()
 	config.set_value("progress", "highest_unlocked", highest_unlocked)
 	config.set_value("progress", "completed_levels", completed_levels)
+	config.set_value("progress", "best_stars", best_stars)
 	config.save(SAVE_PATH)
 
 
@@ -110,3 +142,4 @@ func _load_progress() -> void:
 		return
 	highest_unlocked = config.get_value("progress", "highest_unlocked", 1)
 	completed_levels.assign(config.get_value("progress", "completed_levels", []))
+	best_stars = config.get_value("progress", "best_stars", {})

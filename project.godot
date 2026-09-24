@@ -18,6 +18,7 @@ run/main_scene="res://Scenes/UI/MainMenu.tscn"
 [autoload]
 
 GameManager="*res://Scripts/Autoload/GameManager.gd"
+MusicPlayer="*res://Scripts/Autoload/MusicPlayer.gd"
 
 [display]
 

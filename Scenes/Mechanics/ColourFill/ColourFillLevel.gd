@@ -55,6 +55,8 @@ func _select(index: int) -> void:
 		_style_swatch(i, i == index)
 	_selected_color = palette[index]
 	bounce(_swatches[index])
+	if is_node_ready():
+		play_sound(tap_sound)
 
 
 func _style_swatch(index: int, selected: bool) -> void:
@@ -87,7 +89,7 @@ func region_at(point: Vector2) -> Polygon2D:
 
 func fill_region(region: Polygon2D, color: Color) -> void:
 	create_tween().tween_property(region, "color", color, 0.2)
-	play_sound(correct_sound)
+	play_sound(tap_sound)
 	if not _coloured.has(region):
 		_coloured.append(region)
 		if _coloured.size() == _regions.size():

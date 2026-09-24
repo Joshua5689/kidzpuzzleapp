@@ -16,7 +16,6 @@ extends MechanicLevel
 @export var round_correct_text: String = "Yes, %d!"
 ## Pause before the next round starts.
 @export var round_delay: float = 0.9
-@export var tap_sound: AudioStream
 
 @onready var items_container: Container = $Layout/ItemsContainer
 @onready var answers_container: Container = $Layout/AnswersContainer

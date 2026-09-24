@@ -11,9 +11,23 @@ under `Scenes/Mechanics/`, each one instanced multiple times under
 
 Every mechanic script extends `MechanicLevel` (`Scripts/MechanicLevel.gd`),
 which owns what all mechanics share: level_number, prompt, feedback text,
-sounds, Back/Next buttons and `finish_level()`. Mechanic scenes must keep the
-node paths it expects (Layout/PromptLabel, Layout/FeedbackLabel,
-Layout/NextButton, BackButton, SfxPlayer).
+sounds (defaults from `Assets/Audio/SFX/`, overridable per level), mistake
+counting / stars, the Back button and `finish_level()`. Mechanic scenes must
+keep the node paths it expects (Layout/PromptLabel, Layout/FeedbackLabel,
+BackButton, SfxPlayer).
+
+On `finish_level()` the level reports its stars to GameManager and shows
+`Scenes/UI/ScoreCard.tscn` (stars, Levels / Play again / Next). Stars come
+from mistakes: call `show_try_again()` (counts + shows text) or
+`record_mistake()` (counts silently); thresholds are the `three_star_max_mistakes`
+/ `two_star_max_mistakes` exports. When a completion finishes every level for
+the first time, Next becomes "Surprise!" and opens `Scenes/UI/Celebration.tscn`
+(fireworks).
+
+`MusicPlayer` (autoload, `Scripts/Autoload/MusicPlayer.gd`) plays the music
+loop across all scenes; the Main Menu has the Music on/off button (saved in
+`user://settings.cfg`). Music/SFX are synthesised placeholder WAVs; swap files
+in `Assets/Audio/` keeping the names, or set per-level sounds in the Inspector.
 
 Never duplicate mechanic logic into a level specific script. If a level needs
 new behaviour, extend the shared mechanic script instead so every level using
@@ -41,7 +55,7 @@ that mechanic benefits.
   with swapped assets and exported values
 - `Scenes/UI/` : MainMenu, LevelSelect
 - `Scripts/Autoload/GameManager.gd` : global singleton tracking unlocked
-  levels and progress across scenes
+  levels, best stars and progress across scenes
 - `Assets/Images/<category>/`, `Assets/Audio/SFX|Music/`
 
 ## Naming conventions

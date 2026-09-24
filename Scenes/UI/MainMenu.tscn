@@ -44,3 +44,17 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 72
 text = "Play ▶"
+
+[node name="MusicButton" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 110)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -332.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 142.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 44
+text = "Music: On"
