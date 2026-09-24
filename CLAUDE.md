@@ -91,6 +91,13 @@ Type the maze into `layout`, one string per row: `#` wall, `.` path,
 `S` start, `E` goal. Set `player_texture` / `goal_texture`. The board scales
 to fit `board_max_size`.
 
+### TraceInput levels
+
+Add one `Node2D` per round under `Board/Guides` (e.g. Number1, Number2), each
+with one or more `Line2D` strokes drawn in the order they should be traced.
+Point order is the tracing direction; the first point is where the green
+start dot appears. Guide width/colour are set at runtime from the exports.
+
 ## Progress / unlocking
 
 `GameManager.UNLOCK_ALL_LEVELS` is `true` during development. Set it to `false`
