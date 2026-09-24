@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dgwckxgta2pys" path="res://Assets/Images/Colours/YellowBalloon.svg" id="tex_YellowBalloon"]
 
 [node name="Level03_FindColours" unique_id=329534861 instance=ExtResource("1_base")]
+level_number = 3
+prompt_text = "Find all the RED balloons!"
 correct_items = Array[NodePath]([NodePath("Layout/ItemsContainer/RedBalloon1"), NodePath("Layout/ItemsContainer/RedBalloon2"), NodePath("Layout/ItemsContainer/RedBalloon3")])
 
 [node name="RedBalloon1" type="TextureButton" parent="Layout/ItemsContainer" index="0" unique_id=1326427295]
