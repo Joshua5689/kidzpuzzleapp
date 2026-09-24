@@ -1,52 +1,50 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cpch4i64aowl7"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Mechanics/TapMatch/TapMatchLevel.tscn" id="1_base"]
-[ext_resource type="Texture2D" path="res://Assets/Images/Colours/BlueBalloon.svg" id="tex_BlueBalloon"]
-[ext_resource type="Texture2D" path="res://Assets/Images/Colours/GreenBalloon.svg" id="tex_GreenBalloon"]
-[ext_resource type="Texture2D" path="res://Assets/Images/Colours/RedBalloon.svg" id="tex_RedBalloon"]
-[ext_resource type="Texture2D" path="res://Assets/Images/Colours/YellowBalloon.svg" id="tex_YellowBalloon"]
+[ext_resource type="Texture2D" uid="uid://c0jxyfkmk6ipp" path="res://Assets/Images/Colours/BlueBalloon.svg" id="tex_BlueBalloon"]
+[ext_resource type="Texture2D" uid="uid://i3krtv8svhs1" path="res://Assets/Images/Colours/GreenBalloon.svg" id="tex_GreenBalloon"]
+[ext_resource type="Texture2D" uid="uid://dnlnhkeltqh7h" path="res://Assets/Images/Colours/RedBalloon.svg" id="tex_RedBalloon"]
+[ext_resource type="Texture2D" uid="uid://dgwckxgta2pys" path="res://Assets/Images/Colours/YellowBalloon.svg" id="tex_YellowBalloon"]
 
-[node name="Level03_FindColours" instance=ExtResource("1_base")]
-level_number = 3
-prompt_text = "Find all the RED balloons!"
+[node name="Level03_FindColours" unique_id=329534861 instance=ExtResource("1_base")]
 correct_items = Array[NodePath]([NodePath("Layout/ItemsContainer/RedBalloon1"), NodePath("Layout/ItemsContainer/RedBalloon2"), NodePath("Layout/ItemsContainer/RedBalloon3")])
 
-[node name="RedBalloon1" type="TextureButton" parent="Layout/ItemsContainer"]
+[node name="RedBalloon1" type="TextureButton" parent="Layout/ItemsContainer" index="0" unique_id=1326427295]
 custom_minimum_size = Vector2(180, 270)
 layout_mode = 2
 texture_normal = ExtResource("tex_RedBalloon")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="BlueBalloon" type="TextureButton" parent="Layout/ItemsContainer"]
+[node name="BlueBalloon" type="TextureButton" parent="Layout/ItemsContainer" index="1" unique_id=2060089715]
 custom_minimum_size = Vector2(180, 270)
 layout_mode = 2
 texture_normal = ExtResource("tex_BlueBalloon")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="RedBalloon2" type="TextureButton" parent="Layout/ItemsContainer"]
+[node name="RedBalloon2" type="TextureButton" parent="Layout/ItemsContainer" index="2" unique_id=574416932]
 custom_minimum_size = Vector2(180, 270)
 layout_mode = 2
 texture_normal = ExtResource("tex_RedBalloon")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="YellowBalloon" type="TextureButton" parent="Layout/ItemsContainer"]
+[node name="YellowBalloon" type="TextureButton" parent="Layout/ItemsContainer" index="3" unique_id=1851796087]
 custom_minimum_size = Vector2(180, 270)
 layout_mode = 2
 texture_normal = ExtResource("tex_YellowBalloon")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="GreenBalloon" type="TextureButton" parent="Layout/ItemsContainer"]
+[node name="GreenBalloon" type="TextureButton" parent="Layout/ItemsContainer" index="4" unique_id=476482135]
 custom_minimum_size = Vector2(180, 270)
 layout_mode = 2
 texture_normal = ExtResource("tex_GreenBalloon")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="RedBalloon3" type="TextureButton" parent="Layout/ItemsContainer"]
+[node name="RedBalloon3" type="TextureButton" parent="Layout/ItemsContainer" index="5" unique_id=424011875]
 custom_minimum_size = Vector2(180, 270)
 layout_mode = 2
 texture_normal = ExtResource("tex_RedBalloon")

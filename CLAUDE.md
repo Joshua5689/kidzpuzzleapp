@@ -109,4 +109,18 @@ before testing with kids so levels unlock in order. Progress is saved to
 - Run current scene in editor: F6
 - Run project from CLI: `godot --path . --scene Scenes/Levels/Level03_FindColours.tscn`
 - Headless check for script errors: `godot --headless --check-only --path .`
+## Android build
+
+- Preset "Android" in `export_presets.cfg` (template APK, no Gradle build,
+  arm64 + armv7, landscape, immersive, no permissions).
+- JDK 17: `C:\Users\joshu\Android\jdk-17.0.20.1+1`; SDK:
+  `C:\Users\joshu\AppData\Local\Android\Sdk` (platform-tools, build-tools
+  36.1.0, platforms/android-36; install more with `cmdline-tools\latest\bin\android.exe sdk install <pkg>/<ver>`).
+  Both paths are set in Godot's Editor Settings. Debug keystore lives in
+  `%APPDATA%\Godot\keystores\debug.keystore`.
+- Debug APK: `godot --headless --path . --export-debug "Android" build/android/KidzPuzzle-debug.apk`
+  (`build/` is gitignored). Install over USB: `adb install -r build/android/KidzPuzzle-debug.apk`.
+- A Play Store release needs its own release keystore (never commit it) and
+  an AAB via Gradle build; not set up yet.
+
 - Godot is not on PATH. Console build: `C:\Users\joshu\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe`
