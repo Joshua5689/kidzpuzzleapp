@@ -53,7 +53,7 @@ that mechanic benefits.
 - `Scenes/Mechanics/<Mechanic>/` : one reusable base scene + script per mechanic
 - `Scenes/Levels/` : one scene per level, each an instance of a mechanic scene
   with swapped assets and exported values
-- `Scenes/UI/` : MainMenu, LevelSelect
+- `Scenes/UI/` : MainMenu, LevelSelect, ScoreCard, Celebration
 - `Scripts/Autoload/GameManager.gd` : global singleton tracking unlocked
   levels, best stars and progress across scenes
 - `Assets/Images/<category>/`, `Assets/Audio/SFX|Music/`
@@ -123,6 +123,8 @@ before testing with kids so levels unlock in order. Progress is saved to
 - Run current scene in editor: F6
 - Run project from CLI: `godot --path . --scene Scenes/Levels/Level03_FindColours.tscn`
 - Headless check for script errors: `godot --headless --check-only --path .`
+- Godot is not on PATH. Console build: `C:\Users\joshu\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe`
+
 ## Android build
 
 - Preset "Android" in `export_presets.cfg` (template APK, no Gradle build,
@@ -136,5 +138,3 @@ before testing with kids so levels unlock in order. Progress is saved to
   (`build/` is gitignored). Install over USB: `adb install -r build/android/KidzPuzzle-debug.apk`.
 - A Play Store release needs its own release keystore (never commit it) and
   an AAB via Gradle build; not set up yet.
-
-- Godot is not on PATH. Console build: `C:\Users\joshu\Downloads\Godot_v4.7.2-stable_win64.exe\Godot_v4.7.2-stable_win64_console.exe`
