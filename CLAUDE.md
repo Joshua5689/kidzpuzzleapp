@@ -1,4 +1,4 @@
-# Kids Puzzle App
+# Puddle Jump (kids puzzle app)
 
 Godot 4.x, GDScript. Offline puzzle game for kids on Android tablets, 10 levels.
 Sideloaded for now, packaged for Play Store once validated with real kids.
@@ -134,7 +134,7 @@ before testing with kids so levels unlock in order. Progress is saved to
   36.1.0, platforms/android-36; install more with `cmdline-tools\latest\bin\android.exe sdk install <pkg>/<ver>`).
   Both paths are set in Godot's Editor Settings. Debug keystore lives in
   `%APPDATA%\Godot\keystores\debug.keystore`.
-- Debug APK: `godot --headless --path . --export-debug "Android" build/android/KidzPuzzle-debug.apk`
-  (`build/` is gitignored). Install over USB: `adb install -r build/android/KidzPuzzle-debug.apk`.
+- Debug APK: `godot --headless --path . --export-debug "Android" build/android/PuddleJump-debug.apk`
+  (`build/` is gitignored). Install over USB: `adb install -r build/android/PuddleJump-debug.apk`.
 - A Play Store release needs its own release keystore (never commit it) and
   an AAB via Gradle build; not set up yet.
