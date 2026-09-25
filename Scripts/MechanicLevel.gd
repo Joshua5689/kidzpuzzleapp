@@ -31,6 +31,10 @@ const DEFAULT_TAP_SOUND: AudioStream = preload("res://Assets/Audio/SFX/Tap.wav")
 @export var three_star_max_mistakes: int = 0
 ## Up to this many mistakes earns 2 stars; more earns 1.
 @export var two_star_max_mistakes: int = 2
+@export_group("Timer")
+## Seconds to finish for full stars; 0 = no timer. When time runs out the
+## child keeps playing, but can earn at most 1 star.
+@export var time_limit: float = 0.0
 @export_group("")
 
 @onready var prompt_label: Label = $Layout/PromptLabel
@@ -40,6 +44,12 @@ const DEFAULT_TAP_SOUND: AudioStream = preload("res://Assets/Audio/SFX/Tap.wav")
 
 var is_finished := false
 var mistakes := 0
+var elapsed := 0.0
+var time_up := false
+
+var _timer_fill: Panel
+var _timer_back: Panel
+var _pulse: Tween
 
 
 func _ready() -> void:
@@ -55,6 +65,69 @@ func _ready() -> void:
 		success_sound = DEFAULT_SUCCESS_SOUND
 	if tap_sound == null:
 		tap_sound = DEFAULT_TAP_SOUND
+	if time_limit > 0.0:
+		_build_timer_bar()
+	set_process(time_limit > 0.0)
+
+
+func _process(delta: float) -> void:
+	if is_finished or time_up:
+		return
+	elapsed += delta
+	var left := clampf(1.0 - elapsed / time_limit, 0.0, 1.0)
+	_timer_fill.size.x = maxf((_timer_back.size.x - 12.0) * left, 0.0)
+	var colour := UiStyle.GO_COLOR
+	if left < 0.2:
+		colour = Color(0.93, 0.45, 0.15)
+		if _pulse == null:
+			_pulse = create_tween().set_loops()
+			_pulse.tween_property(_timer_back, "modulate:a", 0.55, 0.35)
+			_pulse.tween_property(_timer_back, "modulate:a", 1.0, 0.35)
+	elif left < 0.5:
+		colour = Color(0.98, 0.75, 0.15)
+	_set_fill_colour(colour)
+	if left <= 0.0:
+		_on_time_up()
+
+
+## True if the level has a timer and was finished before it ran out.
+func beat_the_clock() -> bool:
+	return time_limit > 0.0 and is_finished and not time_up
+
+
+func _on_time_up() -> void:
+	time_up = true
+	if _pulse:
+		_pulse.kill()
+	_timer_back.modulate.a = 1.0
+	_timer_back.add_theme_stylebox_override("panel", UiStyle.rounded(Color(0.75, 0.75, 0.8), 18))
+	show_feedback("Keep going!", TRY_AGAIN_COLOR)
+
+
+## Countdown bar centred at the top of the screen, built in code so every
+## mechanic scene gets it without scene changes.
+func _build_timer_bar() -> void:
+	_timer_back = Panel.new()
+	_timer_back.name = "TimerBar"
+	_timer_back.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_timer_back.add_theme_stylebox_override("panel", UiStyle.rounded(Color(1, 1, 1, 0.85), 18, Color(0.36, 0.45, 0.62), 4))
+	_timer_back.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+	_timer_back.offset_left = -320
+	_timer_back.offset_right = 320
+	_timer_back.offset_top = 44
+	_timer_back.offset_bottom = 84
+	add_child(_timer_back)
+	_timer_fill = Panel.new()
+	_timer_fill.name = "Fill"
+	_timer_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_timer_fill.position = Vector2(6, 6)
+	_timer_fill.size = Vector2(640 - 12, 28)
+	_timer_back.add_child(_timer_fill)
+	_set_fill_colour(UiStyle.GO_COLOR)
+
+
+func _set_fill_colour(colour: Color) -> void:
+	_timer_fill.add_theme_stylebox_override("panel", UiStyle.rounded(colour, 14))
 
 
 ## Call when the child has solved the level.
@@ -75,6 +148,8 @@ func finish_level() -> void:
 
 
 func stars_earned() -> int:
+	if time_up:
+		return 1
 	if mistakes <= three_star_max_mistakes:
 		return 3
 	if mistakes <= two_star_max_mistakes:
@@ -127,4 +202,4 @@ func shake(control: Control) -> void:
 func _show_score_card(stars: int, finished_everything: bool) -> void:
 	var card := SCORE_CARD_SCENE.instantiate()
 	add_child(card)
-	card.show_result(level_number, stars, finished_everything)
+	card.show_result(level_number, stars, finished_everything, time_limit > 0.0, beat_the_clock())

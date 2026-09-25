@@ -11,6 +11,7 @@ const MISSED_COLOR := Color(0.3, 0.3, 0.35, 0.35)
 @onready var cheer_label: Label = $Card/Content/CheerLabel
 @onready var stars_row: HBoxContainer = $Card/Content/Stars
 @onready var hint_label: Label = $Card/Content/HintLabel
+@onready var clock_label: Label = $Card/Content/ClockLabel
 @onready var levels_button: Button = $Card/Content/Buttons/LevelsButton
 @onready var again_button: Button = $Card/Content/Buttons/AgainButton
 @onready var next_button: Button = $Card/Content/Buttons/NextButton
@@ -26,8 +27,13 @@ func _ready() -> void:
 	next_button.pressed.connect(_on_next_pressed)
 
 
-func show_result(level_number: int, stars: int, finished_everything: bool) -> void:
+func show_result(level_number: int, stars: int, finished_everything: bool,
+		timed := false, beat_clock := false) -> void:
 	_level_number = level_number
+	if timed:
+		clock_label.visible = true
+		clock_label.text = "You beat the clock!" if beat_clock else "Be a bit quicker next time for more stars!"
+		clock_label.add_theme_color_override("font_color", MechanicLevel.SUCCESS_COLOR if beat_clock else MechanicLevel.TRY_AGAIN_COLOR)
 	_finished_everything = finished_everything
 	title_label.text = "Level %d" % level_number if level_number > 0 else ""
 	cheer_label.text = CHEERS[clampi(stars, 1, 3) - 1]
