@@ -4,6 +4,7 @@
 
 [node name="Level19_TraceLetters" instance=ExtResource("1_base")]
 level_number = 19
+time_limit = 120.0
 prompt_text = "Trace the letter!"
 
 [node name="LetterA" type="Node2D" parent="Layout/Board/Guides"]

@@ -16,6 +16,7 @@
 
 [node name="Level17_SortToys" instance=ExtResource("1_base")]
 level_number = 17
+time_limit = 90.0
 prompt_text = "Fruit in the basket, toys in the box!"
 
 [node name="Basket" type="TextureRect" parent="Layout/PlayArea/Bins"]

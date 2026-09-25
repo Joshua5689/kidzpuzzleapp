@@ -1,5 +1,5 @@
 extends Control
-## Title screen shown when the app starts: the Puddle Jump picture fades in,
+## Title screen shown when the app starts: the title picture fades in,
 ## the title bounces in, then after a moment (or a tap) it moves on to
 ## "Who's playing?".
 

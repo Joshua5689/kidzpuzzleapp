@@ -5,6 +5,7 @@
 
 [node name="Level12_FarmPuzzle" instance=ExtResource("1_base")]
 level_number = 12
+time_limit = 150.0
 prompt_text = "Put the farm back together!"
 image = ExtResource("r2")
 rows = 3

@@ -4,6 +4,7 @@
 
 [node name="Level09_TraceNumber" instance=ExtResource("1_base")]
 level_number = 9
+time_limit = 90.0
 prompt_text = "Trace the number!"
 
 [node name="Number1" type="Node2D" parent="Layout/Board/Guides"]

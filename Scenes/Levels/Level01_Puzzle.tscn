@@ -5,4 +5,5 @@
 
 [node name="Level01_Puzzle" instance=ExtResource("1_base")]
 level_number = 1
+time_limit = 90.0
 image = ExtResource("2_image")

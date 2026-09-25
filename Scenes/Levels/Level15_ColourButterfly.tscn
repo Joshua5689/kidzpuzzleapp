@@ -5,6 +5,7 @@
 
 [node name="Level15_ColourButterfly" instance=ExtResource("1_base")]
 level_number = 15
+time_limit = 150.0
 prompt_text = "Colour the butterfly!"
 
 [node name="LineArt" parent="Layout/Canvas" index="1"]

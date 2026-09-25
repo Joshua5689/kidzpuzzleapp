@@ -9,6 +9,7 @@
 
 [node name="Level20_NightSky" instance=ExtResource("1_base")]
 level_number = 20
+time_limit = 120.0
 prompt_text = "Find the moon, the stars and the owl!"
 
 [node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]

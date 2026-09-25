@@ -9,6 +9,7 @@
 
 [node name="Level10_FindFrogsFish" instance=ExtResource("1_base")]
 level_number = 10
+time_limit = 120.0
 prompt_text = "Find the frogs, fish and gift!"
 
 [node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]

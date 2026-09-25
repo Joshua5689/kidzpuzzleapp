@@ -6,6 +6,7 @@
 
 [node name="Level06_DogMaze" instance=ExtResource("1_base")]
 level_number = 6
+time_limit = 60.0
 prompt_text = "Help the dog find the bone!"
 layout = PackedStringArray("###########", "#S..#.....#", "#.#.#.###.#", "#.#...#...#", "#.#####.#.#", "#.......#E#", "###########")
 player_texture = ExtResource("2_dog")

@@ -6,6 +6,7 @@
 
 [node name="Level16_BeeMaze" instance=ExtResource("1_base")]
 level_number = 16
+time_limit = 90.0
 prompt_text = "Help the bee find the flower!"
 layout = PackedStringArray("#############", "#S....#.....#", "#.###.#.###.#", "#...#...#...#", "###.#####.#.#", "#...#.....#.#", "#.###.#####.#", "#.....#....E#", "#############")
 player_texture = ExtResource("r2")

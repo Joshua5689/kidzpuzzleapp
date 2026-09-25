@@ -1,4 +1,4 @@
-# Puddle Jump (kids puzzle app)
+# Doodle Bee - Puzzle and Play (kids puzzle app)
 
 Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6) on Android tablets. 30 levels built,
 50 planned (worlds of 10).
@@ -193,7 +193,7 @@ give them a safety `quit()` timer so a failed test never leaves a window open.
 
 ## Android build
 
-- Preset "Android" in `export_presets.cfg` (app id `com.doodlebees.puddlejump`,
+- Preset "Android" in `export_presets.cfg` (app id `com.doodlebees.puzzleandplay`, launcher label "Doodle Bee",
   developer "Doodle Bees", frog icons in `Assets/Icon/`; template APK, no Gradle build,
   arm64 + armv7, landscape, immersive, no permissions).
 - JDK 17: `C:\Users\joshu\Android\jdk-17.0.20.1+1`; SDK:
@@ -201,7 +201,7 @@ give them a safety `quit()` timer so a failed test never leaves a window open.
   36.1.0, platforms/android-36; install more with `cmdline-tools\latest\bin\android.exe sdk install <pkg>/<ver>`).
   Both paths are set in Godot's Editor Settings. Debug keystore lives in
   `%APPDATA%\Godot\keystores\debug.keystore`.
-- Debug APK: `godot --headless --path . --export-debug "Android" build/android/PuddleJump-debug.apk`
-  (`build/` is gitignored). Install over USB: `adb install -r build/android/PuddleJump-debug.apk`.
+- Debug APK: `godot --headless --path . --export-debug "Android" build/android/DoodleBee-debug.apk`
+  (`build/` is gitignored). Install over USB: `adb install -r build/android/DoodleBee-debug.apk`.
 - A Play Store release needs its own release keystore (never commit it) and
   an AAB via Gradle build; not set up yet.

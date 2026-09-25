@@ -5,6 +5,7 @@
 
 [node name="Level05_ColourObject" instance=ExtResource("1_base")]
 level_number = 5
+time_limit = 120.0
 prompt_text = "Colour the car!"
 
 [node name="LineArt" parent="Layout/Canvas" index="1"]

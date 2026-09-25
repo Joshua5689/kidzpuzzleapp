@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Puddle Jump"
+config/name="Doodle Bee - Puzzle and Play"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="DoodleBee"
 run/main_scene="res://Scenes/UI/Splash.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 boot_splash/bg_color=Color(0.73, 0.8, 0.72, 1)

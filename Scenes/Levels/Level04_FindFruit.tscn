@@ -8,6 +8,7 @@
 
 [node name="Level04_FindFruit" instance=ExtResource("1_base")]
 level_number = 4
+time_limit = 30.0
 prompt_text = "Find the apple!"
 correct_items = Array[NodePath]([NodePath("Layout/ItemsContainer/Apple")])
 

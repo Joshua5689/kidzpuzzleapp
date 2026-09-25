@@ -8,5 +8,6 @@
 
 [node name="Level14_MemoryPairs" instance=ExtResource("1_base")]
 level_number = 14
+time_limit = 90.0
 prompt_text = "Find the pairs!"
 card_faces = Array[Texture2D]([ExtResource("r2"), ExtResource("r3"), ExtResource("r4"), ExtResource("r5")])

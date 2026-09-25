@@ -5,6 +5,7 @@
 
 [node name="Level02_CountNumbers" instance=ExtResource("1_base")]
 level_number = 2
+time_limit = 90.0
 prompt_text = "How many stars?"
 item_texture = ExtResource("2_item")
 rounds = Array[int]([3, 5, 2, 4])

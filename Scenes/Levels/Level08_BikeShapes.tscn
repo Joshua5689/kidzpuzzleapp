@@ -9,6 +9,7 @@
 
 [node name="Level08_BikeShapes" instance=ExtResource("1_base")]
 level_number = 8
+time_limit = 90.0
 prompt_text = "Find the shapes in the bike!"
 
 [node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]

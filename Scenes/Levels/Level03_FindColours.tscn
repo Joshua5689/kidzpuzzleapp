@@ -8,6 +8,7 @@
 
 [node name="Level03_FindColours" unique_id=329534861 instance=ExtResource("1_base")]
 level_number = 3
+time_limit = 45.0
 prompt_text = "Find all the RED balloons!"
 correct_items = Array[NodePath]([NodePath("Layout/ItemsContainer/RedBalloon1"), NodePath("Layout/ItemsContainer/RedBalloon2"), NodePath("Layout/ItemsContainer/RedBalloon3")])
 

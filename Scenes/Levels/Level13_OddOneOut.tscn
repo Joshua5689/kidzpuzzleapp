@@ -8,6 +8,7 @@
 
 [node name="Level13_OddOneOut" instance=ExtResource("1_base")]
 level_number = 13
+time_limit = 30.0
 prompt_text = "Which one is different?"
 correct_items = Array[NodePath]([NodePath("Layout/ItemsContainer/ToyCar")])
 
