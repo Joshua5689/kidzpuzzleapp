@@ -10,6 +10,7 @@ const MISSED_COLOR := Color(0.3, 0.3, 0.35, 0.35)
 @onready var title_label: Label = $Card/Content/TitleLabel
 @onready var cheer_label: Label = $Card/Content/CheerLabel
 @onready var stars_row: HBoxContainer = $Card/Content/Stars
+@onready var hint_label: Label = $Card/Content/HintLabel
 @onready var levels_button: Button = $Card/Content/Buttons/LevelsButton
 @onready var again_button: Button = $Card/Content/Buttons/AgainButton
 @onready var next_button: Button = $Card/Content/Buttons/NextButton
@@ -32,6 +33,8 @@ func show_result(level_number: int, stars: int, finished_everything: bool) -> vo
 	cheer_label.text = CHEERS[clampi(stars, 1, 3) - 1]
 	if finished_everything:
 		next_button.text = "Surprise! ▶"
+	else:
+		_explain_locked_next_world(level_number)
 
 	# Card pops in, then each earned star pops in turn with a sparkle.
 	# Wait a frame so containers have laid out and pivots use real sizes.
@@ -53,6 +56,22 @@ func show_result(level_number: int, stars: int, finished_everything: bool) -> vo
 			tween.tween_callback(sfx_player.play)
 		tween.tween_property(star, "scale", Vector2.ONE, 0.3) \
 			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
+## After the last level of a world: if the next world is still locked, say how
+## many stars are needed and hide Next (there's nowhere to go yet).
+func _explain_locked_next_world(level_number: int) -> void:
+	var next := level_number + 1
+	if level_number <= 0 or not GameManager.level_exists(next) or GameManager.is_unlocked(next):
+		return
+	if GameManager.world_of(next) == GameManager.world_of(level_number):
+		return
+	var world := GameManager.world_of(level_number)
+	var missing := GameManager.STARS_TO_OPEN_NEXT_WORLD - GameManager.world_stars(world)
+	hint_label.text = "Get %d more %s in World %d to open World %d!" % [
+		missing, "star" if missing == 1 else "stars", world + 1, world + 2]
+	hint_label.visible = true
+	next_button.visible = false
 
 
 func _on_next_pressed() -> void:

@@ -34,14 +34,21 @@ const LEVELS: Array[Dictionary] = [
 	{"title": "Night Sky", "scene": "res://Scenes/Levels/Level20_NightSky.tscn"},
 ]
 
-## Keep true while levels are still being built so every level is reachable.
-## Set to false before handing the app to kids.
-const UNLOCK_ALL_LEVELS := true
+## Levels are grouped into worlds of WORLD_SIZE. Inside an open world levels
+## unlock one after another; the next world opens once the player has at
+## least STARS_TO_OPEN_NEXT_WORLD stars from the world before it.
+const WORLD_SIZE := 10
+const STARS_TO_OPEN_NEXT_WORLD := 25
+
+## Development switch: true opens every level regardless of the rules above.
+const UNLOCK_ALL_LEVELS := false
+
+## Session-only override for testing on a device (see LevelSelect: hold the
+## title for 3 seconds). Never saved.
+var unlock_all_this_session := false
 
 signal level_completed(level_number: int, stars: int)
 
-## Highest level the player may start (1-based).
-var highest_unlocked: int = 1
 var completed_levels: Array[int] = []
 ## Best star score (1-3) per level number.
 var best_stars: Dictionary = {}
@@ -67,7 +74,34 @@ func level_exists(level_number: int) -> bool:
 
 
 func is_unlocked(level_number: int) -> bool:
-	return UNLOCK_ALL_LEVELS or level_number <= highest_unlocked
+	if UNLOCK_ALL_LEVELS or unlock_all_this_session:
+		return true
+	if not is_world_open(world_of(level_number)):
+		return false
+	var first_in_world := world_of(level_number) * WORLD_SIZE + 1
+	return level_number == first_in_world or is_completed(level_number - 1)
+
+
+## 0-based world index of a level.
+func world_of(level_number: int) -> int:
+	return floori(float(level_number - 1) / WORLD_SIZE)
+
+
+func world_count() -> int:
+	return ceili(float(LEVELS.size()) / WORLD_SIZE)
+
+
+func world_stars(world: int) -> int:
+	var total := 0
+	for n in range(world * WORLD_SIZE + 1, mini((world + 1) * WORLD_SIZE, LEVELS.size()) + 1):
+		total += stars_for(n)
+	return total
+
+
+func is_world_open(world: int) -> bool:
+	if UNLOCK_ALL_LEVELS or unlock_all_this_session or world <= 0:
+		return true
+	return world_stars(world - 1) >= STARS_TO_OPEN_NEXT_WORLD and is_world_open(world - 1)
 
 
 func is_completed(level_number: int) -> bool:
@@ -99,7 +133,6 @@ func complete_level(level_number: int, stars: int = 3) -> bool:
 	if not completed_levels.has(level_number):
 		completed_levels.append(level_number)
 	best_stars[level_number] = max(stars_for(level_number), stars)
-	highest_unlocked = max(highest_unlocked, min(level_number + 1, LEVELS.size()))
 	_save_progress()
 	level_completed.emit(level_number, stars)
 	return not was_all_done and all_levels_completed()
@@ -113,13 +146,14 @@ func go_to_level(level_number: int) -> void:
 	get_tree().change_scene_to_file(LEVELS[level_number - 1]["scene"])
 
 
-## Goes to the next level that has a scene, or back to LevelSelect if none.
+## Goes to the next level if it exists and is unlocked, otherwise back to
+## LevelSelect (which explains what's needed to open it).
 func go_to_next_level(current_level: int) -> void:
-	for n in range(current_level + 1, LEVELS.size() + 1):
-		if level_exists(n):
-			go_to_level(n)
-			return
-	go_to_level_select()
+	var next := current_level + 1
+	if level_exists(next) and is_unlocked(next):
+		go_to_level(next)
+	else:
+		go_to_level_select()
 
 
 func go_to_main_menu() -> void:
@@ -145,7 +179,6 @@ func go_to_profile_edit(profile_id: String) -> void:
 
 
 func reset_progress() -> void:
-	highest_unlocked = 1
 	completed_levels.clear()
 	best_stars.clear()
 	_save_progress()
@@ -155,14 +188,12 @@ func _save_progress() -> void:
 	if not ProfileManager.has_current():
 		return
 	var config := ConfigFile.new()
-	config.set_value("progress", "highest_unlocked", highest_unlocked)
 	config.set_value("progress", "completed_levels", completed_levels)
 	config.set_value("progress", "best_stars", best_stars)
 	config.save(ProfileManager.progress_path(ProfileManager.current_id))
 
 
 func _load_progress() -> void:
-	highest_unlocked = 1
 	completed_levels.clear()
 	best_stars = {}
 	if not ProfileManager.has_current():
@@ -170,6 +201,5 @@ func _load_progress() -> void:
 	var config := ConfigFile.new()
 	if config.load(ProfileManager.progress_path(ProfileManager.current_id)) != OK:
 		return
-	highest_unlocked = config.get_value("progress", "highest_unlocked", 1)
 	completed_levels.assign(config.get_value("progress", "completed_levels", []))
 	best_stars = config.get_value("progress", "best_stars", {})
