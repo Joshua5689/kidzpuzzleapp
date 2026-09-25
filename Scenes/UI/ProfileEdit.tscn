@@ -1,0 +1,202 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scenes/UI/ProfileEdit.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="Name_style"]
+content_margin_left = 28.0
+content_margin_right = 28.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.36, 0.45, 0.62, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="Card_style"]
+content_margin_left = 64.0
+content_margin_top = 48.0
+content_margin_right = 64.0
+content_margin_bottom = 48.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 24
+
+[node name="ProfileEdit" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.84, 0.94, 1, 1)
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 80
+text = "New player"
+horizontal_alignment = 1
+
+[node name="Form" type="GridContainer" parent="Layout"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 36
+columns = 2
+
+[node name="NameLabel" type="Label" parent="Layout/Form"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 48
+text = "Name"
+horizontal_alignment = 2
+
+[node name="NameEdit" type="LineEdit" parent="Layout/Form"]
+custom_minimum_size = Vector2(700, 110)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 56
+theme_override_styles/normal = SubResource("Name_style")
+theme_override_styles/focus = SubResource("Name_style")
+placeholder_text = "Type a name"
+
+[node name="PictureLabel" type="Label" parent="Layout/Form"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 48
+text = "Picture"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AvatarRow" type="HBoxContainer" parent="Layout/Form"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="GenderLabel" type="Label" parent="Layout/Form"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 48
+text = "Gender"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GenderRow" type="HBoxContainer" parent="Layout/Form"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="AgeLabel" type="Label" parent="Layout/Form"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 48
+text = "Age"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AgeRow" type="HBoxContainer" parent="Layout/Form"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Buttons" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="Layout/Buttons"]
+custom_minimum_size = Vector2(280, 120)
+layout_mode = 2
+text = "Cancel"
+
+[node name="DeleteButton" type="Button" parent="Layout/Buttons"]
+custom_minimum_size = Vector2(280, 120)
+layout_mode = 2
+text = "Delete"
+
+[node name="SaveButton" type="Button" parent="Layout/Buttons"]
+custom_minimum_size = Vector2(320, 120)
+layout_mode = 2
+text = "Save"
+
+[node name="ConfirmDelete" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="ConfirmDelete"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.2, 0.55)
+
+[node name="Card" type="PanelContainer" parent="ConfirmDelete"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("Card_style")
+
+[node name="Content" type="VBoxContainer" parent="ConfirmDelete/Card"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="MessageLabel" type="Label" parent="ConfirmDelete/Card/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 56
+text = "Delete this player?"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="ConfirmDelete/Card/Content"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="NoButton" type="Button" parent="ConfirmDelete/Card/Content/Buttons"]
+custom_minimum_size = Vector2(280, 120)
+layout_mode = 2
+text = "No, keep"
+
+[node name="YesButton" type="Button" parent="ConfirmDelete/Card/Content/Buttons"]
+custom_minimum_size = Vector2(280, 120)
+layout_mode = 2
+text = "Yes, delete"

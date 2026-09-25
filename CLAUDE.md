@@ -29,6 +29,13 @@ loop across all scenes; the Main Menu has the Music on/off button (saved in
 `user://settings.cfg`). Music/SFX are synthesised placeholder WAVs; swap files
 in `Assets/Audio/` keeping the names, or set per-level sounds in the Inspector.
 
+Start-up flow: `Splash` (title picture) -> `ProfileSelect` ("Who's playing?")
+-> `MainMenu` -> `LevelSelect` -> level. `ProfileManager` (autoload) keeps the
+player profiles (name, gender, age 2-6, avatar) in `user://profiles.cfg`; each
+profile's progress is `user://progress_<id>.cfg`, loaded by GameManager when
+the profile changes. All profile data stays on the device (no network, no
+permissions) — keep it that way for Google Play's Families policy.
+
 Never duplicate mechanic logic into a level specific script. If a level needs
 new behaviour, extend the shared mechanic script instead so every level using
 that mechanic benefits.
@@ -53,7 +60,7 @@ that mechanic benefits.
 - `Scenes/Mechanics/<Mechanic>/` : one reusable base scene + script per mechanic
 - `Scenes/Levels/` : one scene per level, each an instance of a mechanic scene
   with swapped assets and exported values
-- `Scenes/UI/` : MainMenu, LevelSelect, ScoreCard, Celebration
+- `Scenes/UI/` : Splash, ProfileSelect, ProfileEdit, MainMenu, LevelSelect, ScoreCard, Celebration
 - `Scripts/Autoload/GameManager.gd` : global singleton tracking unlocked
   levels, best stars and progress across scenes
 - `Assets/Images/<category>/`, `Assets/Audio/SFX|Music/`

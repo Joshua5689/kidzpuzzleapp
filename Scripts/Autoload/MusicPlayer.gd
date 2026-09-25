@@ -6,11 +6,15 @@ const SETTINGS_PATH := "user://settings.cfg"
 const DEFAULT_MUSIC_PATH := "res://Assets/Audio/Music/HappyTune.wav"
 const MUSIC_VOLUME_DB := -10.0
 const DUCKED_VOLUME_DB := -24.0
+const TAP_SOUND: AudioStream = preload("res://Assets/Audio/SFX/Tap.wav")
 
 signal music_toggled(enabled: bool)
 
 var music_enabled := true
 var _player: AudioStreamPlayer
+## For menu sounds that must survive a scene change (e.g. tapping a card
+## that immediately opens another screen).
+var _ui_player: AudioStreamPlayer
 var _duck_tween: Tween
 
 
@@ -21,6 +25,9 @@ func _ready() -> void:
 	# WAVs don't loop by default; restart when the track ends.
 	_player.finished.connect(_player.play)
 	add_child(_player)
+	_ui_player = AudioStreamPlayer.new()
+	_ui_player.name = "UiSfx"
+	add_child(_ui_player)
 	_load_settings()
 	play(load(DEFAULT_MUSIC_PATH))
 
@@ -42,6 +49,11 @@ func set_music_enabled(enabled: bool) -> void:
 		_player.stop()
 	_save_settings()
 	music_toggled.emit(enabled)
+
+
+func play_ui_sound(stream: AudioStream = TAP_SOUND) -> void:
+	_ui_player.stream = stream
+	_ui_player.play()
 
 
 ## Temporarily lowers the music, e.g. under a fanfare.

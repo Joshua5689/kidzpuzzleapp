@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<polygon points="190,128 244,84 244,172" fill="#ff8c3a"/><ellipse cx="120" cy="128" rx="92" ry="60" fill="#ff8c3a"/><path d="M100 72 Q130 40 160 76" fill="#ff8c3a"/><path d="M120 90 Q140 128 120 166" stroke="#e0701f" stroke-width="6" fill="none"/><circle cx="70" cy="116" r="13" fill="#fff"/><circle cx="72" cy="117" r="7.2" fill="#222"/><circle cx="74" cy="114" r="2.6" fill="#fff"/><path d="M36 140 Q46 148 56 142" stroke="#222" stroke-width="4" fill="none"/>
+</svg>

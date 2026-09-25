@@ -1,8 +1,10 @@
 extends Node
-## Global singleton: level registry, unlocked levels and saved progress.
+## Global singleton: level registry, and the current player's unlocked
+## levels, stars and saved progress (one save file per ProfileManager profile).
 
-const SAVE_PATH := "user://progress.cfg"
 const MAIN_MENU_SCENE := "res://Scenes/UI/MainMenu.tscn"
+const PROFILE_SELECT_SCENE := "res://Scenes/UI/ProfileSelect.tscn"
+const PROFILE_EDIT_SCENE := "res://Scenes/UI/ProfileEdit.tscn"
 const LEVEL_SELECT_SCENE := "res://Scenes/UI/LevelSelect.tscn"
 const CELEBRATION_SCENE := "res://Scenes/UI/Celebration.tscn"
 
@@ -36,6 +38,7 @@ var best_stars: Dictionary = {}
 
 
 func _ready() -> void:
+	ProfileManager.profile_changed.connect(_load_progress)
 	_load_progress()
 
 
@@ -121,6 +124,16 @@ func go_to_celebration() -> void:
 	get_tree().change_scene_to_file(CELEBRATION_SCENE)
 
 
+func go_to_profile_select() -> void:
+	get_tree().change_scene_to_file(PROFILE_SELECT_SCENE)
+
+
+## Opens the profile form; pass "" to create a new profile.
+func go_to_profile_edit(profile_id: String) -> void:
+	ProfileManager.editing_id = profile_id
+	get_tree().change_scene_to_file(PROFILE_EDIT_SCENE)
+
+
 func reset_progress() -> void:
 	highest_unlocked = 1
 	completed_levels.clear()
@@ -129,16 +142,23 @@ func reset_progress() -> void:
 
 
 func _save_progress() -> void:
+	if not ProfileManager.has_current():
+		return
 	var config := ConfigFile.new()
 	config.set_value("progress", "highest_unlocked", highest_unlocked)
 	config.set_value("progress", "completed_levels", completed_levels)
 	config.set_value("progress", "best_stars", best_stars)
-	config.save(SAVE_PATH)
+	config.save(ProfileManager.progress_path(ProfileManager.current_id))
 
 
 func _load_progress() -> void:
+	highest_unlocked = 1
+	completed_levels.clear()
+	best_stars = {}
+	if not ProfileManager.has_current():
+		return
 	var config := ConfigFile.new()
-	if config.load(SAVE_PATH) != OK:
+	if config.load(ProfileManager.progress_path(ProfileManager.current_id)) != OK:
 		return
 	highest_unlocked = config.get_value("progress", "highest_unlocked", 1)
 	completed_levels.assign(config.get_value("progress", "completed_levels", []))

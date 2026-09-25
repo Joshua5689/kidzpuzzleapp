@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="Puddle Jump"
+run/main_scene="res://Scenes/UI/Splash.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
-run/main_scene="res://Scenes/UI/MainMenu.tscn"
+boot_splash/bg_color=Color(0.73, 0.8, 0.72, 1)
+boot_splash/stretch_mode=4
+boot_splash/image="res://Assets/Images/UI/BootSplash.png"
 
 [autoload]
 
+ProfileManager="*res://Scripts/Autoload/ProfileManager.gd"
 GameManager="*res://Scripts/Autoload/GameManager.gd"
 MusicPlayer="*res://Scripts/Autoload/MusicPlayer.gd"
 
@@ -26,7 +30,6 @@ window/size/viewport_width=1920
 window/size/viewport_height=1200
 window/size/window_width_override=1280
 window/size/window_height_override=800
-window/handheld/orientation=0
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -36,6 +39,6 @@ window/stretch/aspect="expand"
 
 [rendering]
 
-textures/vram_compression/import_etc2_astc=true
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
