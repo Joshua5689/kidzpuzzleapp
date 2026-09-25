@@ -67,7 +67,7 @@ func _start_round(index: int) -> void:
 		button.name = "Answer%d" % value
 		button.text = str(value)
 		button.custom_minimum_size = Vector2(180, 160)
-		button.add_theme_font_size_override("font_size", 80)
+		UiStyle.style_button(button, UiStyle.MUTED_COLOR, 80)
 		button.pressed.connect(_on_answer_pressed.bind(value, button))
 		answers_container.add_child(button)
 

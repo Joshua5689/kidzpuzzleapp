@@ -1,0 +1,61 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/TraceInput/TraceInputLevel.tscn" id="1_base"]
+
+[node name="Level19_TraceLetters" instance=ExtResource("1_base")]
+level_number = 19
+prompt_text = "Trace the letter!"
+
+[node name="LetterA" type="Node2D" parent="Layout/Board/Guides"]
+
+[node name="Stroke1" type="Line2D" parent="Layout/Board/Guides/LetterA"]
+points = PackedVector2Array(400.0, 130.0, 250.0, 600.0)
+width = 70.0
+default_color = Color(0.82, 0.86, 0.92, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Stroke2" type="Line2D" parent="Layout/Board/Guides/LetterA"]
+points = PackedVector2Array(400.0, 130.0, 550.0, 600.0)
+width = 70.0
+default_color = Color(0.82, 0.86, 0.92, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Stroke3" type="Line2D" parent="Layout/Board/Guides/LetterA"]
+points = PackedVector2Array(310.0, 420.0, 490.0, 420.0)
+width = 70.0
+default_color = Color(0.82, 0.86, 0.92, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="LetterB" type="Node2D" parent="Layout/Board/Guides"]
+
+[node name="Stroke1" type="Line2D" parent="Layout/Board/Guides/LetterB"]
+points = PackedVector2Array(300.0, 130.0, 300.0, 600.0)
+width = 70.0
+default_color = Color(0.82, 0.86, 0.92, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Stroke2" type="Line2D" parent="Layout/Board/Guides/LetterB"]
+points = PackedVector2Array(300.0, 130.0, 302.0, 130.0, 306.1, 130.0, 312.2, 130.0, 320.3, 130.0, 330.5, 130.0, 342.7, 130.0, 356.9, 130.0, 373.1, 130.0, 388.4, 130.7, 402.6, 132.1, 415.8, 134.2, 428.0, 137.0, 439.1, 140.5, 449.3, 144.8, 458.4, 149.7, 466.6, 155.3, 473.7, 161.3, 479.8, 167.7, 484.8, 174.5, 488.9, 181.7, 492.0, 189.3, 494.0, 197.3, 495.0, 205.6, 495.0, 214.4, 494.1, 222.8, 492.4, 230.9, 489.8, 238.8, 486.4, 246.2, 482.1, 253.4, 477.0, 260.3, 470.9, 266.9, 464.1, 273.1, 455.9, 278.7, 446.3, 283.5, 435.5, 287.7, 423.3, 291.1, 409.8, 293.8, 394.9, 295.9, 378.8, 297.2, 361.2, 297.8, 345.9, 298.4, 332.8, 298.8, 321.9, 299.2, 313.1, 299.5, 306.6, 299.8, 302.2, 299.9, 300.0, 300.0, 302.3, 300.1, 307.0, 300.2, 314.1, 300.5, 323.4, 300.8, 335.2, 301.2, 349.2, 301.6, 365.6, 302.2, 384.4, 302.8, 401.8, 304.2, 417.9, 306.4, 432.7, 309.4, 446.1, 313.1, 458.2, 317.7, 469.0, 323.0, 478.4, 329.1, 486.6, 335.9, 493.7, 343.7, 499.8, 352.3, 504.8, 361.7, 508.9, 372.0, 512.0, 383.2, 514.0, 395.2, 515.0, 408.1, 515.0, 421.9, 514.1, 435.8, 512.2, 449.8, 509.4, 464.1, 505.6, 478.4, 500.9, 493.0, 495.3, 507.7, 488.8, 522.5, 481.2, 537.5, 472.3, 550.8, 461.8, 562.3, 449.8, 572.2, 436.4, 580.3, 421.5, 586.7, 405.1, 591.4, 387.2, 594.4, 367.8, 595.6, 350.9, 596.7, 336.3, 597.7, 324.2, 598.4, 314.5, 599.1, 307.3, 599.5, 302.4, 599.8, 300.0, 600.0)
+width = 70.0
+default_color = Color(0.82, 0.86, 0.92, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="LetterC" type="Node2D" parent="Layout/Board/Guides"]
+
+[node name="Stroke1" type="Line2D" parent="Layout/Board/Guides/LetterC"]
+points = PackedVector2Array(545.5, 247.9, 522.1, 224.5, 495.0, 205.5, 465.0, 191.5, 433.0, 182.9, 400.0, 180.0, 367.0, 182.9, 335.0, 191.5, 305.0, 205.5, 277.9, 224.5, 254.5, 247.9, 235.5, 275.0, 221.5, 305.0, 212.9, 337.0, 210.0, 370.0, 212.9, 403.0, 221.5, 435.0, 235.5, 465.0, 254.5, 492.1, 277.9, 515.5, 305.0, 534.5, 335.0, 548.5, 367.0, 557.1, 400.0, 560.0, 433.0, 557.1, 465.0, 548.5, 495.0, 534.5, 522.1, 515.5, 545.5, 492.1)
+width = 70.0
+default_color = Color(0.82, 0.86, 0.92, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

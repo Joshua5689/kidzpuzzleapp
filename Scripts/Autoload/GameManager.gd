@@ -22,6 +22,16 @@ const LEVELS: Array[Dictionary] = [
 	{"title": "Bike Shapes", "scene": "res://Scenes/Levels/Level08_BikeShapes.tscn"},
 	{"title": "Trace", "scene": "res://Scenes/Levels/Level09_TraceNumber.tscn"},
 	{"title": "Pond", "scene": "res://Scenes/Levels/Level10_FindFrogsFish.tscn"},
+	{"title": "Ducks", "scene": "res://Scenes/Levels/Level11_CountDucks.tscn"},
+	{"title": "Farm", "scene": "res://Scenes/Levels/Level12_FarmPuzzle.tscn"},
+	{"title": "Odd One", "scene": "res://Scenes/Levels/Level13_OddOneOut.tscn"},
+	{"title": "Pairs", "scene": "res://Scenes/Levels/Level14_MemoryPairs.tscn"},
+	{"title": "Butterfly", "scene": "res://Scenes/Levels/Level15_ColourButterfly.tscn"},
+	{"title": "Bee Maze", "scene": "res://Scenes/Levels/Level16_BeeMaze.tscn"},
+	{"title": "Sorting", "scene": "res://Scenes/Levels/Level17_SortToys.tscn"},
+	{"title": "Park", "scene": "res://Scenes/Levels/Level18_ParkDifferences.tscn"},
+	{"title": "Letters", "scene": "res://Scenes/Levels/Level19_TraceLetters.tscn"},
+	{"title": "Night Sky", "scene": "res://Scenes/Levels/Level20_NightSky.tscn"},
 ]
 
 ## Keep true while levels are still being built so every level is reachable.

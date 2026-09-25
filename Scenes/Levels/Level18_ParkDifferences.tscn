@@ -1,0 +1,77 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/HiddenObjectHunt/HiddenObjectHuntLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/HiddenObjectHunt/Hotspot.gd" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/ParkA.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/ParkB.svg" id="r4"]
+
+[node name="Level18_ParkDifferences" instance=ExtResource("1_base")]
+level_number = 18
+prompt_text = "Find the 6 differences!"
+
+[node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]
+custom_minimum_size = Vector2(700, 525)
+texture = ExtResource("r3")
+
+[node name="CompareImage" parent="Layout/PlayArea/Pictures" index="1"]
+texture = ExtResource("r4")
+
+[node name="Kite" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 40.0
+offset_right = 560.0
+offset_bottom = 140.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Cloud" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 92.0
+offset_right = 468.0
+offset_bottom = 144.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Bird" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 152.0
+offset_right = 186.0
+offset_bottom = 192.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Slide" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 250.0
+offset_right = 590.0
+offset_bottom = 400.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Ball" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 422.0
+offset_right = 248.0
+offset_bottom = 478.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Flower" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 596.0
+offset_top = 446.0
+offset_right = 644.0
+offset_bottom = 494.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"

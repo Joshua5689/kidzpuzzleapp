@@ -1,11 +1,12 @@
 # Puddle Jump (kids puzzle app)
 
-Godot 4.x, GDScript. Offline puzzle game for kids on Android tablets, 10 levels.
+Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6) on Android tablets, 20 levels.
+Developer name: Doodle Bees.
 Sideloaded for now, packaged for Play Store once validated with real kids.
 
 ## Architecture
 
-The app is NOT 10 unique builds. It is a small set of reusable mechanic scenes
+The app is NOT 20 unique builds. It is a small set of reusable mechanic scenes
 under `Scenes/Mechanics/`, each one instanced multiple times under
 `Scenes/Levels/` with different artwork and exported config values.
 
@@ -54,6 +55,18 @@ that mechanic benefits.
 | 8 | Find the shapes in the bike | HiddenObjectHunt |
 | 9 | Trace the number | TraceInput |
 | 10 | Find the frogs, fish, gift box | HiddenObjectHunt |
+| 11 | Count the ducks (to 10, 4 choices) | CountSelect |
+| 12 | Farm jigsaw, 3x3 | DragRearrange |
+| 13 | Odd one out | TapMatch |
+| 14 | Match the pairs | MemoryMatch |
+| 15 | Colour the butterfly | ColourFill |
+| 16 | Help the bee find the flower | MazeDrag |
+| 17 | Sort fruit and toys | SortDrag |
+| 18 | Spot 6 differences (park) | HiddenObjectHunt |
+| 19 | Trace the letters A B C | TraceInput |
+| 20 | Night sky: moon, stars, owl | HiddenObjectHunt |
+
+LevelSelect shows 10 levels per page with arrow buttons.
 
 ## Folder structure
 
@@ -112,6 +125,16 @@ Type the maze into `layout`, one string per row: `#` wall, `.` path,
 `S` start, `E` goal. Set `player_texture` / `goal_texture`. The board scales
 to fit `board_max_size`.
 
+### MemoryMatch levels
+
+Set `card_faces` (each picture appears twice, shuffled) and `columns`.
+
+### SortDrag levels
+
+Under `PlayArea/Bins` add TextureRects with the `SortBin` script, under
+`PlayArea/Items` TextureRects with the `SortItem` script, positioned freely in
+PlayArea. An item belongs in the bin with the same `category`.
+
 ### TraceInput levels
 
 Add one `Node2D` per round under `Board/Guides` (e.g. Number1, Number2), each
@@ -134,7 +157,8 @@ before testing with kids so levels unlock in order. Progress is saved to
 
 ## Android build
 
-- Preset "Android" in `export_presets.cfg` (template APK, no Gradle build,
+- Preset "Android" in `export_presets.cfg` (app id `com.doodlebees.puddlejump`,
+  developer "Doodle Bees", frog icons in `Assets/Icon/`; template APK, no Gradle build,
   arm64 + armv7, landscape, immersive, no permissions).
 - JDK 17: `C:\Users\joshu\Android\jdk-17.0.20.1+1`; SDK:
   `C:\Users\joshu\AppData\Local\Android\Sdk` (platform-tools, build-tools

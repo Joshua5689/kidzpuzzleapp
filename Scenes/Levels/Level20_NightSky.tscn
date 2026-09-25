@@ -1,0 +1,93 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/HiddenObjectHunt/HiddenObjectHuntLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/HiddenObjectHunt/Hotspot.gd" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/HiddenObjects/NightSky.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Moon.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Owl.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Star.svg" id="r6"]
+
+[node name="Level20_NightSky" instance=ExtResource("1_base")]
+level_number = 20
+prompt_text = "Find the moon, the stars and the owl!"
+
+[node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]
+custom_minimum_size = Vector2(1280, 680)
+texture = ExtResource("r3")
+
+[node name="Moon" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 1015.0
+offset_top = 70.0
+offset_right = 1120.0
+offset_bottom = 210.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Moon"
+icon = ExtResource("r4")
+
+[node name="Owl" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 330.0
+offset_right = 353.0
+offset_bottom = 426.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Owl"
+icon = ExtResource("r5")
+
+[node name="Star1" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 60.0
+offset_right = 206.0
+offset_bottom = 116.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Star"
+icon = ExtResource("r6")
+
+[node name="Star2" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 110.0
+offset_right = 516.0
+offset_bottom = 166.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Star"
+icon = ExtResource("r6")
+
+[node name="Star3" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 40.0
+offset_right = 746.0
+offset_bottom = 96.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Star"
+icon = ExtResource("r6")
+
+[node name="Star4" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 210.0
+offset_right = 916.0
+offset_bottom = 266.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Star"
+icon = ExtResource("r6")
+
+[node name="Star5" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 250.0
+offset_right = 616.0
+offset_bottom = 306.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Star"
+icon = ExtResource("r6")

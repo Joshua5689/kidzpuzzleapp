@@ -14,6 +14,7 @@ const ROCKET_TIME := 0.35
 @onready var fireworks: Node2D = $Fireworks
 @onready var trophy: TextureRect = $Layout/Trophy
 @onready var title_label: Label = $Layout/TitleLabel
+@onready var subtitle_label: Label = $Layout/SubtitleLabel
 @onready var stars_label: Label = $Layout/StarsRow/StarsLabel
 @onready var play_again_button: Button = $Layout/Buttons/PlayAgainButton
 @onready var menu_button: Button = $Layout/Buttons/MenuButton
@@ -26,6 +27,7 @@ var _spark_texture: Texture2D
 func _ready() -> void:
 	play_again_button.pressed.connect(GameManager.go_to_level_select)
 	menu_button.pressed.connect(GameManager.go_to_main_menu)
+	subtitle_label.text = "You finished all %d games!" % GameManager.level_count()
 	stars_label.text = "x %d" % GameManager.total_stars()
 	_spark_texture = _make_spark_texture()
 	firework_player.stream = FIREWORK_SOUND

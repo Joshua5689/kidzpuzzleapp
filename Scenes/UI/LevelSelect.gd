@@ -1,18 +1,56 @@
 extends Control
 ## Builds one button per level from GameManager.LEVELS, with the best stars
-## earned on each.
+## earned on each, PAGE_SIZE levels per page.
 
 const STAR_TEXTURE: Texture2D = preload("res://Assets/Images/UI/Star.svg")
 const MISSED_STAR_COLOR := Color(0.3, 0.3, 0.35, 0.35)
+const PAGE_SIZE := 10
+
+## Remembered while the app runs, so coming back from a level keeps the page.
+static var _page := -1
 
 @onready var levels_grid: GridContainer = $Layout/LevelsGrid
 @onready var back_button: Button = $BackButton
+@onready var page_label: Label = $Layout/PageLabel
+@onready var prev_page_button: Button = $PrevPageButton
+@onready var next_page_button: Button = $NextPageButton
 
 
 func _ready() -> void:
 	back_button.pressed.connect(GameManager.go_to_main_menu)
-	for n in range(1, GameManager.level_count() + 1):
+	UiStyle.style_button(prev_page_button, UiStyle.MUTED_COLOR, 64)
+	UiStyle.style_button(next_page_button, UiStyle.MUTED_COLOR, 64)
+	prev_page_button.pressed.connect(func(): show_page(_page - 1))
+	next_page_button.pressed.connect(func(): show_page(_page + 1))
+	if _page < 0:
+		_page = floori(float(_first_unfinished_level()) / PAGE_SIZE)
+	show_page(_page)
+
+
+func page_count() -> int:
+	return ceili(float(GameManager.level_count()) / PAGE_SIZE)
+
+
+func show_page(page: int) -> void:
+	_page = clampi(page, 0, page_count() - 1)
+	for child in levels_grid.get_children():
+		levels_grid.remove_child(child)
+		child.queue_free()
+	var first := _page * PAGE_SIZE + 1
+	var last := mini(first + PAGE_SIZE - 1, GameManager.level_count())
+	for n in range(first, last + 1):
 		levels_grid.add_child(_make_level_button(n))
+	page_label.text = "Levels %d - %d" % [first, last]
+	prev_page_button.visible = _page > 0
+	next_page_button.visible = _page < page_count() - 1
+
+
+## 0-based index of the first level not finished yet (or the last level).
+func _first_unfinished_level() -> int:
+	for n in range(1, GameManager.level_count() + 1):
+		if not GameManager.is_completed(n):
+			return n - 1
+	return GameManager.level_count() - 1
 
 
 func _make_level_button(level_number: int) -> Button:

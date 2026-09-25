@@ -1,0 +1,139 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/SortDrag/SortDragLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortBin.gd" id="r2"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortItem.gd" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/Basket.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/ToyBox.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Apple.svg" id="r6"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/Ball.svg" id="r7"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Banana.svg" id="r8"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/Teddy.svg" id="r9"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Grapes.svg" id="r10"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/Blocks.svg" id="r11"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Orange.svg" id="r12"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/ToyCar.svg" id="r13"]
+
+[node name="Level17_SortToys" instance=ExtResource("1_base")]
+level_number = 17
+prompt_text = "Fruit in the basket, toys in the box!"
+
+[node name="Basket" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 390.0
+offset_right = 540.0
+offset_bottom = 770.0
+texture = ExtResource("r4")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "fruit"
+
+[node name="ToyBox" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 1160.0
+offset_top = 390.0
+offset_right = 1540.0
+offset_bottom = 770.0
+texture = ExtResource("r5")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "toy"
+
+[node name="Apple" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 60.0
+offset_right = 225.0
+offset_bottom = 240.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "fruit"
+
+[node name="Ball" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 150.0
+offset_right = 430.0
+offset_bottom = 330.0
+texture = ExtResource("r7")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "toy"
+
+[node name="Banana" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 455.0
+offset_top = 60.0
+offset_right = 635.0
+offset_bottom = 240.0
+texture = ExtResource("r8")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "fruit"
+
+[node name="Teddy" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 660.0
+offset_top = 150.0
+offset_right = 840.0
+offset_bottom = 330.0
+texture = ExtResource("r9")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "toy"
+
+[node name="Grapes" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 865.0
+offset_top = 60.0
+offset_right = 1045.0
+offset_bottom = 240.0
+texture = ExtResource("r10")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "fruit"
+
+[node name="Blocks" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 150.0
+offset_right = 1250.0
+offset_bottom = 330.0
+texture = ExtResource("r11")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "toy"
+
+[node name="Orange" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1275.0
+offset_top = 60.0
+offset_right = 1455.0
+offset_bottom = 240.0
+texture = ExtResource("r12")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "fruit"
+
+[node name="ToyCar" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1480.0
+offset_top = 150.0
+offset_right = 1660.0
+offset_bottom = 330.0
+texture = ExtResource("r13")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "toy"

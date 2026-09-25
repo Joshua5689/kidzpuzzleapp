@@ -13,10 +13,10 @@ config_version=5
 config/name="Puddle Jump"
 run/main_scene="res://Scenes/UI/Splash.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
 boot_splash/bg_color=Color(0.73, 0.8, 0.72, 1)
 boot_splash/stretch_mode=4
 boot_splash/image="res://Assets/Images/UI/BootSplash.png"
+config/icon="res://Assets/Icon/Icon512.png"
 
 [autoload]
 
