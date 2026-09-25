@@ -6,6 +6,10 @@ extends MechanicLevel
 @export var item_texture: Texture2D
 ## How many items to show in each round, in order.
 @export var rounds: Array[int] = [3, 5, 2]
+## Adding: a second group per round, shown after a big "+". The answer is the
+## total (e.g. rounds [2] + add_rounds [1] asks "2 + 1 = ?"). Leave empty for
+## plain counting.
+@export var add_rounds: Array[int] = []
 ## Answer buttons per round, including the correct one.
 @export_range(2, 5) var answer_choices: int = 3
 ## Wrong answers are picked from 1..max_number.
@@ -32,14 +36,18 @@ func _ready() -> void:
 	if rounds.is_empty():
 		push_warning("%s: no rounds set, level can't be finished" % name)
 		return
-	for count in rounds:
-		if count < 1 or count > max_number:
-			push_warning("%s: round count %d is outside 1..%d" % [name, count, max_number])
+	for i in rounds.size():
+		if _answer_for(i) < 1 or _answer_for(i) > max_number:
+			push_warning("%s: round %d answer %d is outside 1..%d" % [name, i + 1, _answer_for(i), max_number])
 	_start_round(0)
 
 
 func current_answer() -> int:
-	return rounds[_round]
+	return _answer_for(_round)
+
+
+func _answer_for(index: int) -> int:
+	return rounds[index] + (add_rounds[index] if index < add_rounds.size() else 0)
 
 
 func _start_round(index: int) -> void:
@@ -50,7 +58,10 @@ func _start_round(index: int) -> void:
 	_clear(items_container)
 	_clear(answers_container)
 
+	var first_group: int = rounds[index]
 	for n in current_answer():
+		if n == first_group:
+			items_container.add_child(_make_plus_sign())
 		var item := TextureButton.new()
 		item.name = "Item%02d" % (n + 1)
 		item.texture_normal = item_texture
@@ -70,6 +81,18 @@ func _start_round(index: int) -> void:
 		UiStyle.style_button(button, UiStyle.MUTED_COLOR, 80)
 		button.pressed.connect(_on_answer_pressed.bind(value, button))
 		answers_container.add_child(button)
+
+
+func _make_plus_sign() -> Label:
+	var plus := Label.new()
+	plus.name = "Plus"
+	plus.text = "+"
+	plus.custom_minimum_size = Vector2(item_size * 0.7, item_size)
+	plus.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	plus.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	plus.add_theme_font_size_override("font_size", 120)
+	plus.add_theme_color_override("font_color", UiStyle.MUTED_COLOR)
+	return plus
 
 
 ## The correct answer plus distinct random wrong ones, sorted ascending.

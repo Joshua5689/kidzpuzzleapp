@@ -6,6 +6,9 @@ extends MechanicLevel
 
 ## How small an item gets once it's inside its bin.
 @export var sorted_scale: float = 0.45
+## Shadow-match style: the item snaps onto the centre of its bin at full size
+## (use one bin per item, e.g. an animal and its shadow).
+@export var snap_to_bin: bool = false
 
 @onready var play_area: Control = $Layout/PlayArea
 @onready var bins_root: Control = $Layout/PlayArea/Bins
@@ -84,9 +87,22 @@ func bin_at(global_point: Vector2) -> SortBin:
 	return null
 
 
-## Shrinks the item into the next free spot inside the bin.
+## Shrinks the item into the next free spot inside the bin (or, with
+## snap_to_bin, places it exactly over the bin).
 func sort_into(item: SortItem, bin: SortBin) -> void:
 	_sorted.append(item)
+	if snap_to_bin:
+		item.pivot_offset = item.size / 2.0
+		item.scale = Vector2.ONE
+		var centre := bin.global_position + bin.size / 2.0 - item.size / 2.0 - items_root.global_position
+		create_tween().tween_property(item, "position", centre, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		bounce(item)
+		clear_feedback()
+		if _sorted.size() == _items.size():
+			finish_level()
+		else:
+			play_sound(correct_sound)
+		return
 	var slot: int = _bin_counts[bin]
 	_bin_counts[bin] = slot + 1
 	var small := item.size * sorted_scale

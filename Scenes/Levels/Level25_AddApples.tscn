@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/CountSelect/CountSelectLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Apple.svg" id="r2"]
+
+[node name="Level25_AddApples" instance=ExtResource("1_base")]
+level_number = 25
+prompt_text = "How many apples altogether?"
+item_texture = ExtResource("r2")
+rounds = Array[int]([2, 3, 1, 4])
+add_rounds = Array[int]([1, 2, 3, 2])
+answer_choices = 4
+max_number = 10
+item_size = 120.0
+time_limit = 90.0

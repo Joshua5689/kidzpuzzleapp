@@ -1,12 +1,13 @@
 # Puddle Jump (kids puzzle app)
 
-Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6) on Android tablets, 20 levels.
+Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6) on Android tablets. 30 levels built,
+50 planned (worlds of 10).
 Developer name: Doodle Bees.
 Sideloaded for now, packaged for Play Store once validated with real kids.
 
 ## Architecture
 
-The app is NOT 20 unique builds. It is a small set of reusable mechanic scenes
+The app is NOT one build per level. It is a small set of reusable mechanic scenes
 under `Scenes/Mechanics/`, each one instanced multiple times under
 `Scenes/Levels/` with different artwork and exported config values.
 
@@ -65,8 +66,26 @@ that mechanic benefits.
 | 18 | Spot 6 differences (park) | HiddenObjectHunt |
 | 19 | Trace the letters A B C | TraceInput |
 | 20 | Night sky: moon, stars, owl | HiddenObjectHunt |
+| 21 | Shadow match (timed 60s) | SortDrag (snap_to_bin) |
+| 22 | What comes next? patterns (60s) | TapMatch (rounds + clues) |
+| 23 | Big memory, 12 cards (120s) | MemoryMatch |
+| 24 | Trace 4 5 6 (90s) | TraceInput |
+| 25 | Adding apples (90s) | CountSelect (add_rounds) |
+| 26 | Big and small (45s) | TapMatch (rounds) |
+| 27 | Sort by colour (75s) | SortDrag |
+| 28 | Race the bee (60s) | MazeDrag |
+| 29 | Spot 7 differences, beach (120s) | HiddenObjectHunt |
+| 30 | Frog's birthday party (120s) | HiddenObjectHunt |
 
-LevelSelect shows 10 levels per page with arrow buttons.
+Levels are grouped into worlds of 10 (`GameManager.WORLD_SIZE`). Inside an
+open world levels unlock one after another; the next world opens when the
+player has 25 stars (`STARS_TO_OPEN_NEXT_WORLD`) in the previous world.
+LevelSelect shows one world per page. Testing shortcut on a device: hold the
+"Pick a game" title for 3 s to open every level for the session.
+
+Timed levels: set `time_limit` (seconds) on the level root. A countdown bar
+appears; finishing in time keeps normal stars, running out caps stars at 1
+(the child keeps playing). World 3 (21-30) onwards is timed.
 
 ## Folder structure
 
@@ -125,6 +144,18 @@ Type the maze into `layout`, one string per row: `#` wall, `.` path,
 `S` start, `E` goal. Set `player_texture` / `goal_texture`. The board scales
 to fit `board_max_size`.
 
+### TapMatch levels
+
+Single round: TextureButtons under `Layout/ItemsContainer` + `correct_items`.
+Several rounds: add `TapRound` nodes (HFlowContainer script) under
+`Layout/Rounds`, each with its buttons, `prompt`, `correct_items` (relative to
+the round) and optional `clues` pictures (shown in a row ending in "?").
+
+### CountSelect levels
+
+`rounds` = items per round. For adding, also set `add_rounds` (second group
+after a "+"; the answer is the total).
+
 ### MemoryMatch levels
 
 Set `card_faces` (each picture appears twice, shuffled) and `columns`.
@@ -133,7 +164,8 @@ Set `card_faces` (each picture appears twice, shuffled) and `columns`.
 
 Under `PlayArea/Bins` add TextureRects with the `SortBin` script, under
 `PlayArea/Items` TextureRects with the `SortItem` script, positioned freely in
-PlayArea. An item belongs in the bin with the same `category`.
+PlayArea. An item belongs in the bin with the same `category`. `snap_to_bin`
+places items exactly over their bin at full size (shadow matching).
 
 ### TraceInput levels
 
@@ -149,6 +181,10 @@ before testing with kids so levels unlock in order. Progress is saved to
 `user://progress.cfg`.
 
 ## Running and testing
+
+Test scripts must not touch real players' saves: set
+`ProfileManager.current_id = ""` at the start (then nothing is saved), and
+give them a safety `quit()` timer so a failed test never leaves a window open.
 
 - Run current scene in editor: F6
 - Run project from CLI: `godot --path . --scene Scenes/Levels/Level03_FindColours.tscn`

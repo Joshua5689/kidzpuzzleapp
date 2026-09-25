@@ -1,0 +1,117 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/HiddenObjectHunt/HiddenObjectHuntLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/HiddenObjectHunt/Hotspot.gd" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/Party.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Colours/RedBalloon.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/Present.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/Cake.svg" id="r6"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Frog.svg" id="r7"]
+
+[node name="Level30_FrogParty" instance=ExtResource("1_base")]
+level_number = 30
+prompt_text = "Find the balloons, presents, cake and the frog!"
+time_limit = 120.0
+
+[node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]
+custom_minimum_size = Vector2(1280, 680)
+texture = ExtResource("r3")
+
+[node name="Balloon1" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 60.0
+offset_right = 206.0
+offset_bottom = 250.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Balloon"
+icon = ExtResource("r4")
+
+[node name="Balloon2" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 1064.0
+offset_top = 40.0
+offset_right = 1186.0
+offset_bottom = 230.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Balloon"
+icon = ExtResource("r4")
+
+[node name="Balloon3" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 120.0
+offset_right = 566.0
+offset_bottom = 310.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Balloon"
+icon = ExtResource("r4")
+
+[node name="Balloon4" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 834.0
+offset_top = 150.0
+offset_right = 956.0
+offset_bottom = 340.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Balloon"
+icon = ExtResource("r4")
+
+[node name="Present1" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 496.0
+offset_right = 296.0
+offset_bottom = 614.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Present"
+icon = ExtResource("r5")
+
+[node name="Present2" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 1034.0
+offset_top = 476.0
+offset_right = 1176.0
+offset_bottom = 614.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Present"
+icon = ExtResource("r5")
+
+[node name="Present3" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 714.0
+offset_top = 226.0
+offset_right = 806.0
+offset_bottom = 324.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Present"
+icon = ExtResource("r5")
+
+[node name="Cake" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 280.0
+offset_right = 680.0
+offset_bottom = 410.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Cake"
+icon = ExtResource("r6")
+
+[node name="Frog" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 360.0
+offset_right = 1240.0
+offset_bottom = 500.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Frog"
+icon = ExtResource("r7")

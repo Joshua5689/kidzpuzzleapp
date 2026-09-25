@@ -32,6 +32,16 @@ const LEVELS: Array[Dictionary] = [
 	{"title": "Park", "scene": "res://Scenes/Levels/Level18_ParkDifferences.tscn"},
 	{"title": "Letters", "scene": "res://Scenes/Levels/Level19_TraceLetters.tscn"},
 	{"title": "Night Sky", "scene": "res://Scenes/Levels/Level20_NightSky.tscn"},
+	{"title": "Shadows", "scene": "res://Scenes/Levels/Level21_ShadowMatch.tscn"},
+	{"title": "Patterns", "scene": "res://Scenes/Levels/Level22_WhatComesNext.tscn"},
+	{"title": "Big Memory", "scene": "res://Scenes/Levels/Level23_BigMemory.tscn"},
+	{"title": "Trace 4 5 6", "scene": "res://Scenes/Levels/Level24_TraceNumbers456.tscn"},
+	{"title": "Adding", "scene": "res://Scenes/Levels/Level25_AddApples.tscn"},
+	{"title": "Big & Small", "scene": "res://Scenes/Levels/Level26_BigAndSmall.tscn"},
+	{"title": "Colours", "scene": "res://Scenes/Levels/Level27_SortColours.tscn"},
+	{"title": "Bee Race", "scene": "res://Scenes/Levels/Level28_BeeRace.tscn"},
+	{"title": "Beach", "scene": "res://Scenes/Levels/Level29_BeachDifferences.tscn"},
+	{"title": "Party", "scene": "res://Scenes/Levels/Level30_FrogParty.tscn"},
 ]
 
 ## Levels are grouped into worlds of WORLD_SIZE. Inside an open world levels

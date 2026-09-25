@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/MemoryMatch/MemoryMatchLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Apple.svg" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Banana.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Grapes.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Orange.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/Ball.svg" id="r6"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/Teddy.svg" id="r7"]
+
+[node name="Level23_BigMemory" instance=ExtResource("1_base")]
+level_number = 23
+prompt_text = "Find all the pairs!"
+card_faces = Array[Texture2D]([ExtResource("r2"), ExtResource("r3"), ExtResource("r4"), ExtResource("r5"), ExtResource("r6"), ExtResource("r7")])
+columns = 6
+card_size = Vector2(200, 240)
+three_star_max_mistakes = 6
+two_star_max_mistakes = 12
+time_limit = 120.0

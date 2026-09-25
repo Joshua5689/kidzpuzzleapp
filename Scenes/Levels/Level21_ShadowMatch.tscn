@@ -1,0 +1,141 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/SortDrag/SortDragLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortBin.gd" id="r2"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortItem.gd" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/OwlShadow.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/FishShadow.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/FrogShadow.svg" id="r6"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/BeeShadow.svg" id="r7"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/DuckShadow.svg" id="r8"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Frog.svg" id="r9"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Duck.svg" id="r10"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Owl.svg" id="r11"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Bee.svg" id="r12"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Fish.svg" id="r13"]
+
+[node name="Level21_ShadowMatch" instance=ExtResource("1_base")]
+level_number = 21
+prompt_text = "Drag each animal to its shadow!"
+snap_to_bin = true
+time_limit = 60.0
+
+[node name="OwlShadow" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 470.0
+offset_right = 330.0
+offset_bottom = 690.0
+texture = ExtResource("r4")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "owl"
+
+[node name="FishShadow" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 470.0
+offset_right = 650.0
+offset_bottom = 690.0
+texture = ExtResource("r5")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "fish"
+
+[node name="FrogShadow" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 470.0
+offset_right = 970.0
+offset_bottom = 690.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "frog"
+
+[node name="BeeShadow" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 470.0
+offset_right = 1290.0
+offset_bottom = 690.0
+texture = ExtResource("r7")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "bee"
+
+[node name="DuckShadow" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 1390.0
+offset_top = 470.0
+offset_right = 1610.0
+offset_bottom = 690.0
+texture = ExtResource("r8")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "duck"
+
+[node name="Frog" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 40.0
+offset_right = 330.0
+offset_bottom = 260.0
+texture = ExtResource("r9")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "frog"
+
+[node name="Duck" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 110.0
+offset_right = 650.0
+offset_bottom = 330.0
+texture = ExtResource("r10")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "duck"
+
+[node name="Owl" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 40.0
+offset_right = 970.0
+offset_bottom = 260.0
+texture = ExtResource("r11")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "owl"
+
+[node name="Bee" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 110.0
+offset_right = 1290.0
+offset_bottom = 330.0
+texture = ExtResource("r12")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "bee"
+
+[node name="Fish" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1390.0
+offset_top = 40.0
+offset_right = 1610.0
+offset_bottom = 260.0
+texture = ExtResource("r13")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "fish"

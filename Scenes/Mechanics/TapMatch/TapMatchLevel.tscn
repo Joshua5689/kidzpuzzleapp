@@ -52,11 +52,20 @@ text = "Tap the right one!"
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="ClueRow" type="HBoxContainer" parent="Layout"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
 [node name="ItemsContainer" type="HFlowContainer" parent="Layout"]
 layout_mode = 2
 theme_override_constants/h_separation = 40
 theme_override_constants/v_separation = 40
 alignment = 1
+
+[node name="Rounds" type="VBoxContainer" parent="Layout"]
+layout_mode = 2
 
 [node name="FeedbackLabel" type="Label" parent="Layout"]
 custom_minimum_size = Vector2(0, 90)

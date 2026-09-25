@@ -1,0 +1,167 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/SortDrag/SortDragLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortBin.gd" id="r2"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortItem.gd" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/RedBox.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/BlueBox.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/YellowBox.svg" id="r6"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Apple.svg" id="r7"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Colours/BlueBalloon.svg" id="r8"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Banana.svg" id="r9"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/Ball.svg" id="r10"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/ToyCar.svg" id="r11"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Duck.svg" id="r12"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Colours/RedBalloon.svg" id="r13"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/BlueFish.svg" id="r14"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Colours/YellowBalloon.svg" id="r15"]
+
+[node name="Level27_SortColours" instance=ExtResource("1_base")]
+level_number = 27
+prompt_text = "Put each thing in the box of the same colour!"
+time_limit = 75.0
+sorted_scale = 0.4
+
+[node name="RedBox" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 430.0
+offset_right = 480.0
+offset_bottom = 770.0
+texture = ExtResource("r4")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "red"
+
+[node name="BlueBox" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 430.0
+offset_right = 1020.0
+offset_bottom = 770.0
+texture = ExtResource("r5")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "blue"
+
+[node name="YellowBox" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 1220.0
+offset_top = 430.0
+offset_right = 1560.0
+offset_bottom = 770.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "yellow"
+
+[node name="Apple" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 40.0
+offset_right = 190.0
+offset_bottom = 200.0
+texture = ExtResource("r7")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "red"
+
+[node name="BlueBalloon" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 170.0
+offset_right = 376.0
+offset_bottom = 330.0
+texture = ExtResource("r8")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "blue"
+
+[node name="Banana" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 40.0
+offset_right = 562.0
+offset_bottom = 200.0
+texture = ExtResource("r9")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "yellow"
+
+[node name="Ball" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 588.0
+offset_top = 170.0
+offset_right = 748.0
+offset_bottom = 330.0
+texture = ExtResource("r10")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "red"
+
+[node name="ToyCar" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 40.0
+offset_right = 934.0
+offset_bottom = 200.0
+texture = ExtResource("r11")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "blue"
+
+[node name="Duck" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 960.0
+offset_top = 170.0
+offset_right = 1120.0
+offset_bottom = 330.0
+texture = ExtResource("r12")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "yellow"
+
+[node name="RedBalloon" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1146.0
+offset_top = 40.0
+offset_right = 1306.0
+offset_bottom = 200.0
+texture = ExtResource("r13")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "red"
+
+[node name="BlueFish" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1332.0
+offset_top = 170.0
+offset_right = 1492.0
+offset_bottom = 330.0
+texture = ExtResource("r14")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "blue"
+
+[node name="YellowBalloon" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1518.0
+offset_top = 40.0
+offset_right = 1678.0
+offset_bottom = 200.0
+texture = ExtResource("r15")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "yellow"

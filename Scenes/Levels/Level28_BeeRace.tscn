@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/MazeDrag/MazeDragLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Bee.svg" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Flower.svg" id="r3"]
+
+[node name="Level28_BeeRace" instance=ExtResource("1_base")]
+level_number = 28
+prompt_text = "Race the bee to the flower!"
+layout = PackedStringArray("###############", "#S..#.......#.#", "#.#.#.#####.#.#", "#.#...#...#...#", "#.#####.#.###.#", "#.....#.#...#.#", "#####.#.###.#.#", "#.....#...#..E#", "###############")
+player_texture = ExtResource("r2")
+goal_texture = ExtResource("r3")
+wall_color = Color(0.36, 0.66, 0.84, 1)
+path_color = Color(1, 0.97, 0.85, 1)
+time_limit = 60.0

@@ -1,0 +1,132 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/TapMatch/TapMatchLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/TapMatch/TapRound.gd" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Toys/Ball.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Duck.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Star.svg" id="r5"]
+
+[node name="Level26_BigAndSmall" instance=ExtResource("1_base")]
+level_number = 26
+prompt_text = "Tap the BIGGEST ball!"
+time_limit = 45.0
+
+[node name="Round1" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "Tap the BIGGEST ball!"
+correct_items = Array[NodePath]([NodePath("Ball2")])
+
+[node name="Ball1" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Ball2" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(270, 270)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Ball3" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Ball4" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Round2" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "Tap the SMALLEST duck!"
+correct_items = Array[NodePath]([NodePath("Duck3")])
+
+[node name="Duck1" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Duck2" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Duck3" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Duck4" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(260, 260)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Round3" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "Tap the BIGGEST star!"
+correct_items = Array[NodePath]([NodePath("Star3")])
+
+[node name="Star1" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Star2" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Star3" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(280, 280)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Star4" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r5")
+ignore_texture_size = true
+stretch_mode = 5

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="525" viewBox="0 0 700 525">
+<rect width="700" height="525" fill="#8fd3ff"/>
+<rect y="250" width="700" height="120" fill="#3a9bdc"/>
+<path d="M0 262 Q60 252 120 262 T240 262 T360 262 T480 262 T600 262 T720 262" stroke="#fff" stroke-width="5" fill="none" opacity="0.6"/>
+<rect y="360" width="700" height="165" fill="#f6d98b"/>
+<path d="M250 90 q14 -14 28 0 q14 -14 28 0" stroke="#333" stroke-width="5" fill="none"/>
+<rect x="148" y="300" width="130" height="24" rx="10" fill="#8b5a2b"/>
+<rect x="210" y="200" width="6" height="100" fill="#555"/>
+<polygon points="216,205 216,295 280,295" fill="#3a86ff"/>
+<rect x="440" y="250" width="8" height="190" fill="#8b5a2b"/>
+<path d="M340 262 Q444 170 548 262 Z" fill="#fff"/>
+<path d="M392 262 Q420 205 444 196 Q468 205 496 262 Z" fill="#43b649"/>
+<rect x="540" y="430" width="90" height="50" fill="#e0b55c"/>
+<rect x="548" y="400" width="26" height="30" fill="#e0b55c"/><rect x="596" y="400" width="26" height="30" fill="#e0b55c"/>
+<path d="M90 430 L150 430 L142 490 L98 490 Z" fill="#c77dff"/>
+<path d="M95 432 Q120 395 145 432" stroke="#555" stroke-width="4" fill="none"/>
+<rect x="200" y="410" width="120" height="30" rx="6" fill="#ff6fb5"/>
+</svg>
