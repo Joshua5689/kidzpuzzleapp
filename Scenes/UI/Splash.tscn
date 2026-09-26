@@ -68,27 +68,6 @@ text = "Puzzle and Play"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MakerLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -520.0
-offset_top = -110.0
-offset_right = -40.0
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.5, 0.3, 0.05, 1)
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 44
-text = "by Doodle Bees"
-horizontal_alignment = 2
-vertical_alignment = 1
-
 [node name="HintLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 12
