@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/CountSelect/CountSelectLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Bee.svg" id="r2"]
+
+[node name="Level38_AddBees" instance=ExtResource("1_base")]
+level_number = 38
+prompt_text = "How many bees altogether?"
+item_texture = ExtResource("r2")
+rounds = Array[int]([3, 5, 4, 6])
+add_rounds = Array[int]([4, 3, 5, 4])
+answer_choices = 4
+max_number = 10
+item_size = 100.0
+time_limit = 120.0

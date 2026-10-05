@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/DragRearrange/DragRearrangeLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/BeeGarden.svg" id="r2"]
+
+[node name="Level32_GardenPuzzle" instance=ExtResource("1_base")]
+level_number = 32
+prompt_text = "Put the bee garden back together!"
+image = ExtResource("r2")
+rows = 3
+columns = 4
+board_width = 900.0
+time_limit = 180.0

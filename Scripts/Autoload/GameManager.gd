@@ -42,6 +42,16 @@ const LEVELS: Array[Dictionary] = [
 	{"title": "Bee Race", "scene": "res://Scenes/Levels/Level28_BeeRace.tscn"},
 	{"title": "Beach", "scene": "res://Scenes/Levels/Level29_BeachDifferences.tscn"},
 	{"title": "Party", "scene": "res://Scenes/Levels/Level30_FrogParty.tscn"},
+	{"title": "Count Bees", "scene": "res://Scenes/Levels/Level31_CountBees.tscn"},
+	{"title": "Garden", "scene": "res://Scenes/Levels/Level32_GardenPuzzle.tscn"},
+	{"title": "16 Cards", "scene": "res://Scenes/Levels/Level33_HugeMemory.tscn"},
+	{"title": "Colour Bee", "scene": "res://Scenes/Levels/Level34_ColourBee.tscn"},
+	{"title": "Shapes", "scene": "res://Scenes/Levels/Level35_SortShapes.tscn"},
+	{"title": "Patterns 2", "scene": "res://Scenes/Levels/Level36_TrickyPatterns.tscn"},
+	{"title": "Trace 7 8 9", "scene": "res://Scenes/Levels/Level37_TraceNumbers789.tscn"},
+	{"title": "Add Bees", "scene": "res://Scenes/Levels/Level38_AddBees.tscn"},
+	{"title": "Bee Home", "scene": "res://Scenes/Levels/Level39_BeeHome.tscn"},
+	{"title": "Bee Hunt", "scene": "res://Scenes/Levels/Level40_BeeHunt.tscn"},
 ]
 
 ## Levels are grouped into worlds of WORLD_SIZE. Inside an open world levels

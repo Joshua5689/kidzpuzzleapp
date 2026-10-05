@@ -1,0 +1,127 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/TapMatch/TapMatchLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/TapMatch/TapRound.gd" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Colours/RedBalloon.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Colours/BlueBalloon.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Colours/YellowBalloon.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Colours/GreenBalloon.svg" id="r6"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/CircleClue.svg" id="r7"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/SquareClue.svg" id="r8"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/TriangleClue.svg" id="r9"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Duck.svg" id="r10"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Bee.svg" id="r11"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Frog.svg" id="r12"]
+
+[node name="Level36_TrickyPatterns" instance=ExtResource("1_base")]
+level_number = 36
+prompt_text = "What comes next?"
+clue_size = 120.0
+time_limit = 75.0
+
+[node name="Round1" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "What comes next?"
+correct_items = Array[NodePath]([NodePath("Yellow")])
+clues = Array[Texture2D]([ExtResource("r3"), ExtResource("r4"), ExtResource("r5"), ExtResource("r3"), ExtResource("r4")])
+
+[node name="Blue" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Green" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Yellow" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Red" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Round2" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "What comes next?"
+correct_items = Array[NodePath]([NodePath("Triangle")])
+clues = Array[Texture2D]([ExtResource("r7"), ExtResource("r8"), ExtResource("r9"), ExtResource("r7"), ExtResource("r8")])
+
+[node name="Square" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r8")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Triangle" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r9")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Circle" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Round3" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "What comes next?"
+correct_items = Array[NodePath]([NodePath("Bee")])
+clues = Array[Texture2D]([ExtResource("r10"), ExtResource("r10"), ExtResource("r11"), ExtResource("r10"), ExtResource("r10")])
+
+[node name="Duck" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r10")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Bee" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r11")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Frog" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("r12")
+ignore_texture_size = true
+stretch_mode = 5

@@ -1,0 +1,167 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/SortDrag/SortDragLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortBin.gd" id="r2"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortItem.gd" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/CircleBox.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/TriangleBox.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/SquareBox.svg" id="r6"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/RedCircle.svg" id="r7"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/OrangeTriangle.svg" id="r8"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/BlueSquare.svg" id="r9"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/BlueCircle.svg" id="r10"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/GreenTriangle.svg" id="r11"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/YellowSquare.svg" id="r12"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/YellowCircle.svg" id="r13"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/PinkSquare.svg" id="r14"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World4/PurpleTriangle.svg" id="r15"]
+
+[node name="Level35_SortShapes" instance=ExtResource("1_base")]
+level_number = 35
+prompt_text = "Put each shape in its box!"
+sorted_scale = 0.4
+time_limit = 90.0
+
+[node name="CircleBox" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 430.0
+offset_right = 480.0
+offset_bottom = 770.0
+texture = ExtResource("r4")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "circle"
+
+[node name="TriangleBox" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 430.0
+offset_right = 1020.0
+offset_bottom = 770.0
+texture = ExtResource("r5")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "triangle"
+
+[node name="SquareBox" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 1220.0
+offset_top = 430.0
+offset_right = 1560.0
+offset_bottom = 770.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "square"
+
+[node name="RedCircle" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 160.0
+offset_bottom = 160.0
+texture = ExtResource("r7")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "circle"
+
+[node name="OrangeTriangle" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 170.0
+offset_right = 376.0
+offset_bottom = 320.0
+texture = ExtResource("r8")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "triangle"
+
+[node name="BlueSquare" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 40.0
+offset_right = 562.0
+offset_bottom = 190.0
+texture = ExtResource("r9")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "square"
+
+[node name="BlueCircle" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 598.0
+offset_top = 170.0
+offset_right = 718.0
+offset_bottom = 290.0
+texture = ExtResource("r10")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "circle"
+
+[node name="GreenTriangle" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 784.0
+offset_top = 40.0
+offset_right = 934.0
+offset_bottom = 190.0
+texture = ExtResource("r11")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "triangle"
+
+[node name="YellowSquare" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 970.0
+offset_top = 170.0
+offset_right = 1120.0
+offset_bottom = 320.0
+texture = ExtResource("r12")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "square"
+
+[node name="YellowCircle" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1156.0
+offset_top = 40.0
+offset_right = 1276.0
+offset_bottom = 160.0
+texture = ExtResource("r13")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "circle"
+
+[node name="PinkSquare" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1342.0
+offset_top = 170.0
+offset_right = 1492.0
+offset_bottom = 320.0
+texture = ExtResource("r14")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "square"
+
+[node name="PurpleTriangle" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1528.0
+offset_top = 40.0
+offset_right = 1678.0
+offset_bottom = 190.0
+texture = ExtResource("r15")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "triangle"

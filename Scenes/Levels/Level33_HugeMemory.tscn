@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/MemoryMatch/MemoryMatchLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Frog.svg" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Duck.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Bee.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Owl.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Dog.svg" id="r6"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Fish.svg" id="r7"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Butterfly.svg" id="r8"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Flower.svg" id="r9"]
+
+[node name="Level33_HugeMemory" instance=ExtResource("1_base")]
+level_number = 33
+prompt_text = "Find all 8 pairs!"
+card_faces = Array[Texture2D]([ExtResource("r2"), ExtResource("r3"), ExtResource("r4"), ExtResource("r5"), ExtResource("r6"), ExtResource("r7"), ExtResource("r8"), ExtResource("r9")])
+columns = 8
+card_size = Vector2(180, 215)
+three_star_max_mistakes = 8
+two_star_max_mistakes = 16
+time_limit = 150.0
