@@ -1,7 +1,7 @@
 # Doodle Bee - Puzzle and Play (kids puzzle app)
 
-Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6) on Android tablets. 40 levels built,
-50 planned (worlds of 10).
+Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6; World 5 is fun up to ~8) on Android
+tablets. 50 levels in 5 worlds of 10.
 Developer name: Doodle Bees.
 Sideloaded for now, packaged for Play Store once validated with real kids.
 
@@ -86,6 +86,16 @@ that mechanic benefits.
 | 38 | Adding bees to 10 (120s) | CountSelect (add_rounds) |
 | 39 | Fly the bee home, big maze (75s) | MazeDrag |
 | 40 | Bee garden hunt (150s) | HiddenObjectHunt |
+| 41 | Spell FROG + trick letters (90s) | SortDrag (snap, letter tiles) |
+| 42 | Sliding puzzle 3x3, bee artwork (180s) | SlidePuzzle |
+| 43 | Follow the bee, 3/4/5 long (120s) | SequenceMemory |
+| 44 | Take away (90s) | CountSelect (take_rounds) |
+| 45 | Fruit sudoku 4x4 (150s) | PictureSudoku |
+| 46 | Collect the stars maze (90s) | MazeDrag ('*' collectibles) |
+| 47 | Number patterns (75s) | TapMatch (clue_texts) |
+| 48 | Spot 10 differences, sea (150s) | HiddenObjectHunt |
+| 49 | Connect the dots: star, fish (120s) | ConnectDots |
+| 50 | Treasure island (180s) | HiddenObjectHunt |
 
 Levels are grouped into worlds of 10 (`GameManager.WORLD_SIZE`). Inside an
 open world levels unlock one after another; the next world opens when the
@@ -174,8 +184,27 @@ Set `card_faces` (each picture appears twice, shuffled) and `columns`.
 
 Under `PlayArea/Bins` add TextureRects with the `SortBin` script, under
 `PlayArea/Items` TextureRects with the `SortItem` script, positioned freely in
-PlayArea. An item belongs in the bin with the same `category`. `snap_to_bin`
+PlayArea. An item belongs in the bin with the same `category`.
+Spot-the-difference hints pulse on both pictures (a difference may only be
+visible on one side). `snap_to_bin`
 places items exactly over their bin at full size (shadow matching).
+
+### World 5 mechanics
+
+- SlidePuzzle: `image`, `grid_size`, `shuffle_moves` (shuffled with legal
+  moves only, so always solvable). Tap a tile next to the gap.
+- SequenceMemory: `pad_textures`, `pad_sounds`, `rounds` (sequence lengths).
+- ConnectDots: `shapes` (one PackedVector2Array per round, board coords),
+  `reveals` + `reveal_rects` (picture shown when a shape is closed).
+- PictureSudoku: `symbols` (A, B, C, D ...), `solution` and `puzzle` rows
+  ("." = empty).
+- MazeDrag: '*' cells are collectibles; the goal only counts once all are
+  collected (`collectible_texture`).
+- CountSelect: `take_rounds` crosses out items ("how many are left?").
+- SortDrag: SortItem `text` makes letter tiles; in snap mode each bin takes
+  one item, spare items may be left over, done when every bin is filled.
+- TapMatch: TapRound `clue_texts` for number clues; a button's Label child
+  named "Text" fills the "?" box.
 
 ### TraceInput levels
 

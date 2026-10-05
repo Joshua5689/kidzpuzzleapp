@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/PictureSudoku/PictureSudokuLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Apple.svg" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Banana.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Grapes.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Fruit/Orange.svg" id="r5"]
+
+[node name="Level45_FruitSudoku" instance=ExtResource("1_base")]
+level_number = 45
+symbols = Array[Texture2D]([ExtResource("r2"), ExtResource("r3"), ExtResource("r4"), ExtResource("r5")])
+solution = PackedStringArray("ABCD", "CDAB", "BADC", "DCBA")
+puzzle = PackedStringArray("A.C.", ".D.B", "B..C", ".CB.")
+time_limit = 150.0

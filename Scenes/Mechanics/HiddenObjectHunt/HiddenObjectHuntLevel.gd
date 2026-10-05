@@ -164,18 +164,24 @@ func _show_miss(picture: Control, point: Vector2) -> void:
 	play_sound(tap_sound)
 
 
+## Pulses a ring over one hidden item. In spot-the-difference levels the ring
+## shows on both pictures, because a difference may only be visible on one.
 func _show_hint() -> void:
 	for spot in _hotspots:
 		if _found.has(spot):
 			continue
-		var ring := _make_ring(Rect2(spot.position, spot.size).grow(16), hint_color, 8)
-		ring.modulate.a = 0.0
-		scene_image.add_child(ring)
-		var tween := create_tween()
-		for i in 2:
-			tween.tween_property(ring, "modulate:a", 1.0, 0.35)
-			tween.tween_property(ring, "modulate:a", 0.0, 0.35)
-		tween.tween_callback(ring.queue_free)
+		var pictures: Array[Control] = [scene_image]
+		if compare_image.visible:
+			pictures.append(compare_image)
+		for picture in pictures:
+			var ring := _make_ring(Rect2(spot.position, spot.size).grow(16), hint_color, 8)
+			ring.modulate.a = 0.0
+			picture.add_child(ring)
+			var tween := create_tween()
+			for i in 3:
+				tween.tween_property(ring, "modulate:a", 1.0, 0.35)
+				tween.tween_property(ring, "modulate:a", 0.0, 0.35)
+			tween.tween_callback(ring.queue_free)
 		return
 
 

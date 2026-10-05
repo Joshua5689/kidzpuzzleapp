@@ -52,6 +52,16 @@ const LEVELS: Array[Dictionary] = [
 	{"title": "Add Bees", "scene": "res://Scenes/Levels/Level38_AddBees.tscn"},
 	{"title": "Bee Home", "scene": "res://Scenes/Levels/Level39_BeeHome.tscn"},
 	{"title": "Bee Hunt", "scene": "res://Scenes/Levels/Level40_BeeHunt.tscn"},
+	{"title": "Spelling", "scene": "res://Scenes/Levels/Level41_SpellFrog.tscn"},
+	{"title": "Slide It", "scene": "res://Scenes/Levels/Level42_SlidePuzzle.tscn"},
+	{"title": "Follow Bee", "scene": "res://Scenes/Levels/Level43_FollowTheBee.tscn"},
+	{"title": "Take Away", "scene": "res://Scenes/Levels/Level44_TakeAway.tscn"},
+	{"title": "Sudoku", "scene": "res://Scenes/Levels/Level45_FruitSudoku.tscn"},
+	{"title": "Star Maze", "scene": "res://Scenes/Levels/Level46_StarMaze.tscn"},
+	{"title": "Numbers", "scene": "res://Scenes/Levels/Level47_NumberPatterns.tscn"},
+	{"title": "Under Sea", "scene": "res://Scenes/Levels/Level48_SeaDifferences.tscn"},
+	{"title": "Dot to Dot", "scene": "res://Scenes/Levels/Level49_ConnectDots.tscn"},
+	{"title": "Treasure", "scene": "res://Scenes/Levels/Level50_TreasureIsland.tscn"},
 ]
 
 ## Levels are grouped into worlds of WORLD_SIZE. Inside an open world levels

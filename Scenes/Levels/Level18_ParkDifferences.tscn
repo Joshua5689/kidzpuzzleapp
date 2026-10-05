@@ -29,10 +29,10 @@ category = "Differences"
 
 [node name="Cloud" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
 layout_mode = 0
-offset_left = 380.0
-offset_top = 92.0
-offset_right = 468.0
-offset_bottom = 144.0
+offset_left = 364.0
+offset_top = 74.0
+offset_right = 494.0
+offset_bottom = 160.0
 border_width = 3.0
 script = ExtResource("r2")
 category = "Differences"

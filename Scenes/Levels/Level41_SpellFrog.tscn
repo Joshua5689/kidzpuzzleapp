@@ -1,0 +1,151 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/SortDrag/SortDragLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortBin.gd" id="r2"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/SortDrag/SortItem.gd" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Frog.svg" id="r4"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World5/Slot.svg" id="r5"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World5/LetterTile.svg" id="r6"]
+
+[node name="Level41_SpellFrog" instance=ExtResource("1_base")]
+level_number = 41
+prompt_text = "Spell the word!"
+snap_to_bin = true
+time_limit = 90.0
+
+[node name="Picture" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 730.0
+offset_top = 0.0
+offset_right = 970.0
+offset_bottom = 240.0
+texture = ExtResource("r4")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Slot1" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 280.0
+offset_right = 645.0
+offset_bottom = 450.0
+texture = ExtResource("r5")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "F"
+
+[node name="Slot2" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 665.0
+offset_top = 280.0
+offset_right = 835.0
+offset_bottom = 450.0
+texture = ExtResource("r5")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "R"
+
+[node name="Slot3" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 855.0
+offset_top = 280.0
+offset_right = 1025.0
+offset_bottom = 450.0
+texture = ExtResource("r5")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "O"
+
+[node name="Slot4" type="TextureRect" parent="Layout/PlayArea/Bins"]
+layout_mode = 0
+offset_left = 1045.0
+offset_top = 280.0
+offset_right = 1215.0
+offset_bottom = 450.0
+texture = ExtResource("r5")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r2")
+category = "G"
+
+[node name="LetterG" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 560.0
+offset_right = 450.0
+offset_bottom = 710.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "G"
+text = "G"
+
+[node name="LetterA" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 560.0
+offset_right = 640.0
+offset_bottom = 710.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "A"
+text = "A"
+
+[node name="LetterO" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 560.0
+offset_right = 830.0
+offset_bottom = 710.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "O"
+text = "O"
+
+[node name="LetterF" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 560.0
+offset_right = 1020.0
+offset_bottom = 710.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "F"
+text = "F"
+
+[node name="LetterB" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 560.0
+offset_right = 1210.0
+offset_bottom = 710.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "B"
+text = "B"
+
+[node name="LetterR" type="TextureRect" parent="Layout/PlayArea/Items"]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 560.0
+offset_right = 1400.0
+offset_bottom = 710.0
+texture = ExtResource("r6")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("r3")
+category = "R"
+text = "R"

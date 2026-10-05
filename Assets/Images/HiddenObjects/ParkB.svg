@@ -2,7 +2,7 @@
 <rect width="700" height="525" fill="#8fd3ff"/>
 <rect y="360" width="700" height="165" fill="#6cc24a"/>
 <g fill="#fff"><circle cx="280" cy="70" r="26"/><circle cx="310" cy="58" r="34"/><circle cx="342" cy="72" r="26"/></g>
-<g fill="#fff"><circle cx="400" cy="122" r="18"/><circle cx="422" cy="112" r="24"/><circle cx="446" cy="124" r="18"/></g>
+<g fill="#fff" stroke="#c9dcea" stroke-width="4"><circle cx="395" cy="128" r="28"/><circle cx="428" cy="112" r="36"/><circle cx="462" cy="130" r="28"/></g><g fill="#fff"><circle cx="395" cy="128" r="25"/><circle cx="428" cy="112" r="33"/><circle cx="462" cy="130" r="25"/></g>
 <rect x="72" y="250" width="26" height="130" fill="#7a4e2d"/><circle cx="85" cy="215" r="62" fill="#2e8b3e"/>
 <ellipse cx="150" cy="178" rx="18" ry="13" fill="#7a4e2d"/><circle cx="163" cy="168" r="9" fill="#7a4e2d"/><polygon points="170,168 180,171 170,174" fill="#ff9f1c"/>
 <polygon points="520,45 555,90 520,135 485,90" fill="#3a86ff"/>

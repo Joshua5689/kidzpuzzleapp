@@ -331,7 +331,7 @@ def park(b):
     parts = ['<rect width="700" height="525" fill="#8fd3ff"/>', '<rect y="360" width="700" height="165" fill="#6cc24a"/>',
              '<g fill="#fff"><circle cx="280" cy="70" r="26"/><circle cx="310" cy="58" r="34"/><circle cx="342" cy="72" r="26"/></g>']
     if b:
-        parts.append('<g fill="#fff"><circle cx="400" cy="122" r="18"/><circle cx="422" cy="112" r="24"/><circle cx="446" cy="124" r="18"/></g>')
+        parts.append('<g fill="#fff" stroke="#c9dcea" stroke-width="4"><circle cx="395" cy="128" r="28"/><circle cx="428" cy="112" r="36"/><circle cx="462" cy="130" r="28"/></g><g fill="#fff"><circle cx="395" cy="128" r="25"/><circle cx="428" cy="112" r="33"/><circle cx="462" cy="130" r="25"/></g>')
     parts += ['<rect x="72" y="250" width="26" height="130" fill="#7a4e2d"/><circle cx="85" cy="215" r="62" fill="#2e8b3e"/>']
     if b:
         parts.append('<ellipse cx="150" cy="178" rx="18" ry="13" fill="#7a4e2d"/><circle cx="163" cy="168" r="9" fill="#7a4e2d"/>'
@@ -376,7 +376,7 @@ hunt("Level18_ParkDifferences.tscn", "Level18_ParkDifferences",
      ["level_number = 18", 'prompt_text = "Find the 6 differences!"'],
      "res://Assets/Images/HiddenObjects/ParkA.svg", (700, 525),
      [("Kite", "Differences", None, 480, 40, 80, 100),
-      ("Cloud", "Differences", None, 380, 92, 88, 52),
+      ("Cloud", "Differences", None, 364, 74, 130, 86),
       ("Bird", "Differences", None, 128, 152, 58, 40),
       ("Slide", "Differences", None, 440, 250, 150, 150),
       ("Ball", "Differences", None, 192, 422, 56, 56),

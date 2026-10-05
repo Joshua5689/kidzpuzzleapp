@@ -6,8 +6,9 @@ extends MechanicLevel
 
 ## How small an item gets once it's inside its bin.
 @export var sorted_scale: float = 0.45
-## Shadow-match style: the item snaps onto the centre of its bin at full size
-## (use one bin per item, e.g. an animal and its shadow).
+## Shadow-match / spelling style: the item snaps onto the centre of its bin
+## at full size and each bin holds one item. The level is done when every
+## bin is filled, so extra "trick" items may be left over.
 @export var snap_to_bin: bool = false
 
 @onready var play_area: Control = $Layout/PlayArea
@@ -38,7 +39,8 @@ func _ready() -> void:
 			child.gui_input.connect(_on_item_input.bind(child))
 			_items.append(child)
 			_home[child] = child.position
-			if not _bins.any(func(b): return b.category == child.category):
+			# In snap mode spare "trick" items without a bin are allowed.
+			if not snap_to_bin and not _bins.any(func(b): return b.category == child.category):
 				push_warning("%s: item %s has no bin for category '%s'" % [name, child.name, child.category])
 	if _items.is_empty():
 		push_warning("%s: no SortItem nodes under PlayArea/Items" % name)
@@ -71,6 +73,8 @@ func _drop(item: SortItem) -> void:
 	var bin := bin_at(item.get_global_rect().get_center())
 	if bin == null:
 		_send_home(item)
+	elif snap_to_bin and _bin_counts[bin] > 0:
+		_send_home(item)
 	elif bin.category == item.category:
 		sort_into(item, bin)
 	else:
@@ -92,13 +96,14 @@ func bin_at(global_point: Vector2) -> SortBin:
 func sort_into(item: SortItem, bin: SortBin) -> void:
 	_sorted.append(item)
 	if snap_to_bin:
+		_bin_counts[bin] = 1
 		item.pivot_offset = item.size / 2.0
 		item.scale = Vector2.ONE
 		var centre := bin.global_position + bin.size / 2.0 - item.size / 2.0 - items_root.global_position
 		create_tween().tween_property(item, "position", centre, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 		bounce(item)
 		clear_feedback()
-		if _sorted.size() == _items.size():
+		if _bin_counts.values().all(func(n): return n > 0):
 			finish_level()
 		else:
 			play_sound(correct_sound)

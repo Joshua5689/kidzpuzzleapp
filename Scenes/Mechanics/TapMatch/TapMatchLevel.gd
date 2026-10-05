@@ -24,6 +24,7 @@ var _current_buttons: Array[BaseButton] = []
 var _correct_buttons: Array[BaseButton] = []
 var _found: Array[BaseButton] = []
 var _answer_slot: TextureRect
+var _answer_text: Label
 
 
 func _ready() -> void:
@@ -75,20 +76,27 @@ func _start_round(index: int) -> void:
 	clear_feedback()
 	if tap_round.prompt != "":
 		prompt_label.text = tap_round.prompt
-	_build_clue_row(tap_round.clues)
+	_build_clue_row(tap_round.clues, tap_round.clue_texts)
 	_set_round_items(tap_round, tap_round.correct_items, tap_round)
 
 
-func _build_clue_row(clues: Array[Texture2D]) -> void:
+func _build_clue_row(clues: Array[Texture2D], clue_texts := PackedStringArray()) -> void:
 	for child in clue_row.get_children():
 		clue_row.remove_child(child)
 		child.queue_free()
 	_answer_slot = null
-	clue_row.visible = not clues.is_empty()
-	if clues.is_empty():
+	_answer_text = null
+	clue_row.visible = not (clues.is_empty() and clue_texts.is_empty())
+	if not clue_row.visible:
 		return
 	for texture in clues:
 		clue_row.add_child(_make_clue(texture))
+	for text in clue_texts:
+		var tile := PanelContainer.new()
+		tile.custom_minimum_size = Vector2(clue_size, clue_size)
+		tile.add_theme_stylebox_override("panel", UiStyle.rounded(Color.WHITE, 24, UiStyle.MUTED_COLOR, 4))
+		tile.add_child(_make_text_label(text))
+		clue_row.add_child(tile)
 	# The "?" box the right answer drops into.
 	var slot := PanelContainer.new()
 	slot.name = "AnswerSlot"
@@ -104,7 +112,20 @@ func _build_clue_row(clues: Array[Texture2D]) -> void:
 	_answer_slot = _make_clue(null)
 	_answer_slot.visible = false
 	slot.add_child(_answer_slot)
+	_answer_text = _make_text_label("")
+	_answer_text.visible = false
+	slot.add_child(_answer_text)
 	clue_row.add_child(slot)
+
+
+func _make_text_label(text: String) -> Label:
+	var label := Label.new()
+	label.text = text
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", int(clue_size * 0.55))
+	label.add_theme_color_override("font_color", UiStyle.TEXT_COLOR)
+	return label
 
 
 func _make_clue(texture: Texture2D) -> TextureRect:
@@ -128,10 +149,15 @@ func _on_item_pressed(button: BaseButton) -> void:
 	button.disabled = true
 	bounce(button)
 	if _answer_slot and button is TextureButton:
-		_answer_slot.texture = button.texture_normal
-		_answer_slot.visible = true
 		_answer_slot.get_parent().get_child(0).visible = false
-		bounce(_answer_slot)
+		var button_text := button.get_node_or_null("Text") as Label
+		if button_text:
+			_answer_text.text = button_text.text
+			_answer_text.visible = true
+		else:
+			_answer_slot.texture = button.texture_normal
+			_answer_slot.visible = true
+			bounce(_answer_slot)
 	if _found.size() < _correct_buttons.size():
 		play_sound(correct_sound)
 		clear_feedback()

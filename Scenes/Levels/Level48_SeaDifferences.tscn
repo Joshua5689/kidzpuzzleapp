@@ -1,0 +1,118 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/HiddenObjectHunt/HiddenObjectHuntLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/HiddenObjectHunt/Hotspot.gd" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World5/SeaA.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World5/SeaB.svg" id="r4"]
+
+[node name="Level48_SeaDifferences" instance=ExtResource("1_base")]
+level_number = 48
+prompt_text = "Find the 10 differences!"
+time_limit = 150.0
+
+[node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]
+custom_minimum_size = Vector2(700, 525)
+texture = ExtResource("r3")
+
+[node name="CompareImage" parent="Layout/PlayArea/Pictures" index="1"]
+texture = ExtResource("r4")
+
+[node name="Boat" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 515.0
+offset_top = 4.0
+offset_right = 605.0
+offset_bottom = 68.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Seaweed" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 300.0
+offset_right = 100.0
+offset_bottom = 455.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Rock" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 446.0
+offset_right = 468.0
+offset_bottom = 494.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="BlueFish" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 205.0
+offset_right = 525.0
+offset_bottom = 280.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="PinkFish" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 555.0
+offset_top = 115.0
+offset_right = 615.0
+offset_bottom = 155.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Crab" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 448.0
+offset_right = 346.0
+offset_bottom = 492.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Starfish" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 466.0
+offset_right = 556.0
+offset_bottom = 528.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Shell" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 462.0
+offset_right = 195.0
+offset_bottom = 494.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Bubbles" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 455.0
+offset_top = 78.0
+offset_right = 495.0
+offset_bottom = 134.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"
+
+[node name="Jellyfish" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 44.0
+offset_right = 366.0
+offset_bottom = 136.0
+border_width = 3.0
+script = ExtResource("r2")
+category = "Differences"

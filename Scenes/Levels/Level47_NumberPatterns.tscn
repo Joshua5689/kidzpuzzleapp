@@ -1,0 +1,227 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/TapMatch/TapMatchLevel.tscn" id="1_base"]
+[ext_resource type="Script" path="res://Scenes/Mechanics/TapMatch/TapRound.gd" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World5/NumberTile.svg" id="r3"]
+
+[node name="Level47_NumberPatterns" instance=ExtResource("1_base")]
+level_number = 47
+prompt_text = "What number comes next?"
+clue_size = 140.0
+time_limit = 75.0
+
+[node name="Round1" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "What number comes next?"
+correct_items = Array[NodePath]([NodePath("N10")])
+clue_texts = PackedStringArray("2", "4", "6", "8")
+
+[node name="N9" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round1/N9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="N10" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round1/N10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="N12" type="TextureButton" parent="Layout/Rounds/Round1"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round1/N12"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Round2" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "What number comes next?"
+correct_items = Array[NodePath]([NodePath("N6")])
+clue_texts = PackedStringArray("10", "9", "8", "7")
+
+[node name="N5" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round2/N5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="N8" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round2/N8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="N6" type="TextureButton" parent="Layout/Rounds/Round2"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round2/N6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Round3" type="HFlowContainer" parent="Layout/Rounds"]
+layout_mode = 2
+theme_override_constants/h_separation = 48
+alignment = 1
+script = ExtResource("r2")
+prompt = "What number comes next?"
+correct_items = Array[NodePath]([NodePath("N25")])
+clue_texts = PackedStringArray("5", "10", "15", "20")
+
+[node name="N21" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round3/N21"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "21"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="N30" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round3/N30"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="N25" type="TextureButton" parent="Layout/Rounds/Round3"]
+custom_minimum_size = Vector2(190, 190)
+layout_mode = 2
+texture_normal = ExtResource("r3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Layout/Rounds/Round3/N25"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 96
+text = "25"
+horizontal_alignment = 1
+vertical_alignment = 1

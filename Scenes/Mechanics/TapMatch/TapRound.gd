@@ -10,3 +10,6 @@ extends HFlowContainer
 ## Optional clue pictures shown in a row above the choices, followed by a "?"
 ## box that fills in with the right answer (e.g. a pattern: red, blue, red, ?).
 @export var clues: Array[Texture2D] = []
+## Optional text clues instead of pictures (e.g. "2", "4", "6", "8"). Buttons
+## can carry text too: give a TextureButton a Label child named "Text".
+@export var clue_texts: PackedStringArray = PackedStringArray()

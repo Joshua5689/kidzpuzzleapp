@@ -10,6 +10,9 @@ extends MechanicLevel
 ## total (e.g. rounds [2] + add_rounds [1] asks "2 + 1 = ?"). Leave empty for
 ## plain counting.
 @export var add_rounds: Array[int] = []
+## Taking away: how many of each round's items are crossed out. The answer is
+## how many are left (e.g. rounds [5] + take_rounds [2] asks "5 - 2 = ?").
+@export var take_rounds: Array[int] = []
 ## Answer buttons per round, including the correct one.
 @export_range(2, 5) var answer_choices: int = 3
 ## Wrong answers are picked from 1..max_number.
@@ -47,7 +50,16 @@ func current_answer() -> int:
 
 
 func _answer_for(index: int) -> int:
+	return _shown_for(index) - _taken_for(index)
+
+
+## Items on screen this round (both groups when adding).
+func _shown_for(index: int) -> int:
 	return rounds[index] + (add_rounds[index] if index < add_rounds.size() else 0)
+
+
+func _taken_for(index: int) -> int:
+	return take_rounds[index] if index < take_rounds.size() else 0
 
 
 func _start_round(index: int) -> void:
@@ -59,7 +71,8 @@ func _start_round(index: int) -> void:
 	_clear(answers_container)
 
 	var first_group: int = rounds[index]
-	for n in current_answer():
+	var first_taken := _shown_for(index) - _taken_for(index)
+	for n in _shown_for(index):
 		if n == first_group:
 			items_container.add_child(_make_plus_sign())
 		var item := TextureButton.new()
@@ -70,8 +83,11 @@ func _start_round(index: int) -> void:
 		item.custom_minimum_size = Vector2(item_size, item_size)
 		item.pressed.connect(_on_item_tapped.bind(item))
 		items_container.add_child(item)
+		var crossed := n >= first_taken
+		if crossed:
+			_cross_out(item)
 		item.modulate.a = 0.0
-		create_tween().tween_property(item, "modulate:a", 1.0, 0.25).set_delay(n * 0.08)
+		create_tween().tween_property(item, "modulate:a", 0.35 if crossed else 1.0, 0.25).set_delay(n * 0.08)
 
 	for value in _make_choices(current_answer()):
 		var button := Button.new()
@@ -81,6 +97,22 @@ func _start_round(index: int) -> void:
 		UiStyle.style_button(button, UiStyle.MUTED_COLOR, 80)
 		button.pressed.connect(_on_answer_pressed.bind(value, button))
 		answers_container.add_child(button)
+
+
+## A taken-away item: faded, a big red X, and not countable.
+func _cross_out(item: TextureButton) -> void:
+	item.disabled = true
+	item.set_meta("counted", true)
+	var x := Label.new()
+	x.name = "Cross"
+	x.text = "X"
+	x.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	x.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	x.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	x.add_theme_font_size_override("font_size", int(item_size * 0.9))
+	x.add_theme_color_override("font_color", Color(0.9, 0.15, 0.15))
+	x.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	item.add_child(x)
 
 
 func _make_plus_sign() -> Label:

@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/SlidePuzzle/SlidePuzzleLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Icon/IconSource.png" id="r2"]
+
+[node name="Level42_SlidePuzzle" instance=ExtResource("1_base")]
+level_number = 42
+image = ExtResource("r2")
+grid_size = 3
+shuffle_moves = 40
+time_limit = 180.0

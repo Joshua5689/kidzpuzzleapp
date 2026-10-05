@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Scenes/Mechanics/ConnectDots/ConnectDotsLevel.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://Assets/Images/Animals/Star.svg" id="r2"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World5/BlueFish.svg" id="r3"]
+
+[node name="Level49_ConnectDots" instance=ExtResource("1_base")]
+level_number = 49
+prompt_text = "Join the dots from 1 upwards!"
+shapes = Array[PackedVector2Array]([PackedVector2Array(550.0, 90.0, 623.5, 288.9, 835.3, 297.3, 668.9, 428.6, 726.3, 632.7, 550.0, 515.0, 373.7, 632.7, 431.1, 428.6, 264.7, 297.3, 476.5, 288.9), PackedVector2Array(315.5, 379.5, 344.4, 309.3, 423.2, 257.9, 530.8, 239.1, 638.4, 257.9, 707.1, 299.0, 821.0, 276.6, 821.0, 482.5, 707.1, 460.1, 638.4, 501.1, 530.8, 519.9, 423.2, 501.1, 344.4, 449.7)])
+reveals = Array[Texture2D]([ExtResource("r2"), ExtResource("r3")])
+reveal_rects = Array[Rect2]([Rect2(250, 90, 600, 600), Rect2(250, 80, 599, 599)])
+board_size = Vector2(1100, 760)
+time_limit = 120.0

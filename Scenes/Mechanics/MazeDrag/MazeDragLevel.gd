@@ -1,6 +1,7 @@
 extends MechanicLevel
 ## MazeDrag mechanic: drag the player through a grid maze to the goal.
-## The maze is typed into `layout`: '#' wall, '.' path, 'S' start, 'E' goal.
+## The maze is typed into `layout`: '#' wall, '.' path, 'S' start, 'E' goal,
+## '*' a star to collect (the goal only counts once every star is collected).
 ## The player follows the finger one cell at a time and can't cross walls,
 ## however fast the finger moves. A trail shows the way walked so far.
 
@@ -16,6 +17,9 @@ extends MechanicLevel
 @export var wall_color: Color = Color(0.25, 0.6, 0.3)
 @export var path_color: Color = Color(0.96, 0.9, 0.75)
 @export var trail_color: Color = Color(0.95, 0.5, 0.2, 0.55)
+## Picture for '*' cells. Required if the layout has any.
+@export var collectible_texture: Texture2D
+@export var collect_first_text: String = "Collect all the stars first!"
 
 @onready var board: Control = $Layout/Board
 
@@ -31,6 +35,9 @@ var _trail: Line2D
 ## Cells walked, start first; stepping back onto the previous one undoes a step.
 var _trail_cells: Array[Vector2i] = []
 var _dragging := false
+## cell -> sprite for collectibles still on the board.
+var _collectibles := {}
+var _collectible_cells: Array[Vector2i] = []
 
 
 func _ready() -> void:
@@ -57,6 +64,8 @@ func _parse_layout() -> void:
 					_start = cell
 				"E":
 					_goal = cell
+				"*":
+					_collectible_cells.append(cell)
 
 
 func _build_board() -> void:
@@ -92,6 +101,11 @@ func _build_board() -> void:
 	board.add_child(_trail)
 
 	board.add_child(_make_sprite("Goal", goal_texture, _goal))
+	for cell in _collectible_cells:
+		var star := _make_sprite("Collectible", collectible_texture, cell)
+		star.scale = Vector2(0.75, 0.75)
+		board.add_child(star)
+		_collectibles[cell] = star
 	_player = _make_sprite("Player", player_texture, _start)
 	board.add_child(_player)
 	_player_cell = _start
@@ -168,10 +182,30 @@ func _step(step: Vector2i) -> void:
 	if step.x != 0:
 		_player.flip_h = step.x < 0
 	create_tween().tween_property(_player, "position", _sprite_position(next), 0.06)
+	if _collectibles.has(next):
+		_collect(next)
 	if next == _goal:
+		if not _collectibles.is_empty():
+			show_feedback(collect_first_text, TRY_AGAIN_COLOR)
+			return
 		_dragging = false
 		bounce(_player)
 		finish_level()
+
+
+func _collect(cell: Vector2i) -> void:
+	var star: TextureRect = _collectibles[cell]
+	_collectibles.erase(cell)
+	play_sound(correct_sound)
+	clear_feedback()
+	var tween := create_tween().set_parallel()
+	tween.tween_property(star, "scale", Vector2(1.4, 1.4), 0.2)
+	tween.tween_property(star, "modulate:a", 0.0, 0.2)
+	tween.chain().tween_callback(star.queue_free)
+
+
+func collectibles_left() -> int:
+	return _collectibles.size()
 
 
 func _cell_center(cell: Vector2i) -> Vector2:
