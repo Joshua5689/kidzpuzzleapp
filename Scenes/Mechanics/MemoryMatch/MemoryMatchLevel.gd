@@ -1,8 +1,9 @@
 extends MechanicLevel
 ## MemoryMatch mechanic: cards lie face down; tap two to flip them. A matching
 ## pair stays face up, otherwise both flip back. Every face in `card_faces`
-## appears twice, shuffled. Mismatches cost stars (quietly — forgetting is
-## part of the game).
+## appears twice, shuffled. A mismatch only costs a star (quietly) when the
+## child had already seen where the first card's partner was: turning cards
+## over to find out what's there is the game, not a mistake.
 
 @export var card_faces: Array[Texture2D] = []
 @export var columns: int = 4
@@ -17,6 +18,8 @@ var _cards: Array[Button] = []
 var _face_up: Array[Button] = []
 var _matched := 0
 var _busy := false
+## Cards that have been face up at least once.
+var _seen := {}
 
 
 func _ready() -> void:
@@ -81,7 +84,11 @@ func _on_card_pressed(card: Button) -> void:
 	_flip(card, true)
 	_face_up.append(card)
 	if _face_up.size() < 2:
+		# Remember now whether this card's partner was already known.
+		card.set_meta("partner_known", _cards.any(func(c): return c != card and _seen.has(c) and c.get_meta("face") == card.get_meta("face")))
+		_seen[card] = true
 		return
+	_seen[card] = true
 
 	var first := _face_up[0]
 	var second := _face_up[1]
@@ -100,7 +107,8 @@ func _on_card_pressed(card: Button) -> void:
 			else:
 				play_sound(correct_sound))
 	else:
-		record_mistake()
+		if first.get_meta("partner_known", false):
+			record_mistake()
 		_busy = true
 		var tween := create_tween()
 		tween.tween_interval(mismatch_delay)

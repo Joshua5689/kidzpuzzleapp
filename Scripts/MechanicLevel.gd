@@ -27,10 +27,11 @@ const DEFAULT_TAP_SOUND: AudioStream = preload("res://Assets/Audio/SFX/Tap.wav")
 @export var success_sound: AudioStream
 @export var tap_sound: AudioStream
 @export_group("Stars")
-## Up to this many mistakes still earns 3 stars.
-@export var three_star_max_mistakes: int = 0
+## Up to this many mistakes still earns 3 stars. Kept forgiving: young
+## children explore by tapping, and one slip shouldn't cost a star.
+@export var three_star_max_mistakes: int = 2
 ## Up to this many mistakes earns 2 stars; more earns 1.
-@export var two_star_max_mistakes: int = 2
+@export var two_star_max_mistakes: int = 5
 @export_group("Timer")
 ## Seconds to finish for full stars; 0 = no timer. When time runs out the
 ## child keeps playing, but can earn at most 1 star.
@@ -50,13 +51,15 @@ var time_up := false
 var _timer_fill: Panel
 var _timer_back: Panel
 var _pulse: Tween
+## "Stop playing?" overlay shown by the Back button / Android back.
+var _leave_confirm: Control
 
 
 func _ready() -> void:
 	if prompt_text != "":
 		prompt_label.text = prompt_text
 	feedback_label.text = ""
-	back_button.pressed.connect(GameManager.go_to_level_select)
+	back_button.pressed.connect(go_back)
 	if correct_sound == null:
 		correct_sound = DEFAULT_CORRECT_SOUND
 	if wrong_sound == null:
@@ -71,7 +74,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if is_finished or time_up:
+	if is_finished or time_up or is_leave_confirm_open():
 		return
 	elapsed += delta
 	var left := clampf(1.0 - elapsed / time_limit, 0.0, 1.0)
@@ -88,6 +91,80 @@ func _process(delta: float) -> void:
 	_set_fill_colour(colour)
 	if left <= 0.0:
 		_on_time_up()
+
+
+## Back button and Android back: once the level is done just leave; while
+## playing, ask first so a stray tap doesn't throw the game away. Pressing
+## back again while asking means "keep playing".
+func go_back() -> void:
+	if is_finished:
+		GameManager.go_to_level_select()
+	elif is_leave_confirm_open():
+		_close_leave_confirm()
+	else:
+		_open_leave_confirm()
+
+
+func is_leave_confirm_open() -> bool:
+	return _leave_confirm != null and _leave_confirm.visible
+
+
+func _open_leave_confirm() -> void:
+	if _leave_confirm == null:
+		_leave_confirm = _build_leave_confirm()
+		add_child(_leave_confirm)
+	_leave_confirm.move_to_front()
+	_leave_confirm.visible = true
+	play_sound(tap_sound)
+
+
+func _close_leave_confirm() -> void:
+	_leave_confirm.visible = false
+
+
+func _build_leave_confirm() -> Control:
+	var overlay := ColorRect.new()
+	overlay.name = "LeaveConfirm"
+	overlay.color = Color(0, 0, 0, 0.45)
+	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	var center := CenterContainer.new()
+	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(center)
+	var card := PanelContainer.new()
+	card.add_theme_stylebox_override("panel", UiStyle.rounded(Color.WHITE, 40))
+	center.add_child(card)
+	var margin := MarginContainer.new()
+	for side in ["left", "right", "top", "bottom"]:
+		margin.add_theme_constant_override("margin_" + side, 56)
+	card.add_child(margin)
+	var column := VBoxContainer.new()
+	column.add_theme_constant_override("separation", 48)
+	margin.add_child(column)
+	var label := Label.new()
+	label.text = "Stop playing?"
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", 72)
+	label.add_theme_color_override("font_color", UiStyle.TEXT_COLOR)
+	column.add_child(label)
+	var buttons := HBoxContainer.new()
+	buttons.add_theme_constant_override("separation", 40)
+	column.add_child(buttons)
+	var stop := Button.new()
+	stop.name = "StopButton"
+	stop.text = "◀ Stop"
+	stop.custom_minimum_size = Vector2(320, 150)
+	UiStyle.style_button(stop, UiStyle.MUTED_COLOR, 56)
+	stop.pressed.connect(GameManager.go_to_level_select)
+	buttons.add_child(stop)
+	var keep := Button.new()
+	keep.name = "KeepPlayingButton"
+	keep.text = "Play ▶"
+	keep.custom_minimum_size = Vector2(320, 150)
+	UiStyle.style_button(keep, UiStyle.GO_COLOR, 56)
+	keep.pressed.connect(_close_leave_confirm)
+	buttons.add_child(keep)
+	return overlay
 
 
 ## True if the level has a timer and was finished before it ran out.

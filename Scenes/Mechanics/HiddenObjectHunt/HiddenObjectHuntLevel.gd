@@ -3,10 +3,17 @@ extends MechanicLevel
 ## Level scenes set the texture/size on SceneImage and add Hotspot nodes under
 ## SceneImage/Hotspots. Give CompareImage a texture to make it a spot-the-
 ## difference level: both pictures show side by side (same size) and a tap
-## on either one counts.
+## on either one counts. Pictures are scaled up at runtime to fill the
+## screen; hotspots are placed in the picture's own (custom_minimum_size)
+## coordinates and scaled with it.
 
 ## Extra forgiveness around each hotspot for small fingers.
 @export var touch_padding: float = 24.0
+## Taps that miss everything are normal exploring for small children, so
+## only every Nth miss counts as a mistake.
+@export var misses_per_mistake: int = 3
+## Never scale pictures up more than this.
+@export var max_picture_scale: float = 1.6
 ## Seconds without a find before a hint pulses over a hidden item. 0 = off.
 @export var hint_delay: float = 20.0
 @export var marker_color: Color = Color(0.95, 0.3, 0.2)
@@ -22,6 +29,7 @@ var _found: Array[Hotspot] = []
 ## category -> {"total": int, "found": int, "label": Label, "icon": Texture2D}
 var _categories: Dictionary = {}
 var _hint_timer: Timer
+var _misses := 0
 
 
 func _ready() -> void:
@@ -38,6 +46,7 @@ func _ready() -> void:
 		return
 
 	_build_targets_bar()
+	_fit_pictures()
 	scene_image.gui_input.connect(_on_picture_input.bind(scene_image))
 	compare_image.gui_input.connect(_on_picture_input.bind(compare_image))
 
@@ -47,6 +56,42 @@ func _ready() -> void:
 		_hint_timer.timeout.connect(_show_hint)
 		add_child(_hint_timer)
 		_hint_timer.start()
+
+
+## Makes the pictures as big as the screen allows. In spot-the-difference the
+## checklist moves above the pictures so two pictures get the full width.
+## Keeps the content clear of the timer bar at the top.
+func _fit_pictures() -> void:
+	var base_size := scene_image.custom_minimum_size
+	if base_size.x <= 0.0 or base_size.y <= 0.0:
+		return
+	var screen := get_viewport_rect().size
+	var layout: VBoxContainer = $Layout
+	var play_area: HBoxContainer = $Layout/PlayArea
+	var gap := float(layout.get_theme_constant("separation"))
+	var line := prompt_label.get_theme_font("font").get_height(prompt_label.get_theme_font_size("font_size"))
+	# Layout is centred vertically; leave ~100px clear at top (timer bar).
+	var height := screen.y - 200.0 - line - feedback_label.custom_minimum_size.y - 2.0 * gap
+	var width := screen.x - layout.offset_left + layout.offset_right
+	if compare_image.visible:
+		play_area.remove_child(targets_bar)
+		layout.add_child(targets_bar)
+		layout.move_child(targets_bar, prompt_label.get_index() + 1)
+		for row in targets_bar.get_children():
+			row.alignment = BoxContainer.ALIGNMENT_CENTER
+		height -= targets_bar.get_combined_minimum_size().y + gap
+		var pictures: HBoxContainer = $Layout/PlayArea/Pictures
+		width = (width - float(pictures.get_theme_constant("separation"))) / 2.0
+	else:
+		width -= maxf(targets_bar.custom_minimum_size.x, targets_bar.get_combined_minimum_size().x) 			+ float(play_area.get_theme_constant("separation"))
+	var k := minf(minf(width / base_size.x, height / base_size.y), max_picture_scale)
+	if k <= 1.0:
+		return
+	scene_image.custom_minimum_size = (base_size * k).floor()
+	compare_image.custom_minimum_size = scene_image.custom_minimum_size
+	for spot in _hotspots:
+		spot.position *= k
+		spot.size *= k
 
 
 func _build_targets_bar() -> void:
@@ -68,7 +113,7 @@ func _build_targets_bar() -> void:
 			icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			row.add_child(icon)
 		else:
-			row.add_child(_make_label(category, 40))
+			row.add_child(_make_label(category, 52))
 		var count_label := _make_label("", 48)
 		row.add_child(count_label)
 		entry["label"] = count_label
@@ -158,9 +203,11 @@ func _show_miss(picture: Control, point: Vector2) -> void:
 	tween.tween_property(ripple, "scale", Vector2(1.6, 1.6), 0.4)
 	tween.tween_property(ripple, "modulate:a", 0.0, 0.4)
 	tween.chain().tween_callback(ripple.queue_free)
-	# Misses cost stars but get a soft tap, not the "wrong" sound: random
-	# exploring taps are normal here.
-	record_mistake()
+	# A soft tap, not the "wrong" sound: random exploring taps are normal
+	# here, so only every few misses cost anything.
+	_misses += 1
+	if _misses % maxi(1, misses_per_mistake) == 0:
+		record_mistake()
 	play_sound(tap_sound)
 
 

@@ -1,16 +1,17 @@
 extends Control
 ## One page per world (GameManager.WORLD_SIZE levels): a button per level with
 ## its best stars, the world's star total, and — for a locked world — how many
-## stars are still needed to open it.
+## stars are still needed to open it. When a world is finished but the next
+## one is still locked, levels without 3 stars wobble to say "play me again".
 
 const STAR_TEXTURE: Texture2D = preload("res://Assets/Images/UI/Star.svg")
 const LOCK_TEXTURE: Texture2D = preload("res://Assets/Images/UI/Lock.svg")
 const MISSED_STAR_COLOR := Color(0.3, 0.3, 0.35, 0.35)
-## Holding the title this long toggles "open everything" for this session.
-const TESTING_UNLOCK_HOLD := 3.0
 
-## Remembered while the app runs, so coming back from a level keeps the page.
+## Remembered while the app runs, so coming back from a level keeps the page
+## (but only for the same player: a new player starts where they are).
 static var _page := -1
+static var _page_player := ""
 
 @onready var title_label: Label = $Layout/TitleLabel
 @onready var page_label: Label = $Layout/WorldRow/PageLabel
@@ -21,8 +22,6 @@ static var _page := -1
 @onready var prev_page_button: Button = $PrevPageButton
 @onready var next_page_button: Button = $NextPageButton
 
-var _hold_timer: SceneTreeTimer
-
 
 func _ready() -> void:
 	back_button.pressed.connect(GameManager.go_to_main_menu)
@@ -30,11 +29,9 @@ func _ready() -> void:
 	UiStyle.style_button(next_page_button, UiStyle.MUTED_COLOR, 64)
 	prev_page_button.pressed.connect(func(): show_page(_page - 1))
 	next_page_button.pressed.connect(func(): show_page(_page + 1))
-	title_label.gui_input.connect(_on_title_input)
-	if GameManager.unlock_all_this_session:
-		title_label.text = "All levels open (testing)"
-	if _page < 0:
+	if _page < 0 or _page_player != ProfileManager.current_id:
 		_page = GameManager.world_of(_first_playable_unfinished_level())
+		_page_player = ProfileManager.current_id
 	show_page(_page)
 
 
@@ -50,13 +47,41 @@ func show_page(page: int) -> void:
 
 	page_label.text = "World %d · Levels %d - %d  " % [_page + 1, first, last]
 	stars_label.text = "%d / %d" % [GameManager.world_stars(_page), (last - first + 1) * 3]
-	if GameManager.is_world_open(_page):
-		locked_label.text = ""
+	if not GameManager.is_world_open(_page):
+		locked_label.text = "Win %d more stars in World %d to open World %d!" % [
+			GameManager.STARS_TO_OPEN_NEXT_WORLD - GameManager.world_stars(_page - 1), _page, _page + 1]
+	elif needs_more_stars(_page):
+		locked_label.text = "Play the wobbly games again to win %d more stars and open World %d!" % [
+			GameManager.STARS_TO_OPEN_NEXT_WORLD - GameManager.world_stars(_page), _page + 2]
+		for n in range(first, last + 1):
+			if GameManager.stars_for(n) < 3:
+				_wobble(levels_grid.get_node("Level%02dButton" % n))
 	else:
-		locked_label.text = "Collect %d stars in World %d to open World %d. You have %d." % [
-			GameManager.STARS_TO_OPEN_NEXT_WORLD, _page, _page + 1, GameManager.world_stars(_page - 1)]
+		locked_label.text = ""
 	prev_page_button.visible = _page > 0
 	next_page_button.visible = _page < GameManager.world_count() - 1
+
+
+## True when every level of an open world is done but there aren't enough
+## stars yet to open the next world.
+func needs_more_stars(world: int) -> bool:
+	if world + 1 >= GameManager.world_count() or GameManager.is_world_open(world + 1):
+		return false
+	var first := world * GameManager.WORLD_SIZE + 1
+	for n in range(first, mini(first + GameManager.WORLD_SIZE, GameManager.level_count() + 1)):
+		if not GameManager.is_completed(n):
+			return false
+	return true
+
+
+## Gentle side-to-side rock, repeating, with a pause so it reads as a nudge.
+func _wobble(button: Control) -> void:
+	button.set_meta("wobble", true)
+	button.resized.connect(func(): button.pivot_offset = button.size / 2.0)
+	var tween := button.create_tween().set_loops()
+	tween.tween_interval(0.6)
+	for angle in [-0.06, 0.06, -0.04, 0.04, 0.0]:
+		tween.tween_property(button, "rotation", angle, 0.09)
 
 
 ## The first unlocked level not finished yet, so the screen opens where the
@@ -121,24 +146,3 @@ func _make_stars_row(stars: int) -> HBoxContainer:
 			star.modulate = MISSED_STAR_COLOR
 		row.add_child(star)
 	return row
-
-
-## Testing shortcut for grown-ups: hold the title to open every level until
-## the app is closed. Children are unlikely to find it; nothing is saved.
-func _on_title_input(event: InputEvent) -> void:
-	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT):
-		return
-	if event.pressed:
-		_hold_timer = get_tree().create_timer(TESTING_UNLOCK_HOLD)
-		_hold_timer.timeout.connect(_toggle_testing_unlock.bind(_hold_timer))
-	else:
-		_hold_timer = null
-
-
-func _toggle_testing_unlock(timer: SceneTreeTimer) -> void:
-	if timer != _hold_timer:
-		return
-	GameManager.unlock_all_this_session = not GameManager.unlock_all_this_session
-	title_label.text = "All levels open (testing)" if GameManager.unlock_all_this_session else "Pick a game"
-	MusicPlayer.play_ui_sound()
-	show_page(_page)

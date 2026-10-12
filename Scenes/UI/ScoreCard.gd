@@ -64,20 +64,26 @@ func show_result(level_number: int, stars: int, finished_everything: bool,
 			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
-## After the last level of a world: if the next world is still locked, say how
-## many stars are needed and hide Next (there's nowhere to go yet).
+## Once every level of the world is done but the next world is still locked
+## (also when replaying for more stars), say how many stars are missing. After
+## the world's last level Next is hidden too: there's nowhere to go yet.
 func _explain_locked_next_world(level_number: int) -> void:
-	var next := level_number + 1
-	if level_number <= 0 or not GameManager.level_exists(next) or GameManager.is_unlocked(next):
-		return
-	if GameManager.world_of(next) == GameManager.world_of(level_number):
+	if level_number <= 0:
 		return
 	var world := GameManager.world_of(level_number)
+	if world + 1 >= GameManager.world_count() or GameManager.is_world_open(world + 1):
+		return
+	var first := world * GameManager.WORLD_SIZE + 1
+	for n in range(first, first + GameManager.WORLD_SIZE):
+		if GameManager.level_exists(n) and not GameManager.is_completed(n):
+			return
 	var missing := GameManager.STARS_TO_OPEN_NEXT_WORLD - GameManager.world_stars(world)
 	hint_label.text = "Get %d more %s in World %d to open World %d!" % [
 		missing, "star" if missing == 1 else "stars", world + 1, world + 2]
 	hint_label.visible = true
-	next_button.visible = false
+	var next := level_number + 1
+	if not GameManager.level_exists(next) or not GameManager.is_unlocked(next):
+		next_button.visible = false
 
 
 func _on_next_pressed() -> void:

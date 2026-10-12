@@ -164,7 +164,7 @@ lv.save()
 lv = Level("Level23_BigMemory.tscn", "Level23_BigMemory", "res://Scenes/Mechanics/MemoryMatch/MemoryMatchLevel.tscn")
 faces = ", ".join(lv.tex(p) for p in [F + "Apple.svg", F + "Banana.svg", F + "Grapes.svg", F + "Orange.svg", T + "Ball.svg", T + "Teddy.svg"])
 lv.props = ["level_number = 23", 'prompt_text = "Find all the pairs!"', f"card_faces = Array[Texture2D]([{faces}])",
-            "columns = 6", "card_size = Vector2(200, 240)", "three_star_max_mistakes = 6", "two_star_max_mistakes = 12", TIMER(120)]
+            "columns = 6", "card_size = Vector2(200, 240)", TIMER(120)]
 lv.save()
 
 # ---- 24: trace the numbers 4 5 6 (TraceInput) ----------------------------------------
@@ -325,7 +325,8 @@ hunt("Level29_BeachDifferences.tscn", "Level29_BeachDifferences",
       ("Umbrella", "Differences", None, 385, 192, 118, 72),
       ("Flag", "Differences", None, 578, 356, 40, 48),
       ("Bucket", "Differences", None, 86, 396, 68, 98),
-      ("Crab", "Differences", None, 280, 440, 100, 55)])
+      ("Crab", "Differences", None, 280, 440, 100, 55)],
+     compare=W3 + "BeachB.svg")
 
 # ---- 30: frog's birthday party ---------------------------------------------------------------
 BALLOONS = [(70, 60, "#e63946", "#b02a35"), (1050, 40, "#3a86ff", "#2a62c0"), (430, 120, "#ffd23f", "#d9a915"),

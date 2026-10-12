@@ -1,6 +1,6 @@
 # Doodle Bee - Puzzle and Play (kids puzzle app)
 
-Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6; World 5 is fun up to ~8) on Android
+Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6; World 5 is fun up to ~8; profiles take ages 2-8) on Android
 tablets. 50 levels in 5 worlds of 10.
 Developer name: Doodle Bees.
 Sideloaded for now, packaged for Play Store once validated with real kids.
@@ -22,7 +22,16 @@ On `finish_level()` the level reports its stars to GameManager and shows
 `Scenes/UI/ScoreCard.tscn` (stars, Levels / Play again / Next). Stars come
 from mistakes: call `show_try_again()` (counts + shows text) or
 `record_mistake()` (counts silently); thresholds are the `three_star_max_mistakes`
-/ `two_star_max_mistakes` exports. When a completion finishes every level for
+/ `two_star_max_mistakes` exports (default 2 / 5: one slip never costs a star;
+some mechanic base scenes set their own). Kid-friendly counting rules:
+HiddenObjectHunt counts only every 3rd miss (`misses_per_mistake`), MemoryMatch
+only counts a wrong pair when the first card's partner had already been seen.
+
+The level Back button (and Android back) opens a "Stop playing?" overlay that
+pauses the timer; after the level is finished it leaves straight away.
+Android back is routed by `GameManager.go_back()` (project setting
+`quit_on_go_back` is off): level -> level select -> main menu -> "Who's
+playing?" -> quit. A scene can handle it itself by defining `go_back()`. When a completion finishes every level for
 the first time, Next becomes "Surprise!" and opens `Scenes/UI/Celebration.tscn`
 (fireworks).
 
@@ -33,7 +42,7 @@ in `Assets/Audio/` keeping the names, or set per-level sounds in the Inspector.
 
 Start-up flow: `Splash` (title picture) -> `ProfileSelect` ("Who's playing?")
 -> `MainMenu` -> `LevelSelect` -> level. `ProfileManager` (autoload) keeps the
-player profiles (name, gender, age 2-6, avatar) in `user://profiles.cfg`; each
+player profiles (name, gender, age 2-8, avatar) in `user://profiles.cfg`; each
 profile's progress is `user://progress_<id>.cfg`, loaded by GameManager when
 the profile changes. All profile data stays on the device (no network, no
 permissions) — keep it that way for Google Play's Families policy.
@@ -99,9 +108,12 @@ that mechanic benefits.
 
 Levels are grouped into worlds of 10 (`GameManager.WORLD_SIZE`). Inside an
 open world levels unlock one after another; the next world opens when the
-player has 25 stars (`STARS_TO_OPEN_NEXT_WORLD`) in the previous world.
-LevelSelect shows one world per page. Testing shortcut on a device: hold the
-"Pick a game" title for 3 s to open every level for the session.
+player has 20 of 30 stars (`STARS_TO_OPEN_NEXT_WORLD`) in the previous world.
+LevelSelect shows one world per page (remembered per player). When a world is
+finished but short of stars, its levels without 3 stars wobble and the page /
+score card say how many stars are missing. There is no in-app unlock
+shortcut (removed for release); test scripts set
+`GameManager.unlock_all_this_session = true`.
 
 Timed levels: set `time_limit` (seconds) on the level root. A countdown bar
 appears; finishing in time keeps normal stars, running out caps stars at 1
@@ -148,7 +160,9 @@ should display at), then add `Hotspot` nodes (Add Child Node > Hotspot) under
 `SceneImage/Hotspots`, drawn over each thing to find. Set each hotspot's
 `category` and `icon`; hotspots sharing a category are counted together in the
 checklist. For spot-the-difference, also set a texture on `CompareImage`
-(same size); hotspots are placed on the left picture only.
+(same size); hotspots are placed on the left picture only. At runtime the
+pictures (and hotspots) are scaled up to fill the screen (`_fit_pictures`,
+max `max_picture_scale`); in compare mode the checklist moves above them.
 
 ### ColourFill levels
 
@@ -215,9 +229,9 @@ start dot appears. Guide width/colour are set at runtime from the exports.
 
 ## Progress / unlocking
 
-`GameManager.UNLOCK_ALL_LEVELS` is `true` during development. Set it to `false`
-before testing with kids so levels unlock in order. Progress is saved to
-`user://progress.cfg`.
+`GameManager.UNLOCK_ALL_LEVELS` (const, `false`) opens every level when set to
+`true` for development. Progress is saved per player to
+`user://progress_<id>.cfg`.
 
 ## Running and testing
 

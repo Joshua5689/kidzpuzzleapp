@@ -68,13 +68,14 @@ const LEVELS: Array[Dictionary] = [
 ## unlock one after another; the next world opens once the player has at
 ## least STARS_TO_OPEN_NEXT_WORLD stars from the world before it.
 const WORLD_SIZE := 10
-const STARS_TO_OPEN_NEXT_WORLD := 25
+## 20 of 30 is two stars a level on average: reachable for a 5-year-old.
+const STARS_TO_OPEN_NEXT_WORLD := 20
 
 ## Development switch: true opens every level regardless of the rules above.
 const UNLOCK_ALL_LEVELS := false
 
-## Session-only override for testing on a device (see LevelSelect: hold the
-## title for 3 seconds). Never saved.
+## Session-only override for test scripts. There is deliberately no way to
+## turn it on from inside the app. Never saved.
 var unlock_all_this_session := false
 
 signal level_completed(level_number: int, stars: int)
@@ -87,6 +88,31 @@ var best_stars: Dictionary = {}
 func _ready() -> void:
 	ProfileManager.profile_changed.connect(_load_progress)
 	_load_progress()
+
+
+## Android back gesture/button (project setting quit_on_go_back is off, so
+## the app no longer closes by accident): step back one screen instead.
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		# Deferred: the notification arrives while the tree is busy.
+		go_back.call_deferred()
+
+
+func go_back() -> void:
+	var scene := get_tree().current_scene
+	if scene == null:
+		return
+	if scene.has_method("go_back"):
+		scene.go_back()
+		return
+	match scene.scene_file_path:
+		LEVEL_SELECT_SCENE, CELEBRATION_SCENE:
+			go_to_main_menu()
+		MAIN_MENU_SCENE, PROFILE_EDIT_SCENE:
+			go_to_profile_select()
+		_:
+			# First screens (splash, "Who's playing?"): leave the app.
+			get_tree().quit()
 
 
 func level_count() -> int:

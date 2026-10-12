@@ -10,7 +10,7 @@ const LEGACY_PROGRESS_PATH := "user://progress.cfg"
 const MAX_PROFILES := 6
 const MAX_NAME_LENGTH := 12
 const MIN_AGE := 2
-const MAX_AGE := 6
+const MAX_AGE := 8
 
 ## Avatar id -> picture shown on the profile card.
 const AVATARS := {

@@ -167,7 +167,7 @@ lv.save()
 lv = Level("Level33_HugeMemory.tscn", "Level33_HugeMemory", "res://Scenes/Mechanics/MemoryMatch/MemoryMatchLevel.tscn")
 faces = ", ".join(lv.tex(A + f"{n}.svg") for n in ["Frog", "Duck", "Bee", "Owl", "Dog", "Fish", "Butterfly", "Flower"])
 lv.props = ["level_number = 33", 'prompt_text = "Find all 8 pairs!"', f"card_faces = Array[Texture2D]([{faces}])",
-            "columns = 8", "card_size = Vector2(180, 215)", "three_star_max_mistakes = 8", "two_star_max_mistakes = 16", TIMER(150)]
+            "columns = 8", "card_size = Vector2(180, 215)", "three_star_max_mistakes = 4", "two_star_max_mistakes = 9", TIMER(150)]
 lv.save()
 
 

@@ -115,12 +115,12 @@ custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_constants/separation = 48
 alignment = 1
-""", extra_nodes=ROUND_LABEL, root_props="three_star_max_mistakes = 0\ntwo_star_max_mistakes = 2\n"))
+""", extra_nodes=ROUND_LABEL, root_props="three_star_max_mistakes = 1\ntwo_star_max_mistakes = 4\n"))
 
 write("Scenes/Mechanics/ConnectDots/ConnectDotsLevel.tscn", base_scene("ConnectDots", "Join the dots in order!", """[node name="Board" type="Control" parent="Layout"]
 layout_mode = 2
 size_flags_horizontal = 4
-""", extra_nodes=ROUND_LABEL, root_props="three_star_max_mistakes = 1\ntwo_star_max_mistakes = 4\n"))
+""", extra_nodes=ROUND_LABEL, root_props="three_star_max_mistakes = 2\ntwo_star_max_mistakes = 5\n"))
 
 write("Scenes/Mechanics/PictureSudoku/PictureSudokuLevel.tscn", base_scene("PictureSudoku", "Each fruit once in every row, column and box!", """[node name="PlayArea" type="HBoxContainer" parent="Layout"]
 layout_mode = 2
@@ -137,5 +137,5 @@ columns = 4
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
-""", root_props="three_star_max_mistakes = 1\ntwo_star_max_mistakes = 4\n"))
+""", root_props="three_star_max_mistakes = 2\ntwo_star_max_mistakes = 5\n"))
 print("World 5 mechanic scenes written")

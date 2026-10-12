@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Mechanics/HiddenObjectHunt/HiddenObjectHuntLevel.tscn" id="1_base"]
 [ext_resource type="Script" path="res://Scenes/Mechanics/HiddenObjectHunt/Hotspot.gd" id="r2"]
 [ext_resource type="Texture2D" path="res://Assets/Images/World3/BeachA.svg" id="r3"]
+[ext_resource type="Texture2D" path="res://Assets/Images/World3/BeachB.svg" id="r4"]
 
 [node name="Level29_BeachDifferences" instance=ExtResource("1_base")]
 level_number = 29
@@ -12,6 +13,9 @@ time_limit = 120.0
 [node name="SceneImage" parent="Layout/PlayArea/Pictures" index="0"]
 custom_minimum_size = Vector2(700, 525)
 texture = ExtResource("r3")
+
+[node name="CompareImage" parent="Layout/PlayArea/Pictures" index="1"]
+texture = ExtResource("r4")
 
 [node name="Sun" type="ReferenceRect" parent="Layout/PlayArea/Pictures/SceneImage/Hotspots"]
 layout_mode = 0

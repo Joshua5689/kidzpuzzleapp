@@ -14,6 +14,4 @@ prompt_text = "Find all the pairs!"
 card_faces = Array[Texture2D]([ExtResource("r2"), ExtResource("r3"), ExtResource("r4"), ExtResource("r5"), ExtResource("r6"), ExtResource("r7")])
 columns = 6
 card_size = Vector2(200, 240)
-three_star_max_mistakes = 6
-two_star_max_mistakes = 12
 time_limit = 120.0
