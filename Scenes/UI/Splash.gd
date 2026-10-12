@@ -26,6 +26,7 @@ func _ready() -> void:
 	tween.parallel().tween_property(title_label, "scale", Vector2.ONE, 0.5) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.tween_property(hint_label, "modulate:a", 1.0, 0.3)
+	tween.tween_callback(Voice.say.bind("Doodle Bee! Puzzle and Play!"))
 	tween.tween_interval(show_seconds)
 	tween.tween_callback(_leave)
 

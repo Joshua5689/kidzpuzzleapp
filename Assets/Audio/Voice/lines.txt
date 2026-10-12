@@ -1,0 +1,117 @@
+doodle_bee_puzzle_and_play	Doodle Bee! Puzzle and Play!
+who_s_playing	Who's playing?
+hello_let_s_make_your_player	Hello! Let's make your player
+tap_play_to_start	Tap Play to start!
+stop_playing	Stop playing?
+well_done	Well done!
+great_job	Great job!
+amazing	Amazing!
+play_again_to_win_more_stars_and_open_the_next_world	Play again to win more stars and open the next world!
+this_world_is_locked_win_more_stars_to_open_it	This world is locked. Win more stars to open it!
+play_the_wobbly_games_again_to_win_more_stars	Play the wobbly games again to win more stars!
+you_did_it_you_finished_all_the_games	You did it! You finished all the games!
+keep_going	Keep going!
+great	Great!
+how_many_stars	How many stars?
+find_all_the_red_balloons	Find all the RED balloons!
+find_the_apple	Find the apple!
+colour_the_car	Colour the car!
+help_the_dog_find_the_bone	Help the dog find the bone!
+find_the_5_differences	Find the 5 differences!
+find_the_shapes_in_the_bike	Find the shapes in the bike!
+trace_the_number	Trace the number!
+find_the_frogs_fish_and_gift	Find the frogs, fish and gift!
+how_many_ducks	How many ducks?
+put_the_farm_back_together	Put the farm back together!
+which_one_is_different	Which one is different?
+find_the_pairs	Find the pairs!
+colour_the_butterfly	Colour the butterfly!
+help_the_bee_find_the_flower	Help the bee find the flower!
+fruit_in_the_basket_toys_in_the_box	Fruit in the basket, toys in the box!
+find_the_6_differences	Find the 6 differences!
+trace_the_letter	Trace the letter!
+find_the_moon_the_stars_and_the_owl	Find the moon, the stars and the owl!
+drag_each_animal_to_its_shadow	Drag each animal to its shadow!
+what_comes_next	What comes next?
+find_all_the_pairs	Find all the pairs!
+how_many_apples_altogether	How many apples altogether?
+tap_the_biggest_ball	Tap the BIGGEST ball!
+tap_the_smallest_duck	Tap the SMALLEST duck!
+tap_the_biggest_star	Tap the BIGGEST star!
+put_each_thing_in_the_box_of_the_same_colour	Put each thing in the box of the same colour!
+race_the_bee_to_the_flower	Race the bee to the flower!
+find_the_7_differences	Find the 7 differences!
+find_the_balloons_presents_cake_and_the_frog	Find the balloons, presents, cake and the frog!
+how_many_bees	How many bees?
+put_the_bee_garden_back_together	Put the bee garden back together!
+find_all_8_pairs	Find all 8 pairs!
+colour_the_bee	Colour the bee!
+put_each_shape_in_its_box	Put each shape in its box!
+how_many_bees_altogether	How many bees altogether?
+fly_the_bee_home_to_the_hive	Fly the bee home to the hive!
+find_5_bees_2_butterflies_and_the_hive	Find 5 bees, 2 butterflies and the hive!
+spell_the_word	Spell the word!
+watch_the_flowers_then_tap_them_in_the_same_order	Watch the flowers, then tap them in the same order!
+some_apples_are_gone_how_many_are_left	Some apples are gone! How many are left?
+collect_every_star_then_fly_to_the_flower	Collect every star, then fly to the flower!
+what_number_comes_next	What number comes next?
+find_the_10_differences	Find the 10 differences!
+join_the_dots_from_1_upwards	Join the dots from 1 upwards!
+find_keys_coins_parrots_and_the_treasure	Find keys, coins, parrots and the treasure!
+colour_the_picture	Colour the picture!
+join_the_dots_in_order	Join the dots in order!
+how_many_can_you_count	How many can you count?
+put_the_picture_back_together	Put the picture back together!
+can_you_find_them_all	Can you find them all?
+help_find_the_way	Help find the way!
+each_fruit_once_in_every_row_column_and_box	Each fruit once in every row, column and box!
+follow_the_bee	Follow the bee!
+slide_the_pieces_to_fix_the_picture	Slide the pieces to fix the picture!
+put_each_thing_where_it_belongs	Put each thing where it belongs!
+tap_the_right_one	Tap the right one!
+trace_the_shape	Trace the shape!
+yes_1	Yes, 1!
+yes_2	Yes, 2!
+yes_3	Yes, 3!
+yes_4	Yes, 4!
+yes_5	Yes, 5!
+yes_6	Yes, 6!
+yes_7	Yes, 7!
+yes_8	Yes, 8!
+yes_9	Yes, 9!
+yes_10	Yes, 10!
+yes_11	Yes, 11!
+yes_12	Yes, 12!
+yes_13	Yes, 13!
+yes_14	Yes, 14!
+yes_15	Yes, 15!
+yes_16	Yes, 16!
+yes_17	Yes, 17!
+yes_18	Yes, 18!
+yes_19	Yes, 19!
+yes_20	Yes, 20!
+collect_all_the_stars_first	Collect all the stars first!
+watch_the_bee	Watch the bee!
+your_turn	Your turn!
+watch_again	Watch again!
+try_again	Try again!
+1	1
+2	2
+3	3
+4	4
+5	5
+6	6
+7	7
+8	8
+9	9
+10	10
+11	11
+12	12
+13	13
+14	14
+15	15
+16	16
+17	17
+18	18
+19	19
+20	20

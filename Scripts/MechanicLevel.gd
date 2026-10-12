@@ -14,6 +14,9 @@ const DEFAULT_CORRECT_SOUND: AudioStream = preload("res://Assets/Audio/SFX/Corre
 const DEFAULT_WRONG_SOUND: AudioStream = preload("res://Assets/Audio/SFX/Wrong.wav")
 const DEFAULT_SUCCESS_SOUND: AudioStream = preload("res://Assets/Audio/SFX/Success.wav")
 const DEFAULT_TAP_SOUND: AudioStream = preload("res://Assets/Audio/SFX/Tap.wav")
+const SPEAKER_ICON: Texture2D = preload("res://Assets/Images/UI/Speaker.svg")
+## Pause before the prompt is read out, so it follows the screen appearing.
+const PROMPT_VOICE_DELAY := 0.5
 
 @export var level_number: int = 0
 ## Leave empty to keep the text already on PromptLabel in the mechanic scene.
@@ -59,6 +62,17 @@ func _ready() -> void:
 	if prompt_text != "":
 		prompt_label.text = prompt_text
 	feedback_label.text = ""
+	_add_speaker_button()
+	# Tapping the question reads it again too.
+	prompt_label.mouse_filter = Control.MOUSE_FILTER_STOP
+	prompt_label.gui_input.connect(func(event: InputEvent):
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			say_prompt())
+	# Read when the delay ends, so mechanics that set the first round's
+	# question during _ready are read correctly.
+	var tween := create_tween()
+	tween.tween_interval(PROMPT_VOICE_DELAY)
+	tween.tween_callback(say_prompt)
 	back_button.pressed.connect(go_back)
 	if correct_sound == null:
 		correct_sound = DEFAULT_CORRECT_SOUND
@@ -93,6 +107,29 @@ func _process(delta: float) -> void:
 		_on_time_up()
 
 
+## Changes the question on screen (e.g. a new round) and reads it out.
+func set_prompt(text: String) -> void:
+	prompt_label.text = text
+	say_prompt()
+
+
+func say_prompt() -> void:
+	Voice.say(prompt_label.text)
+
+
+## Speaker button next to Back: hear the question again.
+func _add_speaker_button() -> void:
+	var button := TextureButton.new()
+	button.name = "SpeakerButton"
+	button.texture_normal = SPEAKER_ICON
+	button.ignore_texture_size = true
+	button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
+	button.position = Vector2(back_button.position.x + back_button.size.x + 24, back_button.position.y)
+	button.size = Vector2(110, 110)
+	button.pressed.connect(say_prompt)
+	add_child(button)
+
+
 ## Back button and Android back: once the level is done just leave; while
 ## playing, ask first so a stray tap doesn't throw the game away. Pressing
 ## back again while asking means "keep playing".
@@ -116,6 +153,7 @@ func _open_leave_confirm() -> void:
 	_leave_confirm.move_to_front()
 	_leave_confirm.visible = true
 	play_sound(tap_sound)
+	Voice.say("Stop playing?")
 
 
 func _close_leave_confirm() -> void:
@@ -212,7 +250,8 @@ func finish_level() -> void:
 	if is_finished:
 		return
 	is_finished = true
-	show_feedback(success_text)
+	# Not spoken: the score card's cheer follows a moment later.
+	show_feedback(success_text, SUCCESS_COLOR, false)
 	play_sound(success_sound)
 	var stars := stars_earned()
 	var finished_everything := false
@@ -245,8 +284,11 @@ func show_try_again() -> void:
 	play_sound(wrong_sound)
 
 
-func show_feedback(text: String, color: Color = SUCCESS_COLOR) -> void:
+## Shows (and quietly speaks, unless a question is being read) a short message.
+func show_feedback(text: String, color: Color = SUCCESS_COLOR, speak := true) -> void:
 	feedback_label.text = text
+	if speak:
+		Voice.say(text, false)
 	feedback_label.add_theme_color_override("font_color", color)
 
 

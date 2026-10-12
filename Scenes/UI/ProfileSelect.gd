@@ -16,6 +16,7 @@ func _ready() -> void:
 	if ProfileManager.can_add():
 		cards_grid.add_child(_make_new_card())
 	cards_grid.columns = clampi(cards_grid.get_child_count(), 1, 4)
+	Voice.say_later(self, title_label.text, 0.3)
 
 
 func _make_profile_card(profile: Dictionary) -> Control:

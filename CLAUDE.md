@@ -40,6 +40,19 @@ loop across all scenes; the Main Menu has the Music on/off button (saved in
 `user://settings.cfg`). Music/SFX are synthesised placeholder WAVs; swap files
 in `Assets/Audio/` keeping the names, or set per-level sounds in the Inspector.
 
+`Voice` (autoload, `Scripts/Autoload/Voice.gd`) reads text aloud for children
+who can't read yet. Lines are pre-generated OGGs in `Assets/Audio/Voice/`
+named by `Voice.slug(text)` (British voice "Jenny", Piper TTS, made offline by
+`Tools/Voice/gen_voice.py`; see its header for setup). Levels read their
+prompt on start and on the speaker button / tapping the prompt; use
+`set_prompt(text)` to change the question mid-level (speaks it) and
+`show_feedback()` (speaks softly, never over a question). Voice on/off is on
+the Main Menu (saved in settings.cfg). **Whenever you add or change any
+on-screen prompt or feedback text, re-run `python Tools/Voice/gen_voice.py`
+then `godot --headless --path . --import`**; missing lines are silent and
+show up in `Voice.missing_lines`. A real recording can replace any line:
+save an .ogg with the same file name over the generated one.
+
 Start-up flow: `Splash` (title picture) -> `ProfileSelect` ("Who's playing?")
 -> `MainMenu` -> `LevelSelect` -> level. `ProfileManager` (autoload) keeps the
 player profiles (name, gender, age 2-8, avatar) in `user://profiles.cfg`; each

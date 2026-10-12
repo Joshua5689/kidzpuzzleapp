@@ -4,6 +4,7 @@ extends Control
 @onready var greeting_label: Label = $Layout/PlayerRow/GreetingLabel
 @onready var play_button: Button = $Layout/PlayButton
 @onready var music_button: Button = $MusicButton
+@onready var voice_button: Button = $VoiceButton
 @onready var change_player_button: Button = $ChangePlayerButton
 
 
@@ -18,12 +19,21 @@ func _ready() -> void:
 
 	UiStyle.style_button(play_button, UiStyle.GO_COLOR, 72, 40)
 	UiStyle.style_button(music_button, UiStyle.MUTED_COLOR, 40)
+	UiStyle.style_button(voice_button, UiStyle.MUTED_COLOR, 40)
 	UiStyle.style_button(change_player_button, UiStyle.MUTED_COLOR, 40)
 	play_button.pressed.connect(GameManager.go_to_level_select)
 	change_player_button.pressed.connect(GameManager.go_to_profile_select)
 	music_button.pressed.connect(func(): MusicPlayer.set_music_enabled(not MusicPlayer.music_enabled))
 	MusicPlayer.music_toggled.connect(_update_music_button)
 	_update_music_button(MusicPlayer.music_enabled)
+	voice_button.pressed.connect(func(): Voice.set_voice_enabled(not Voice.voice_enabled))
+	Voice.voice_toggled.connect(_update_voice_button)
+	_update_voice_button(Voice.voice_enabled)
+	Voice.say_later(self, "Tap Play to start!", 0.4)
+
+
+func _update_voice_button(enabled: bool) -> void:
+	voice_button.text = "Voice: On" if enabled else "Voice: Off"
 
 
 func _update_music_button(enabled: bool) -> void:

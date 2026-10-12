@@ -37,6 +37,7 @@ func _ready() -> void:
 	fanfare_player.play()
 	_animate_title()
 	_launch_loop()
+	Voice.say_later(self, "You did it! You finished all the games!", 1.0)
 
 
 func _animate_title() -> void:

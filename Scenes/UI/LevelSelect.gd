@@ -7,6 +7,9 @@ extends Control
 const STAR_TEXTURE: Texture2D = preload("res://Assets/Images/UI/Star.svg")
 const LOCK_TEXTURE: Texture2D = preload("res://Assets/Images/UI/Lock.svg")
 const MISSED_STAR_COLOR := Color(0.3, 0.3, 0.35, 0.35)
+## Spoken versions of the page messages (fixed wording, so one recording each).
+const LOCKED_LINE := "This world is locked. Win more stars to open it!"
+const WOBBLY_LINE := "Play the wobbly games again to win more stars!"
 
 ## Remembered while the app runs, so coming back from a level keeps the page
 ## (but only for the same player: a new player starts where they are).
@@ -50,7 +53,9 @@ func show_page(page: int) -> void:
 	if not GameManager.is_world_open(_page):
 		locked_label.text = "Win %d more stars in World %d to open World %d!" % [
 			GameManager.STARS_TO_OPEN_NEXT_WORLD - GameManager.world_stars(_page - 1), _page, _page + 1]
+		Voice.say(LOCKED_LINE)
 	elif needs_more_stars(_page):
+		Voice.say(WOBBLY_LINE)
 		locked_label.text = "Play the wobbly games again to win %d more stars and open World %d!" % [
 			GameManager.STARS_TO_OPEN_NEXT_WORLD - GameManager.world_stars(_page), _page + 2]
 		for n in range(first, last + 1):

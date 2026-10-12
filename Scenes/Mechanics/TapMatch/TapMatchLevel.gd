@@ -75,7 +75,10 @@ func _start_round(index: int) -> void:
 	tap_round.visible = true
 	clear_feedback()
 	if tap_round.prompt != "":
-		prompt_label.text = tap_round.prompt
+		if index == 0:
+			prompt_label.text = tap_round.prompt  # read out by MechanicLevel
+		else:
+			set_prompt(tap_round.prompt)
 	_build_clue_row(tap_round.clues, tap_round.clue_texts)
 	_set_round_items(tap_round, tap_round.correct_items, tap_round)
 

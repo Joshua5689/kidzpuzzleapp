@@ -3,6 +3,8 @@ extends Control
 ## instances it and calls show_result().
 
 const CHEERS := ["Well done!", "Great job!", "Amazing!"]
+## Spoken instead of the exact "Get N more stars…" text (one recording fits all).
+const MORE_STARS_LINE := "Play again to win more stars and open the next world!"
 const EARNED_COLOR := Color.WHITE
 const MISSED_COLOR := Color(0.3, 0.3, 0.35, 0.35)
 
@@ -41,6 +43,13 @@ func show_result(level_number: int, stars: int, finished_everything: bool,
 		next_button.text = "Surprise! ▶"
 	else:
 		_explain_locked_next_world(level_number)
+	Voice.say(cheer_label.text)
+	if hint_label.visible:
+		var cheer_length := 1.2
+		var cheer_stream := Voice.stream_for(cheer_label.text)
+		if cheer_stream:
+			cheer_length = cheer_stream.get_length() + 0.3
+		Voice.say_later(self, MORE_STARS_LINE, cheer_length)
 
 	# Card pops in, then each earned star pops in turn with a sparkle.
 	# Wait a frame so containers have laid out and pivots use real sizes.

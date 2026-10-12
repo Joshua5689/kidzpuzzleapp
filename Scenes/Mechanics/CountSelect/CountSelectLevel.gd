@@ -158,6 +158,7 @@ func _on_item_tapped(item: TextureButton) -> void:
 	item.add_child(label)
 	bounce(item)
 	play_sound(tap_sound)
+	Voice.say(str(_tap_count))
 
 
 func _on_answer_pressed(value: int, button: Button) -> void:

@@ -26,6 +26,7 @@ config/icon="res://Assets/Icon/Icon512.png"
 ProfileManager="*res://Scripts/Autoload/ProfileManager.gd"
 GameManager="*res://Scripts/Autoload/GameManager.gd"
 MusicPlayer="*res://Scripts/Autoload/MusicPlayer.gd"
+Voice="*res://Scripts/Autoload/Voice.gd"
 
 [display]
 
