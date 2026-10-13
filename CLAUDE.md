@@ -275,5 +275,16 @@ files it generates.
   `%APPDATA%\Godot\keystores\debug.keystore`.
 - Debug APK: `godot --headless --path . --export-debug "Android" build/android/DoodleBee-debug.apk`
   (`build/` is gitignored). Install over USB: `adb install -r build/android/DoodleBee-debug.apk`.
-- A Play Store release needs its own release keystore (never commit it) and
-  an AAB via Gradle build; not set up yet.
+- Play Store release: preset "Android Play Store" (Gradle build, AAB,
+  `version/code` / `version/name` in export_presets.cfg; bump the code for every
+  upload). Gradle template unpacked in `android/` (gitignored; re-create by
+  unzipping `%APPDATA%\Godot\export_templates\4.7.2.stable\android_source.zip`
+  into `android/build` + `.build_version`). Upload keystore lives outside the repo
+  at `C:\Users\joshu\DoodleBee-keys\` (alias `doodlebee`); its path/password are in
+  the editor's export credentials (`.godot/`, never committed).
+  With `JAVA_HOME=C:\Users\joshu\Android\jdk-17.0.20.1+1`:
+  `godot --headless --path . --export-release "Android Play Store" build/android/DoodleBee.aab`
+  (then stop the Gradle daemon: `android/build/gradlew.bat --stop`).
+- Store material is in `store/` (listing text, icon, banner, screenshots, Play Console
+  answer sheet); privacy policy is `docs/privacy-policy.html` on GitHub Pages:
+  https://joshua5689.github.io/kidzpuzzleapp/privacy-policy.html
