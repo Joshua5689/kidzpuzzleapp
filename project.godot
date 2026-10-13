@@ -12,9 +12,9 @@ config_version=5
 
 config/name="Doodle Bee - Puzzle and Play"
 run/main_scene="res://Scenes/UI/Splash.tscn"
-config/quit_on_go_back=false
 config/use_custom_user_dir=true
 config/custom_user_dir_name="DoodleBee"
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.7", "Mobile")
 boot_splash/bg_color=Color(0.95, 0.82, 0.47, 1)
 boot_splash/stretch_mode=4
