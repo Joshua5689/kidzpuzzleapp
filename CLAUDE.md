@@ -2,7 +2,7 @@
 
 Godot 4.x, GDScript. Offline puzzle game for kids (ages 2-6; World 5 is fun up to ~8; profiles take ages 2-8) on Android
 tablets. 50 levels in 5 worlds of 10.
-Developer name: Doodle Bees.
+Developer / studio name: Little Hive Studio (website https://littlehivestudio.lovable.app/).
 Sideloaded for now, packaged for Play Store once validated with real kids.
 
 ## Architecture
@@ -266,7 +266,7 @@ files it generates.
 ## Android build
 
 - Preset "Android" in `export_presets.cfg` (app id `com.doodlebees.puzzleandplay`, launcher label "Doodle Bee",
-  developer "Doodle Bees", frog icons in `Assets/Icon/`; template APK, no Gradle build,
+  bee icons in `Assets/Icon/`; template APK, no Gradle build,
   arm64 + armv7, landscape, immersive, no permissions).
 - JDK 17: `C:\Users\joshu\Android\jdk-17.0.20.1+1`; SDK:
   `C:\Users\joshu\AppData\Local\Android\Sdk` (platform-tools, build-tools

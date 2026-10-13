@@ -42,7 +42,7 @@ SAFE AND PRIVATE
 • Asks for no permissions
 • Player names and progress stay on your device
 
-Doodle Bee is made by Doodle Bees. We'd love to hear what your little ones think!
+Doodle Bee is made by Little Hive Studio, a small family-run studio making gentle games for young children. We'd love to hear what your little ones think!
 
 === App category ===
 Category: Educational  (alternative: Puzzle)
@@ -50,7 +50,7 @@ Tags (pick up to 5 in Play Console): Educational, Puzzle, Kids, Brain games, Cas
 
 === Contact details ===
 Email: tjoshuaanderson@gmail.com
-Website: (optional, leave blank)
+Website: https://littlehivestudio.lovable.app/
 
 === Privacy policy URL ===
 https://joshua5689.github.io/kidzpuzzleapp/privacy-policy.html

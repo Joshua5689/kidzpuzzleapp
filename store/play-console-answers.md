@@ -17,6 +17,7 @@ Play Console → **Create app**
 
 | Field | Answer |
 |---|---|
+| Developer name (set when you create the developer account, shown under the app) | **Little Hive Studio** |
 | App name | `Doodle Bee - Puzzle and Play` |
 | Default language | English (United Kingdom) – en-GB |
 | App or game | **Game** |
@@ -112,7 +113,8 @@ Play Console → **Grow users → Store presence → Store settings**
 | App category | **Educational** *(alternative: Puzzle)* |
 | Tags | Pick up to 5 from Google's list, e.g. Educational, Puzzle, Brain games, Kids, Casual |
 | Email | `tjoshuaanderson@gmail.com` |
-| Phone / website | Optional, leave blank |
+| Website | `https://littlehivestudio.lovable.app/` |
+| Phone | Optional, leave blank |
 | External marketing | Your choice (lets Google promote the app outside Play) |
 
 ## 4. Main store listing
