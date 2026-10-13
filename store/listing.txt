@@ -1,0 +1,63 @@
+GOOGLE PLAY STORE LISTING - Doodle Bee - Puzzle and Play
+(copy each part into Play Console > Grow users > Store presence > Main store listing)
+
+=== App name (max 30) ===
+Doodle Bee - Puzzle and Play
+
+=== Short description (max 80) ===
+50 gentle puzzle games for kids 2-6. Read aloud, offline, no ads, no tracking.
+
+=== Full description (max 4000) ===
+Buzz into Doodle Bee, a world of 50 friendly puzzle games made for little hands and growing minds!
+
+Doodle Bee helps children aged 2 to 6 practise counting, colours, shapes, letters, memory and problem solving, one happy level at a time. Every question is read aloud by a friendly voice, so children who can't read yet can play on their own.
+
+50 GAMES IN 5 WORLDS
+• Jigsaw puzzles and sliding puzzles
+• Counting, adding and taking away
+• Spot the difference and hidden object hunts
+• Colouring pages
+• Mazes - help the dog, race the bee, collect the stars
+• Trace numbers and letters
+• Memory pairs and "follow the bee" sequences
+• Sorting by colour, shape and shadow
+• "What comes next?" patterns, odd one out, big and small
+• Picture sudoku, connect the dots and spelling for older children
+
+MADE FOR YOUNG CHILDREN
+• Spoken instructions for every game - tap the speaker to hear them again
+• Big, bright pictures and simple taps and drags
+• Kind feedback: no game over, children can always keep trying
+• Stars to collect, a new world to open, and a fireworks surprise at the end
+• Gets gradually harder: the last world is fun up to age 8
+
+FOR THE WHOLE FAMILY
+• Up to 6 player profiles, each with its own picture and stars
+• Music and voice can be switched on or off
+
+SAFE AND PRIVATE
+• No ads and no in-app purchases
+• Works completely offline - no internet needed
+• No accounts, no chat, no tracking, no data collection
+• Asks for no permissions
+• Player names and progress stay on your device
+
+Doodle Bee is made by Doodle Bees. We'd love to hear what your little ones think!
+
+=== App category ===
+Category: Educational  (alternative: Puzzle)
+Tags (pick up to 5 in Play Console): Educational, Puzzle, Kids, Brain games, Casual
+
+=== Contact details ===
+Email: tjoshuaanderson@gmail.com
+Website: (optional, leave blank)
+
+=== Privacy policy URL ===
+https://joshua5689.github.io/kidzpuzzleapp/privacy-policy.html
+
+=== Graphics (files in this folder) ===
+App icon (512 x 512):           icon-512.png
+Feature graphic (1024 x 500):   feature-graphic-1024x500.png
+Phone screenshots (2-8):        screenshots/1920x1080/*.png
+7-inch tablet screenshots:      screenshots/1920x1080/*.png
+10-inch tablet screenshots:     screenshots/2560x1440/*.png
