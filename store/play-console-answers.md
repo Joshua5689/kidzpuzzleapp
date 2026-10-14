@@ -88,6 +88,10 @@ player names and stars only on the tablet is *not* collection.
 - **"Do you want to let users know about this commitment [to the Play Families policy] in the
   Data safety section?"** Answer **Yes**: the store page then shows "Committed to follow the
   Play Families policy". *You're bound by the policy anyway; this just tells parents.*
+- **"Additional badges":** skip both.
+  - **Independent security review** is a paid lab audit, meant for apps that handle accounts,
+    payments or personal data, so it adds nothing for an offline app that collects no data.
+  - **UPI payments verified** is only for Indian finance apps.
 - *Optional for later:* the independent security review badge is a separate paid
   programme. Leave it.
 
