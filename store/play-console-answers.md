@@ -85,6 +85,9 @@ player names and stars only on the tablet is *not* collection.
 | *(Questions about encryption in transit and deletion requests are then skipped or not applicable.)* | |
 
 - **Expected store label:** "No data collected" and "No data shared with third parties".
+- **"Do you want to let users know about this commitment [to the Play Families policy] in the
+  Data safety section?"** Answer **Yes**: the store page then shows "Committed to follow the
+  Play Families policy". *You're bound by the policy anyway; this just tells parents.*
 - *Optional for later:* the independent security review badge is a separate paid
   programme. Leave it.
 
