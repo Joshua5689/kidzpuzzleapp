@@ -50,7 +50,7 @@ put_each_shape_in_its_box	Put each shape in its box!
 how_many_bees_altogether	How many bees altogether?
 fly_the_bee_home_to_the_hive	Fly the bee home to the hive!
 find_5_bees_2_butterflies_and_the_hive	Find 5 bees, 2 butterflies and the hive!
-spell_the_word	Spell the word!
+spell_the_word_frog	Spell the word frog!
 watch_the_flowers_then_tap_them_in_the_same_order	Watch the flowers, then tap them in the same order!
 some_apples_are_gone_how_many_are_left	Some apples are gone! How many are left?
 collect_every_star_then_fly_to_the_flower	Collect every star, then fly to the flower!
@@ -115,3 +115,29 @@ try_again	Try again!
 18	18
 19	19
 20	20
+a	A
+b	B
+c	C
+d	D
+e	E
+f	F
+g	G
+h	H
+i	I
+j	J
+k	K
+l	L
+m	M
+n	N
+o	O
+p	P
+q	Q
+r	R
+s	S
+t	T
+u	U
+v	V
+w	W
+x	X
+y	Y
+z	Z

@@ -7,5 +7,5 @@
 level_number = 42
 image = ExtResource("r2")
 grid_size = 3
-shuffle_moves = 40
+shuffle_moves = 12
 time_limit = 180.0

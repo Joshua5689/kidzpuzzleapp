@@ -11,6 +11,9 @@ extends MechanicLevel
 @export var board_width: float = 660.0
 @export var tile_gap: float = 6.0
 @export var show_preview: bool = true
+## Small number (1, 2, 3...) in the corner of each square, in reading order,
+## so children can rebuild pictures whose pieces look alike.
+@export var show_numbers: bool = true
 
 @onready var board: Control = $Layout/PlayArea/Board
 @onready var preview_image: TextureRect = $Layout/PlayArea/PreviewImage
@@ -48,12 +51,34 @@ func _ready() -> void:
 		tile.size = _tile_size - Vector2(tile_gap, tile_gap)
 		tile.mouse_filter = Control.MOUSE_FILTER_STOP
 		tile.gui_input.connect(_on_tile_input.bind(i))
+		if show_numbers:
+			tile.add_child(_make_number(i + 1))
 		board.add_child(tile)
 		_tiles.append(tile)
 		_cell_of.append(i)
 	_gap = count - 1
 	_tiles[_gap].visible = false
 	_shuffle()
+
+
+## Round badge in the tile's top-left corner.
+func _make_number(number: int) -> Control:
+	var badge := PanelContainer.new()
+	badge.name = "Number"
+	badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var side := maxf(_tile_size.x * 0.24, 40.0)
+	badge.custom_minimum_size = Vector2(side, side)
+	badge.position = Vector2(8, 8)
+	badge.add_theme_stylebox_override("panel", UiStyle.rounded(Color(1, 1, 1, 0.9), int(side / 2.0), UiStyle.TEXT_COLOR, 3))
+	var label := Label.new()
+	label.text = str(number)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", int(side * 0.62))
+	label.add_theme_color_override("font_color", UiStyle.TEXT_COLOR)
+	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	badge.add_child(label)
+	return badge
 
 
 func _coords(cell: int) -> Vector2:
@@ -132,4 +157,7 @@ func _on_solved() -> void:
 	for i in _tiles.size():
 		tween.tween_property(_tiles[i], "position", _coords(i) * _tile_size, 0.3).set_delay(0.15)
 		tween.tween_property(_tiles[i], "size", _tile_size, 0.3).set_delay(0.15)
+		var number := _tiles[i].get_node_or_null("Number")
+		if number:
+			tween.tween_property(number, "modulate:a", 0.0, 0.3)
 	finish_level()

@@ -9,7 +9,8 @@
 
 [node name="Level41_SpellFrog" instance=ExtResource("1_base")]
 level_number = 41
-prompt_text = "Spell the word!"
+prompt_text = "Spell the word frog!"
+guide_letters_max_age = 5
 snap_to_bin = true
 time_limit = 90.0
 

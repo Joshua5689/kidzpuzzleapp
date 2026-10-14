@@ -49,6 +49,11 @@ FIXED = [
     "Great!",
 ]
 MAX_NUMBER = 20  # counting taps and "Yes, %d!" answers
+# Letter tiles are read out as they're placed (spelling levels). Single letters
+# are synthesised from their British names so they're never mispronounced.
+LETTER_NAMES = dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ", [
+    "ay", "bee", "see", "dee", "ee", "eff", "jee", "aitch", "eye", "jay", "kay", "el", "em",
+    "en", "oh", "pee", "cue", "ar", "ess", "tee", "you", "vee", "double you", "ex", "why", "zed"]))
 
 SCENE_KEYS = ("prompt_text", "prompt", "success_text", "try_again_text", "round_correct_text",
               "collect_first_text", "watch_text", "your_turn_text", "watch_again_text")
@@ -96,6 +101,7 @@ def collect_lines():
         elif line:
             out.append(line)
     out += [str(n) for n in range(1, MAX_NUMBER + 1)]
+    out += list(LETTER_NAMES)
     seen, unique = set(), []
     for line in out:
         if slug(line) and slug(line) not in seen:
@@ -105,6 +111,8 @@ def collect_lines():
 
 
 def spoken_form(text):
+    if text in LETTER_NAMES:
+        return LETTER_NAMES[text]
     # Shouted words like "RED" or "BIGGEST" would be spelled out; say them normally.
     return re.sub(r"\b[A-Z]{2,}\b", lambda m: m.group(0).lower(), text)
 

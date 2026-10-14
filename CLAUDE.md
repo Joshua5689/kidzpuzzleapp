@@ -219,7 +219,8 @@ places items exactly over their bin at full size (shadow matching).
 ### World 5 mechanics
 
 - SlidePuzzle: `image`, `grid_size`, `shuffle_moves` (shuffled with legal
-  moves only, so always solvable). Tap a tile next to the gap.
+  moves only, so always solvable; Level 42 uses 12). Tap a tile next to the gap.
+  `show_numbers` puts 1..n badges on the tiles (fade out when solved).
 - SequenceMemory: `pad_textures`, `pad_sounds`, `rounds` (sequence lengths).
 - ConnectDots: `shapes` (one PackedVector2Array per round, board coords),
   `reveals` + `reveal_rects` (picture shown when a shape is closed).
@@ -230,6 +231,9 @@ places items exactly over their bin at full size (shadow matching).
 - CountSelect: `take_rounds` crosses out items ("how many are left?").
 - SortDrag: SortItem `text` makes letter tiles; in snap mode each bin takes
   one item, spare items may be left over, done when every bin is filled.
+  Placed letter tiles are read aloud (voice lines A-Z use British letter names,
+  see `LETTER_NAMES` in gen_voice.py). `guide_letters_max_age` shows a faint
+  letter in each bin for players that age or younger (Level 41: 5).
 - TapMatch: TapRound `clue_texts` for number clues; a button's Label child
   named "Text" fills the "?" box.
 

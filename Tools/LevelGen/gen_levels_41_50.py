@@ -104,7 +104,8 @@ for i, freq in enumerate([523.25, 659.25, 783.99, 1046.5]):  # C5 E5 G5 C6
 
 # ---- 41: spell it! (SortDrag snap, letter tiles + trick letters) --------------------------
 lv = Level("Level41_SpellFrog.tscn", "Level41_SpellFrog", "res://Scenes/Mechanics/SortDrag/SortDragLevel.tscn")
-lv.props = ["level_number = 41", 'prompt_text = "Spell the word!"', "snap_to_bin = true", TIMER(90)]
+lv.props = ["level_number = 41", 'prompt_text = "Spell the word frog!"', "snap_to_bin = true",
+            "guide_letters_max_age = 5", TIMER(90)]
 bin_script = lv.res("Script", "res://Scenes/Mechanics/SortDrag/SortBin.gd")
 item_script = lv.res("Script", "res://Scenes/Mechanics/SortDrag/SortItem.gd")
 lv.nodes += rect_node("Picture", "TextureRect", "Layout/PlayArea/Bins", 730, 0, 240, 240,
@@ -122,7 +123,7 @@ lv.save()
 # ---- 42: sliding puzzle 3x3 (your bee artwork) ------------------------------------------
 lv = Level("Level42_SlidePuzzle.tscn", "Level42_SlidePuzzle", "res://Scenes/Mechanics/SlidePuzzle/SlidePuzzleLevel.tscn")
 lv.props = ["level_number = 42", f"image = {lv.tex('res://Assets/Icon/IconSource.png')}", "grid_size = 3",
-            "shuffle_moves = 40", TIMER(180)]
+            "shuffle_moves = 12", TIMER(180)]
 lv.save()
 
 # ---- 43: follow the bee (SequenceMemory) -------------------------------------------------

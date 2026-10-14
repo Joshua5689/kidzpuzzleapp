@@ -10,6 +10,9 @@ extends MechanicLevel
 ## at full size and each bin holds one item. The level is done when every
 ## bin is filled, so extra "trick" items may be left over.
 @export var snap_to_bin: bool = false
+## Spelling help: for players this age or younger, each bin shows a faint copy
+## of the letter tile that belongs in it. 0 = never.
+@export var guide_letters_max_age: int = 0
 
 @onready var play_area: Control = $Layout/PlayArea
 @onready var bins_root: Control = $Layout/PlayArea/Bins
@@ -44,6 +47,8 @@ func _ready() -> void:
 				push_warning("%s: item %s has no bin for category '%s'" % [name, child.name, child.category])
 	if _items.is_empty():
 		push_warning("%s: no SortItem nodes under PlayArea/Items" % name)
+	if guide_letters_max_age > 0 and ProfileManager.has_current() 			and int(ProfileManager.current().get("age", 99)) <= guide_letters_max_age:
+		_add_letter_guides()
 
 
 func _on_item_input(event: InputEvent, item: SortItem) -> void:
@@ -67,6 +72,23 @@ func _on_item_input(event: InputEvent, item: SortItem) -> void:
 			_drop(item)
 	elif event is InputEventMouseMotion and _dragging == item:
 		item.position = point - _grab_offset
+
+
+func _add_letter_guides() -> void:
+	for bin in _bins:
+		var tile: Array = _items.filter(func(i): return i.category == bin.category and i.text != "")
+		if tile.is_empty():
+			continue
+		var label := Label.new()
+		label.name = "Guide"
+		label.text = tile[0].text
+		label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.add_theme_font_size_override("font_size", int(minf(bin.size.x, bin.size.y) * 0.6))
+		label.add_theme_color_override("font_color", Color(0.25, 0.18, 0.1, 0.25))
+		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		bin.add_child(label)
 
 
 func _drop(item: SortItem) -> void:
@@ -95,6 +117,8 @@ func bin_at(global_point: Vector2) -> SortBin:
 ## snap_to_bin, places it exactly over the bin).
 func sort_into(item: SortItem, bin: SortBin) -> void:
 	_sorted.append(item)
+	if item.text != "":
+		Voice.say(item.text)  # say the letter as it goes in
 	if snap_to_bin:
 		_bin_counts[bin] = 1
 		item.pivot_offset = item.size / 2.0
