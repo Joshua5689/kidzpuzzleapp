@@ -265,7 +265,7 @@ files it generates.
 
 ## Android build
 
-- Preset "Android" in `export_presets.cfg` (app id `com.doodlebees.puzzleandplay`, launcher label "Doodle Bee",
+- Preset "Android" in `export_presets.cfg` (app id `com.littlehivestudio.doodlebee`, launcher label "Doodle Bee",
   bee icons in `Assets/Icon/`; template APK, no Gradle build,
   arm64 + armv7, landscape, immersive, no permissions).
 - JDK 17: `C:\Users\joshu\Android\jdk-17.0.20.1+1`; SDK:

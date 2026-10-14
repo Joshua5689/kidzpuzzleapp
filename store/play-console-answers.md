@@ -19,6 +19,7 @@ Play Console → **Create app**
 |---|---|
 | Developer name (set when you create the developer account, shown under the app) | **Little Hive Studio** |
 | App name | `Doodle Bee - Puzzle and Play` |
+| Package name (read from the AAB on first upload; permanent) | `com.littlehivestudio.doodlebee` |
 | Default language | English (United Kingdom) – en-GB |
 | App or game | **Game** |
 | Free or paid | **Free** *(this can never be changed to paid later)* |
